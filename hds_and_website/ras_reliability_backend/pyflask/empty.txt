@@ -1,0 +1,299 @@
+
+myChart = {
+    const svg = d3.select("#chart")
+      .append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+          .attr("transform", `translate(${margin.left},${margin.top})`);
+    
+    const subgraphWidth = width*2/8;
+  const subgraphHeight = height*1/5;      
+  
+  const subgraph = svg.append("g")
+      .attr("id", "subgraph")
+      .attr("transform", `translate(${width - subgraphWidth - 20}, 0)`);
+      
+  subgraph.append("text")
+          .style("font-size","16px")
+    
+   //appending little triangles, path object, as arrowhead
+  //The <defs> element is used to store graphical objects that will be used at a later time
+  //The <marker> element defines the graphic that is to be used for drawing arrowheads or polymarkers on a given <path>, <line>, <polyline> or <polygon> element.
+  svg.append('defs').append('marker')
+      .attr("id",'arrowhead')
+      .attr('viewBox','-0 -5 10 10') //the bound of the SVG viewport for the current SVG fragment. defines a coordinate system 10 wide and 10 high starting on (0,-5)
+       .attr('refX',24) // x coordinate for the reference point of the marker. If circle is bigger, this need to be bigger.
+       .attr('refY',0)
+       .attr('orient','auto')
+          .attr('markerWidth',3)
+          .attr('markerHeight',3)
+          .attr('xoverflow','visible')
+      .append('svg:path')
+      .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
+      .attr('fill', '')
+      .style('stroke','#999');
+    
+    svg.append("text")
+        .text("Robot Components")
+        .attr("text-anchor","middle")
+        .attr("x",width/2)
+        .style("font-size","20px")
+    
+    
+  //create some data
+  const dataset =  {
+    nodes: [
+          {id: 1, name: 's_hds = 1', label: 'Human detected in green zone', group: 'states', runtime: 20},
+          {id: 2, name: 's_hds = 2', label: 'Human detected in yellow zone', group: 'states', runtime: 20},
+          {id: 0, name: 's_hds = 0', label: 'No human detected', group: 'states', runtime: 20}
+      ], 
+    links: [
+      {source: 0, target: 1, type: 'p_hds_green, s_human=1'},
+      {source: 0, target: 2, type: 'p_hds_yellow, s_human=2'},
+      {source: 1, target: 0, type: 's_human=0'},
+      {source: 1, target: 2, type: 'p_hds_yellow, s_human=2'},
+      {source: 2, target: 0, type: 's_human=0'},
+      {source: 2, target: 1, type: 'p_hds_green, s_human=1'}
+    ]
+  };
+  
+      console.log("dataset is ...",dataset);
+    
+  const colorScale = d3.scaleOrdinal()
+    .domain(dataset.nodes.map(node => node.group))
+    .range(d3.schemeCategory10);
+  
+  
+  const link = svg.selectAll(".links")
+          .data(dataset.links)
+          .enter()
+          .append("path") // Use paths instead of lines
+          .attr("class", "links")
+          .attr("stroke", "#999")
+          .attr("stroke-width", "4px")
+          .style("opacity", 1)
+          .style("fill", "none")
+          .attr("id", d => "line" + d.source + d.target)
+          .attr("class", "links")
+          .attr('marker-end', 'url(#arrowhead)');
+  
+  link
+    .attr("d", d => {
+      const dx = d.target.x - d.source.x,
+            dy = d.target.y - d.source.y,
+            dr = Math.sqrt(dx * dx + dy * dy);
+      return `M ${d.source.x},${d.source.y} A ${dr},${dr} 0 0,1 ${d.target.x},${d.target.y}`;
+    });
+  
+  
+  //The <title> element provides an accessible, short-text description of any SVG container element or graphics element.
+  //Text in a <title> element is not rendered as part of the graphic, but browsers usually display it as a tooltip.
+  link.append("title")
+      .text(d => d.type);
+  
+  const edgepaths = svg.selectAll(".edgepath") //make path go along with the link provide position for link labels
+          .data(dataset.links)
+          .enter()
+          .append('path')
+          .attr('class', 'edgepath')
+          .attr('fill-opacity', 0)
+          .attr('stroke-opacity', 0)
+          .attr('id', function (d, i) {return 'edgepath' + i})
+          .style("pointer-events", "none");
+  
+  const edgelabels = svg.selectAll(".edgelabel")
+          .data(dataset.links)
+          .enter()
+          .append('text')
+          .style("pointer-events", "none")
+          .attr('class', 'edgelabel')
+          .attr('id', function (d, i) {return 'edgelabel' + i})
+          .attr('font-size', 10)
+          .attr('fill', '#aaa');
+  
+  edgelabels.append('textPath') //To render text along the shape of a <path>, enclose the text in a <textPath> element that has an href attribute with a reference to the <path> element.
+      .attr('xlink:href', function (d, i) {return '#edgepath' + i})
+      .style("text-anchor", "middle")
+      .style("pointer-events", "none")
+      .attr("startOffset", "50%")
+      .text(d => d.type);
+    
+  // Initialize the nodes
+  const node = svg.selectAll(".nodes")
+      .data(dataset.nodes)
+      .enter()
+      .append("g")
+      .attr("class", "nodes")
+  
+  node.call(d3.drag() //sets the event listener for the specified typenames and returns the drag behavior.
+          .on("start", dragstarted) //start - after a new pointer becomes active (on mousedown or touchstart).
+          .on("drag", dragged)      //drag - after an active pointer moves (on mousemove or touchmove).
+      );
+  
+  node.append("circle")
+      .attr("r", d=> 17)//+ d.runtime/20 )
+      .attr("id",d=> "circle"+d.id)
+      .style("stroke", "grey")
+      .style("stroke-opacity",0.3)
+      .style("stroke-width", d => d.runtime/10)
+      .style("fill", d => colorScale(d.group))
+  
+  node.append("title")
+      .text(d => d.id + ": " + d.label + " - " + d.group +", runtime:"+ d.runtime+ "min");
+  
+  node.append("text")
+      .attr("dy", 4)
+      .attr("dx", -15)
+      .text(d => d.name);
+  node.append("text")
+      .attr("dy",12)
+      .attr("dx", -8)
+      .text(d=> d.runtime);
+  
+    //set up dictionary of neighbors
+    var neighborTarget= {};
+    for (var i=0; i < dataset.nodes.length; i++ ){
+      var id = dataset.nodes[i].id;
+      neighborTarget[id] = dataset.links.filter(function(d){
+        return d.source == id;
+      }).map(function(d){
+        return d.target;
+      })
+    }
+    var neighborSource = {};
+    for (var i=0; i < dataset.nodes.length; i++ ){
+      var id = dataset.nodes[i].id;
+      neighborSource[id] = dataset.links.filter(function(d){
+        return d.target == id;
+      }).map(function(d){
+        return d.source;
+      })
+    }
+    
+  console.log("neighborSource is ",neighborSource);
+  console.log("neighborTarget is ",neighborTarget);
+    
+   node.selectAll("circle").on("click",function(d){
+  
+              var active = d.active? false : true // toggle whether node is active
+              , newStroke = active ? "yellow":"grey"
+              , newStrokeIn = active ? "green":"grey"
+              , newStrokeOut = active? "red": "grey"
+              , newOpacity = active? 0.6: 0.3
+              , subgraphOpacity = active? 0.9:0;
+  
+              subgraph.selectAll("text")
+                      .text("Selected: " +d.label)
+                      .attr("dy",14)
+                      .attr("dx",14)
+  
+              //extract node's id and ids of its neighbors
+              var id =d.id
+              , neighborS = neighborSource[id]
+              , neighborT = neighborTarget[id];
+              console.log("neighbors is from ",neighborS," to ", neighborT);
+              d3.selectAll("#circle"+id).style("stroke-opacity", newOpacity);
+              d3.selectAll("#circle"+id).style("stroke", newStroke);
+     
+              d3.selectAll("#subgraph").style("opacity",subgraphOpacity)
+  
+              //highlight the current node and its neighbors
+              for (var i =0; i < neighborS.length; i++){
+                d3.selectAll("#line"+neighborS[i]+id).style("stroke", newStrokeIn);
+                d3.selectAll("#circle"+neighborS[i]).style("stroke-opacity", newOpacity).style("stroke", newStrokeIn);
+              }
+              for (var i =0; i < neighborT.length; i++){
+                d3.selectAll("#line"+id+neighborT[i]).style("stroke", newStrokeOut);
+                d3.selectAll("#circle"+neighborT[i]).style("stroke-opacity", newOpacity).style("stroke", newStrokeOut);
+              }
+              //update whether or not the node is active
+              d.active =active;
+   })
+  
+  const simulation = d3.forceSimulation(dataset.nodes)
+    .force("link", d3.forceLink(dataset.links).id(d => d.id).distance(100))
+    .force("charge", d3.forceManyBody().strength(-300))
+    .force("center", d3.forceCenter(width / 2, height / 2));
+  
+  
+  simulation.on("tick", ticked);
+  
+  function ticked() {
+    node.attr("transform", d => `translate(${d.x},${d.y})`);
+  
+    link
+      .attr("d", d => {
+        const dx = d.target.x - d.source.x,
+              dy = d.target.y - d.source.y,
+              dr = Math.sqrt(dx * dx + dy * dy);
+        return `M ${d.source.x},${d.source.y} A ${dr},${dr} 0 0,1 ${d.target.x},${d.target.y}`;
+      });
+  }
+  
+  //When the drag gesture starts, the targeted node is fixed to the pointer
+  //The simulation is temporarily “heated” during interaction by setting the target alpha to a non-zero value.
+  function dragstarted(d) {
+    if (!d3.event.active) simulation.alphaTarget(0.1).restart();
+    d.fx = d.x;
+    d.fy = d.y;
+  }
+  
+  
+    //When the drag gesture starts, the targeted node is fixed to the pointer
+    function dragged(d) {
+      d.fx = d3.event.x;
+      d.fy = d3.event.y;
+    }
+    
+    //drawing the legend
+    const legend_g = svg.selectAll(".legend")
+    .data(colorScale.domain())
+    .enter().append("g") 
+    .attr("transform", (d, i) => `translate(${width},${i * 20})`); 
+  
+    legend_g.append("circle")
+      .attr("cx", 0)
+      .attr("cy", 0)
+      .attr("r", 5)
+      .attr("fill", colorScale);
+  
+    legend_g.append("text")
+      .attr("x", 10)
+      .attr("y", 5)
+      .text(d => d);
+    
+    //drawing the second legend
+    const legend_g2 = svg.append("g") 
+    //.attr("transform", (d, i) => `translate(${width},${i * 20})`); 
+    .attr("transform", `translate(${width}, 120)`);
+    
+    legend_g2.append("circle")
+      .attr("r", 5)
+      .attr("cx", 0)
+      .attr("cy", 0)
+      .style("stroke", "grey")
+      .style("stroke-opacity",0.3)
+      .style("stroke-width", 15)
+      .style("fill", "black")
+    legend_g2.append("text")
+       .attr("x",15)
+       .attr("y",0)
+       .text("long runtime");
+    
+      legend_g2.append("circle")
+      .attr("r", 5)
+      .attr("cx", 0)
+      .attr("cy", 20)
+      .style("stroke", "grey")
+      .style("stroke-opacity",0.3)
+      .style("stroke-width", 2)
+      .style("fill", "black")
+    legend_g2.append("text")
+       .attr("x",15)
+       .attr("y",20)
+       .text("short runtime");
+    
+    
+      return div
+  }

@@ -1,0 +1,119 @@
+body {
+  display: flex;
+  background-color: #ffe0e6; /* Light pink */
+}
+
+.sidebar {
+  text-align: center;
+  flex: 0 0 200px; /* Width of sidebar */
+  height: 100vh; /* Full height */
+  border-right: 1px solid #e9704c;
+  padding: 20px;
+  box-sizing: border-box;
+  border-top: 1px solid #ffe0e6;
+  display: flex; /* New */
+  flex-direction: column; /* New */
+  
+}
+
+.sidebar img.sidebar-image {
+  display: block;
+  margin: 0 auto;
+  padding-bottom: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 20%;
+}
+th, td {
+    border: 1px solid black;
+    padding: 1px;
+    text-align: center;
+}
+.moving {background-color: #31dacc82;}
+.idle {background-color: #31dacc82;}
+.stopped {background-color: #31dacc82;}
+.error {background-color: #31dacc82;}
+
+.empty {background-color: #54b6e4b7;}
+.none {background-color: #54b6e4b7;}
+.adult {background-color: #54b6e4b7;}
+.worker {background-color: #54b6e4b7;}
+.red {background-color: #54b6e4b7;}
+.yellow {background-color: #54b6e4b7;}
+.green {background-color: #54b6e4b7;}
+
+.active {background-color: #6355e4;} /* Active color */
+
+
+.content {
+  flex: 1; /* Take up the rest of the space */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  justify-content: space-around;
+  margin-bottom: 20px;
+  border: 5px solid #ffd1dc;
+  padding: 10px;
+  background-color: #ffdbe0;
+}
+
+.sidebar .button-group button {
+  margin-bottom: 20px; /* Increase vertical spacing between sidebar buttons */
+}
+.sidebar-image {
+  padding-left: 25px; /* Increase vertical spacing between sidebar buttons */
+}
+.content .button-group {
+  flex-direction: row; /* Distribute buttons horizontally in content area */
+}
+
+.sidebar-image {
+  width: 200px;   /* Width of the image */
+  height: auto;   /* Maintain aspect ratio */
+}
+
+time {
+  list-style-type: none;
+  font-size: 20px;
+}
+
+time li {
+  padding-left: 60px;  
+}
+
+time li::after {
+  content: " s ";
+}
+
+#status-chart {
+  background-color: white;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-right: 10px; /* Increase spacing between buttons */
+}
+
+#status-circle {
+  width: 100px;
+  height: 100px;
+  margin-left: 75px ;  
+  transition: background-color 1s ease-in-out;
+  display: block;
+  color: blue;
+  background-color: blue;
+  border-radius: 50%; 
+}
+
+.bar {
+  fill: steelblue;
+}

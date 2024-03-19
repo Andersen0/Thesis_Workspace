@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    
+  </head>
+  <body>
+    <!-- The rest of your HTML here... -->
+    <div class="sidebar">
+        <!-- Display the image -->
+      <img class="sidebar-image" src="/static/nmbu_square.png" alt="NMBU Image">
+      
+      <div id="status-circle"></div>
+    </div>
+  
+  <div class="content">
+      <!-- All other content goes here -->
+
+    <h1>Rosbridge Pyflask Demo</h1>
+
+    <p>Follow tutorial in README:</p>
+    <ul>
+      <li>Run the launch file:  <code>$ ros2 launch pyflask my_launch_file.launch.py</code></li>
+      <li>Messages are published to:  <code>/rosout</code></li>
+    </ul>
+
+    <p> View the tutorial at <a href="https://github.com/mustafma/ras_reliability_backend" target="_blank">ras_reliability_backend</a> or <a href="https://gitlab.com/henrik.nordlie/summer_job_2023" target="_blank">summer_job_2023</a>.</p>
+    
+    <div class="button-group">
+      <button>NaN</button>
+      <button>NaN</button>
+      <button>NaN</button>
+      <button>NaN</button>
+      <a href="/"><button>Home page</button> </a>
+    </div>
+
+    <hr/>
+
+    <p><code>/status</code> Robot state:</p>
+    <ul id="recent_status_messages" style="font-weight: bold;"></ul>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="/static/circles.js"></script>
+   
+  </div>
+
+  </body>
+</html>

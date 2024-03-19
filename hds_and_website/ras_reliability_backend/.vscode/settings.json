@@ -1,0 +1,12 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/eliash/ros2_ws/install/yolov6/lib/python3.10/site-packages",
+        "/home/eliash/ros2_ws/install/pyflask/lib/python3.10/site-packages",
+        "/opt/ros/iron/lib/python3.10/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/eliash/ros2_ws/install/yolov6/lib/python3.10/site-packages",
+        "/home/eliash/ros2_ws/install/pyflask/lib/python3.10/site-packages",
+        "/opt/ros/iron/lib/python3.10/site-packages"
+    ]
+}
