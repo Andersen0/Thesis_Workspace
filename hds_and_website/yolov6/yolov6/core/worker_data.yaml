@@ -1,0 +1,10 @@
+# Please insure that your renamed_structured_dataset are put in same parent dir with YOLOv6_DIR
+train: /home/henrik/Desktop/summer_job_2023/YOLOv6/renamed_structured_dataset/images/train # train images
+val: /home/henrik/Desktop/summer_job_2023/YOLOv6/renamed_structured_dataset/images/val # val images
+test: /home/henrik/Desktop/summer_job_2023/YOLOv6/renamed_structured_dataset/images/test # test images (optional)
+# whether it is coco dataset, only coco dataset should be set to True.
+is_coco: False
+
+# Classes
+nc: 2  # number of classes
+names: ['adult', 'worker']  # class names

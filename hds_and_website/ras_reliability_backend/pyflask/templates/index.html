@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <script>
+    window.globalState = "idle";
+  </script>
+  <head>
+    <style>
+      #Robotvisualisation {
+      border: 2px solid rgb(62, 148, 210);
+      width: 1000px;
+      height: 600px;
+    }
+      #HDSvisualisation {
+      border: 2px solid rgb(210, 62, 195);
+      width: 1000px;
+      height: 600px;
+    }
+    </style>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    
+  </head>
+  <body>
+    
+    <!-- The rest of your HTML here... -->
+    <div class="sidebar">
+        <!-- Display the image -->
+      <img class="sidebar-image" src="/static/nmbu_square.png" alt="NMBU Image" >
+      
+      <div class="button-group">
+        <button id="toggleButton">Toggle State Visual</button>
+        <button id="shutdownButton">Shutdown Server</button>
+        <button id="toggleStatusButton">Toggle Status Messages</button>
+        <button id="toggleTopicButton">Toggle Topic Messages</button>
+        <button id="toggleImageButton">Toggle Live Image</button>
+      </div>
+      <div id="status-circle" display="block"></div>
+      <h3>Choice Matrix</h3>
+      <!-- <p>Last Class: <span id="lastClassDisplay"></span></p>
+      <p>Last Distance: <span id="lastDistanceDisplay"></span></p>
+      <p>Current State: <span id="state"></span></p> -->
+
+      <table>
+        <tr>
+            <td class="empty"></td>
+            <td class="none" id="none_x">none</td>
+            <td class="adult" id="adult">adult</td>
+            <td class="worker" id="worker">worker</td>
+        </tr>
+        <tr>
+            <td class="none" id="none_y">none</td>
+            <td class="moving" id="none_none">moving</td>
+            <td class="moving" id="none_adult">moving</td>
+            <td class="moving" id="none_worker">moving</td>
+        </tr>
+        <tr>
+            <td class="green" id="green">green</td>
+            <td class="error" id="green_none">error</td>
+            <td class="idle" id="green_adult">idle</td>
+            <td class="moving" id="green_worker">moving</td>
+        </tr>
+        <tr>
+            <td class="yellow" id="yellow">yellow</td>
+            <td class="error" id="yellow_none">error</td>
+            <td class="stopped" id="yellow_adult">stopped</td>
+            <td class="idle" id="yellow_worker">idle</td>
+        </tr>
+        <tr>
+            <td class="red" id="red">red</td>
+            <td class="error" id="red_none">error</td>
+            <td class="stopped" id="red_adult">stopped</td>
+            <td class="stopped" id="red_worker">stopped</td>
+        </tr>
+      </table>
+
+
+    </div>
+  
+  <div class="content">
+
+    <h1>Safety Properties Monitoring Dashboard</h1>
+
+    <p>Follow README:</p>
+    <ul>
+      <li>Run the launch file:  <code>$ ros2 launch pyflask my_launch_file.launch.py</code></li>
+      <li>Messages are published to:  <code>/rosout</code></li>
+    </ul>
+
+    <p> View the tutorial at <a href="https://github.com/mustafma/ras_reliability_backend" target="_blank">ras_reliability_backend</a> or <a href="https://gitlab.com/henrik.nordlie/summer_job_2023" target="_blank">summer_job_2023</a>.</p>
+    
+    <div class="button-group">
+      <button>Export Monitors</button>
+      <button>Import Robot State Machine</button>
+      <a href="/d3"><button>d3</button> </a>
+      <a href="/graph"><button>Graph page</button> </a>
+      <a href="/circles"><button>Circle page</button> </a>
+    </div>
+
+    <hr/>
+
+    <p>Connection: <span id="status" style="font-weight: bold;"></span></p>
+
+    <p><code>/topic</code> Time Active (seconds):</p>
+    <time id="recent_topic_messages" style="font-weight: bold;"></time>
+
+
+    
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="/static/main.js"></script>
+    <script src="/static/robotstatemachine.js"></script>
+    <script src="/static/HDSstatemachine.js"></script>
+    <script src="/static/bob_the_builder.js"></script>
+    <script src="/static/d3.js"></script>
+    <div id="chart"></div>
+    <img id="videoElement" src="">
+    
+    <script>
+        setInterval(function() {
+            document.getElementById('videoElement').src = "/stream?" + new Date().getTime();
+        }, 50);
+    </script>
+
+  </div>
+
+  </body>
+</html>
