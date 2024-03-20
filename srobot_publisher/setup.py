@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'sRobot_publisher'
+package_name = 'srobot_publisher'
 
 setup(
     name=package_name,
@@ -20,6 +20,6 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        'publisher = sRobot_publisher.publisher_node:main',],
+        'publisher = srobot_publisher.publisher_node:main',],
     },
 )
