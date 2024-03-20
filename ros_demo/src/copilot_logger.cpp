@@ -82,67 +82,67 @@ class CopilotLogger : public rclcpp::Node {
     }
     */
 
-    void handlerstate_req101_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) {
+    void handlerstate_req101_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) const {
       RCLCPP_INFO(this->get_logger(), "Copilot monitor violation: handlerstate_req101");
     //  publishRestartSignal(); // Call the function to publish the restart signal
     }
 
-    void handlerdtt_assumption_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) {
+    void handlerdtt_assumption_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) const {
       RCLCPP_INFO(this->get_logger(), "Copilot monitor violation: handlerdtt_assumption");
     //  publishRestartSignal(); // Call the function to publish the restart signal
     }
 
-    void handlerstate_req201_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) {
+    void handlerstate_req201_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) const {
       RCLCPP_INFO(this->get_logger(), "Copilot monitor violation: handlerstate_req201");
     //  publishRestartSignal(); // Call the function to publish the restart signal
     }
 
-    void handlerstate_req202_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) {
+    void handlerstate_req202_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) const {
       RCLCPP_INFO(this->get_logger(), "Copilot monitor violation: handlerstate_req202");
     //  publishRestartSignal(); // Call the function to publish the restart signal
     }
 
-    void handlerstate_req203_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/)  {
+    void handlerstate_req203_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) const {
       RCLCPP_INFO(this->get_logger(), "Copilot monitor violation: handlerstate_req203");
     //  publishRestartSignal(); // Call the function to publish the restart signal
     }
 
-    void handlerstate_req102_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/)  {
+    void handlerstate_req102_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) const {
       RCLCPP_INFO(this->get_logger(), "Copilot monitor violation: handlerstate_req102");
     //  publishRestartSignal(); // Call the function to publish the restart signal
     }
 
-    void handlerclassifier_empty_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/)  {
+    void handlerclassifier_empty_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) const {
       RCLCPP_INFO(this->get_logger(), "Copilot monitor violation: handlerclassifier_empty");
     //  publishRestartSignal(); // Call the function to publish the restart signal
     }
 
-    void handleroperationalstate_3_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/)  {
+    void handleroperationalstate_3_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) const {
       RCLCPP_INFO(this->get_logger(), "Copilot monitor violation: handleroperationalstate_3");
     //  publishRestartSignal(); // Call the function to publish the restart signal
     }
 
-    void handleroperationalstate_0_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/)  {
+    void handleroperationalstate_0_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) const {
       RCLCPP_INFO(this->get_logger(), "Copilot monitor violation: handleroperationalstate_0");
     //  publishRestartSignal(); // Call the function to publish the restart signal
     }
 
-    void handleroperationalstate_1_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/)  {
+    void handleroperationalstate_1_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) const {
       RCLCPP_INFO(this->get_logger(), "Copilot monitor violation: handleroperationalstate_1");
     //  publishRestartSignal(); // Call the function to publish the restart signal
     }
 
-    void handlerclassifier_assumption_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/)  {
+    void handlerclassifier_assumption_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) const {
       RCLCPP_INFO(this->get_logger(), "Copilot monitor violation: handlerclassifier_assumption");
     //  publishRestartSignal(); // Call the function to publish the restart signal
     }
 
-    void handlerstate_req103_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/)  {
+    void handlerstate_req103_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) const {
       RCLCPP_INFO(this->get_logger(), "Copilot monitor violation: handlerstate_req103");
     //  publishRestartSignal(); // Call the function to publish the restart signal
     }
 
-    void handleroperationalstate_2_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/)  {
+    void handleroperationalstate_2_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) const {
       RCLCPP_INFO(this->get_logger(), "Copilot monitor violation: handleroperationalstate_2");
     //  publishRestartSignal(); // Call the function to publish the restart signal
     }
