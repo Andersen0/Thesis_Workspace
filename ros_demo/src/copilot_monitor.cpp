@@ -103,9 +103,9 @@ class CopilotRV : public rclcpp::Node {
       handleroperationalstate_2_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
         "copilot/handleroperationalstate_2", 10);
       
-      // Timer to call step function every 1 second
+      // Timer to call step function every 1 millisecond
       timer_ = this->create_wall_timer(
-          std::chrono::milliseconds(1000),
+          std::chrono::nanoseconds(10),
           std::bind(&CopilotRV::step_wrapper, this));
     }
 
