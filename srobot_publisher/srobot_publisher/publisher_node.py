@@ -2,10 +2,16 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Int64, Bool
 import sys
+import time
+import os
+from datetime import datetime
 
 class SimplePublisher(Node):
     def __init__(self, scenario_sequence, node_name='simple_publisher'):
         super().__init__(node_name)
+        self.timer = self.create_timer(2.0, self.publish_messages)
+        self.time_log_file = os.path.join(os.getcwd(), 'time_log.txt')
+
         self._publishers_dict = {
             'distance_to_target': self.create_publisher(Int64, '/scan', 10),
             'classifier': self.create_publisher(Int64, '/sRobotClassifier', 10),
@@ -17,7 +23,8 @@ class SimplePublisher(Node):
         }
         self.scenario_sequence = scenario_sequence
         self.current_scenario_index = 0
-        self.timer = self.create_timer(2.0, self.publish_messages)
+        self.timer = self.create_timer(0.2, self.publish_messages)
+        self.max_time_diff = float('-inf')  
 
     def publish_messages(self):
         # Mapping scenario indices to scenario names
@@ -63,11 +70,23 @@ class SimplePublisher(Node):
         
         example_values = scenarios_values[scenario_name]
 
+        start_time = time.time()
         for topic, pub in self._publishers_dict.items():
             msg = example_values[topic]
             pub.publish(msg)
-            self.get_logger().info(f'Publishing to {topic}: {msg.data}')
+            #self.get_logger().info(f'Publishing to {topic}: {msg.data}')
+        end_time = time.time()
+        time_diff_ms = (end_time - start_time) * 1000
+        self.get_logger().info(f'Time taken for publishing: {time_diff_ms} ms')
         
+        if time_diff_ms > self.max_time_diff:
+            self.max_time_diff = time_diff_ms
+            with open(self.time_log_file, 'a') as f:
+                f.write(f'{time_diff_ms}\n')
+                timestamp = datetime.now().strftime("%H:%M:%S")
+                f.write(f'{timestamp}: {time_diff_ms} ms\n')
+        # with open(self.time_log_file, 'a') as f:
+        #     f.write(f'{time_diff_ms}\n')
         # Move to the next scenario in the sequence
         self.current_scenario_index = (self.current_scenario_index + 1) % len(self.scenario_sequence)
 
