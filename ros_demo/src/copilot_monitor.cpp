@@ -105,7 +105,7 @@ class CopilotRV : public rclcpp::Node {
       
       // Timer to call step function every 1 millisecond
       timer_ = this->create_wall_timer(
-          std::chrono::milliseconds(10),
+          std::chrono::seconds(1),
           std::bind(&CopilotRV::step_wrapper, this));
     }
 

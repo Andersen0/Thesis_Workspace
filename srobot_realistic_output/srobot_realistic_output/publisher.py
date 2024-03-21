@@ -11,8 +11,8 @@ class DynamicPublisher(Node):
         super().__init__(node_name)
 
         # Publishers
-        self.classifier_publisher = self.create_publisher(Int64, '/sRobotClassifier', 10)
-        self.distance_publisher = self.create_publisher(Int64, '/scan', 10)
+        self.classifier_publisher = self.create_publisher(Int64, '/FakesRobotClassifier', 10)
+        self.distance_publisher = self.create_publisher(Int64, '/Fakescan', 10)
 
         # Timer for classifier - cycles between 1 and 2
         self.classifier_timer = self.create_timer(1, self.classifier_callback)
@@ -32,7 +32,7 @@ class DynamicPublisher(Node):
         self.classifier_publisher.publish(msg)
         # current_time = time.time()  # Get current system time as a float timestamp
         # self.get_logger().info(f'Current time before publishing to /sRobotClassifier: {current_time}')
-        self.get_logger().info(f'Publishing to /sRobotClassifier: {msg.data}')
+        self.get_logger().info(f'Publishing to /FakesRobotClassifier: {msg.data}')
 
         # Update index for next call
         self.classifier_index = (self.classifier_index + 1) % len(self.classifier_sequence)
@@ -57,7 +57,7 @@ class DynamicPublisher(Node):
         self.distance_publisher.publish(msg)
         # current_time = time.time()  # Get current system time as a float timestamp
         # self.get_logger().info(f'Current time before publishing to /scan: {current_time}')
-        self.get_logger().info(f'Publishing to /scan: {msg.data}')
+        self.get_logger().info(f'Publishing to /Fakescan: {msg.data}')
 
     def change_direction(self):
         # Randomly change direction if not overridden by classifier 0

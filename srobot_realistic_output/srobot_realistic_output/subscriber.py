@@ -11,9 +11,9 @@ class DynamicSubscriber(Node):
         self.reentrant_callback_group = ReentrantCallbackGroup()
 
         # Subscribe to /sRobotClassifier and /scan topic
-        self.classifier_subscription = self.create_subscription(Int64, '/sRobotClassifier',  self.classifier_callback, 10, callback_group=self.reentrant_callback_group)
+        self.classifier_subscription = self.create_subscription(Int64, '/FakesRobotClassifier',  self.classifier_callback, 10, callback_group=self.reentrant_callback_group)
         self.classifier_subscription  # prevent unused variable warning
-        self.distance_subscription = self.create_subscription(Int64, '/scan', self.distance_callback, 10, callback_group=self.reentrant_callback_group)
+        self.distance_subscription = self.create_subscription(Int64, '/Fakescan', self.distance_callback, 10, callback_group=self.reentrant_callback_group)
         self.distance_subscription  # prevent unused variable warning
 
         # Publishers
@@ -22,6 +22,8 @@ class DynamicSubscriber(Node):
         self.halt_publisher = self.create_publisher(Bool, '/sRobotHalt', 10)
         self.alert_publisher = self.create_publisher(Bool, '/sRobotAlert', 10)
         self.turnoff_uvc_publisher = self.create_publisher(Bool, '/sRobotTurnoffUVC', 10)
+        self.classifier_publisher = self.create_publisher(Int64, '/sRobotClassifier', 10)
+        self.distance_publisher = self.create_publisher(Int64, '/sRobotDistance', 10)
 
         self.current_classifier = None
         self.current_distance = None
@@ -69,10 +71,14 @@ class DynamicSubscriber(Node):
         elif state == 3:
             slowdown, halt, alert, turnoffUVC = False, True, True, True
 
-        # Log the conditions
-        self.get_logger().info(f"State: {state}, Slowdown: {slowdown}, Halt: {halt}, Alert: {alert}, TurnoffUVC: {turnoffUVC}")
+        # Log the conditions along with the classifier and distance to target
+        self.get_logger().info(
+            f"Classifier: {classifier}, Distance to Target: {distance_to_target}, "
+            f"State: {state}, Slowdown: {slowdown}, Halt: {halt}, Alert: {alert}, TurnoffUVC: {turnoffUVC}")
 
         # Publish each condition
+        self.publish_condition(self.classifier_publisher, classifier)
+        self.publish_condition(self.distance_publisher, distance_to_target)
         self.publish_condition(self.state_publisher, state)
         self.publish_condition(self.slowdown_publisher, slowdown)
         self.publish_condition(self.halt_publisher, halt)
@@ -82,11 +88,8 @@ class DynamicSubscriber(Node):
     def publish_condition(self, publisher, value):
         if publisher in [self.slowdown_publisher, self.halt_publisher, self.alert_publisher, self.turnoff_uvc_publisher]:
             msg = Bool()
-        elif publisher == self.state_publisher:
+        else:  # This covers self.state_publisher, self.classifier_publisher, and self.distance_publisher
             msg = Int64()
-        else:
-            self.get_logger().error('Unknown publisher')
-            return
         msg.data = value
         publisher.publish(msg)
 
