@@ -18,6 +18,7 @@ from sensor_msgs.msg import Image
 import logging
 from datetime import datetime
 from std_msgs.msg import Int64, Bool # or Int64, depending on your requirements
+from functools import partial
 
 # Set up logging
 
@@ -42,20 +43,31 @@ current_state = None
 class TestPublisher(Node):
     def __init__(self, app):
         super().__init__('test_publisher')
-        self.subscription = self.create_subscription(Log, '/rosout', self.chatter_callback, 10) # subscribe to the /rosout topic
+        self.subscription = self.create_subscription(Log, '/rosout', self.previous_callback, 10) # subscribe to the /rosout topic
         self.latest_message = None
         self.app = app
         self.bridge = CvBridge()
         self.yolo_subber = self.create_subscription(Image, '/yolo_im', self.yolo_callback, 10) # subscribe to the /yolo_im topic
         self.class_subber = self.create_subscription(String, '/class_detection', self.class_splitter, 10) # subscribe to the /classifications topic
         
-        self.dtt = self.create_subscription(Int64, '/scan', self.chatter_callback, 10) # subscribe to the /distance_to_target topic
-        self.classifier = self.create_subscription(Int64, '/sRobotClassifier', self.chatter_callback, 10) # subscribe to the /classifier topic
-        self.alert = self.create_subscription(Bool, '/sRobotAlert', self.chatter_callback, 10) # subscribe to the /alert topic
-        self.halt = self.create_subscription(Bool, '/sRobotHalt', self.chatter_callback, 10) # subscribe to the /halt topic
-        self.slowdown = self.create_subscription(Bool, '/sRobotSlowdown', self.chatter_callback, 10) # subscribe to the /slowdown topic
-        self.state = self.create_subscription(Int64, '/sRobotState', self.chatter_callback, 10) # subscribe to the /state topic
-        self.turnoffUVC = self.create_subscription(Bool, '/sRobotTurnoffUVC', self.chatter_callback, 10) # subscribe to the /turnoffUVC topic
+
+        # Initialize Flask app config containers
+        self.app.config['dtt'] = 0
+        self.app.config['classifier'] = 0
+        self.app.config['alert'] = False
+        self.app.config['halt'] = False
+        self.app.config['slowdown'] = False
+        self.app.config['state'] = 0
+        self.app.config['turnoffUVC'] = False
+
+        # Set up subscriptions with specific callback functions
+        self.create_subscription(Int64, '/scan', partial(self.chatter_callback, topic_name='dtt'), 10)
+        self.create_subscription(Int64, '/sRobotClassifier', partial(self.chatter_callback, topic_name='classifier'), 10)
+        self.create_subscription(Bool, '/sRobotAlert', partial(self.chatter_callback, topic_name='alert'), 10)
+        self.create_subscription(Bool, '/sRobotHalt', partial(self.chatter_callback, topic_name='halt'), 10)
+        self.create_subscription(Bool, '/sRobotSlowdown', partial(self.chatter_callback, topic_name='slowdown'), 10)
+        self.create_subscription(Int64, '/sRobotState', partial(self.chatter_callback, topic_name='state'), 10)
+        self.create_subscription(Bool, '/sRobotTurnoffUVC', partial(self.chatter_callback, topic_name='turnoffUVC'), 10)
 
 
 
@@ -64,11 +76,21 @@ class TestPublisher(Node):
         return time.time()
     
     # This method is called when a new message is received in the /chatter channel
-    def chatter_callback(self, msg):
-        self.latest_message = msg.msg
-
+    def previous_callback(self, msg):
+        self.latest_message = msg.data
+        #changes made msg.msg to msg.data might ifluence the code for yolo
         # Update the message list (ul) and keep only the most recent messages
-        my_topic_callback(msg.msg, self.app)
+        my_topic_callback(msg.data, self.app)
+    
+    def chatter_callback(self, msg, topic_name):
+        # Update the Flask app configuration container for the specific topic
+        if isinstance(msg, Bool):
+            self.app.config[topic_name] = msg.data
+        elif isinstance(msg, Int64):
+            self.app.config[topic_name] = msg.data
+        # Log the received message
+        self.get_logger().info(f'Received on {topic_name}: {self.app.config[topic_name]}')
+
 
     # This method is called when a new message is received in the /yolo_im channel
     def yolo_callback(self, msg):
