@@ -10,19 +10,18 @@ class DynamicSubscriber(Node):
         # Create a ReentrantCallbackGroup
         self.reentrant_callback_group = ReentrantCallbackGroup()
 
-        # Subscribe to /sRobotClassifier topic
+        # Subscribe to /sRobotClassifier and /scan topic
         self.classifier_subscription = self.create_subscription(Int64, '/sRobotClassifier',  self.classifier_callback, 10, callback_group=self.reentrant_callback_group)
         self.classifier_subscription  # prevent unused variable warning
-
-        # Subscribe to /scan topic
         self.distance_subscription = self.create_subscription(Int64, '/scan', self.distance_callback, 10, callback_group=self.reentrant_callback_group)
         self.distance_subscription  # prevent unused variable warning
 
         # Publishers
-        self.state_publisher = self.create_publisher(Int64, '/state', 10)
-        self.halt_publisher = self.create_publisher(Bool, '/halt', 10)
-        self.alert_publisher = self.create_publisher(Bool, '/alert', 10)
-        self.turnoff_uvc_publisher = self.create_publisher(Bool, '/turnoffUVC', 10)
+        self.state_publisher = self.create_publisher(Int64, '/sRobotState', 10)
+        self.slowdown_publisher = self.create_publisher(Bool, '/sRobotSlowdown', 10)
+        self.halt_publisher = self.create_publisher(Bool, '/sRobotHalt', 10)
+        self.alert_publisher = self.create_publisher(Bool, '/sRobotAlert', 10)
+        self.turnoff_uvc_publisher = self.create_publisher(Bool, '/sRobotTurnoffUVC', 10)
 
         self.current_classifier = None
         self.current_distance = None
@@ -42,45 +41,46 @@ class DynamicSubscriber(Node):
 
         classifier = self.current_classifier
         distance_to_target = self.current_distance
-        state, halt, alert, turnoffUVC = 0, False, False, False
+        state, slowdown, halt, alert, turnoffUVC = 0, False, False, False, False
 
         # Implement the logic for changing states based on the requirements
         if classifier == 1:
             if distance_to_target > 7:
+                state = 1
+            elif 7 > distance_to_target > 3 :
                 state = 2
-            elif distance_to_target > 3:
-                state = 3
             else:
                 state = 3
         elif classifier == 2:
             if distance_to_target > 7:
                 state = 2
-            elif distance_to_target > 3:
+            elif 7 > distance_to_target > 3:
                 state = 3
             else:
                 state = 3
 
         # Define conditions based on the state
         if state == 0:
-            halt, alert, turnoffUVC = False, False, False
+            slowdown, halt, alert, turnoffUVC = False, False, False, False
         elif state == 1:
-            halt, alert, turnoffUVC = False, True, False
+            slowdown, halt, alert, turnoffUVC = True, False, True, False
         elif state == 2:
-            halt, alert, turnoffUVC = True, True, False
+            slowdown, halt, alert, turnoffUVC = False, True, True, False
         elif state == 3:
-            halt, alert, turnoffUVC = True, True, True
+            slowdown, halt, alert, turnoffUVC = False, True, True, True
 
         # Log the conditions
-        self.get_logger().info(f"State: {state}, Halt: {halt}, Alert: {alert}, TurnoffUVC: {turnoffUVC}")
+        self.get_logger().info(f"State: {state}, Slowdown: {slowdown}, Halt: {halt}, Alert: {alert}, TurnoffUVC: {turnoffUVC}")
 
         # Publish each condition
         self.publish_condition(self.state_publisher, state)
+        self.publish_condition(self.slowdown_publisher, slowdown)
         self.publish_condition(self.halt_publisher, halt)
         self.publish_condition(self.alert_publisher, alert)
         self.publish_condition(self.turnoff_uvc_publisher, turnoffUVC)
 
     def publish_condition(self, publisher, value):
-        if publisher in [self.halt_publisher, self.alert_publisher, self.turnoff_uvc_publisher]:
+        if publisher in [self.slowdown_publisher, self.halt_publisher, self.alert_publisher, self.turnoff_uvc_publisher]:
             msg = Bool()
         elif publisher == self.state_publisher:
             msg = Int64()
