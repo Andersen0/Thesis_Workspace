@@ -17,7 +17,7 @@ from cv_bridge import CvBridge, CvBridgeError
 from sensor_msgs.msg import Image
 import logging
 from datetime import datetime
-
+from std_msgs.msg import Int64, Bool # or Int64, depending on your requirements
 
 # Set up logging
 
@@ -48,6 +48,17 @@ class TestPublisher(Node):
         self.bridge = CvBridge()
         self.yolo_subber = self.create_subscription(Image, '/yolo_im', self.yolo_callback, 10) # subscribe to the /yolo_im topic
         self.class_subber = self.create_subscription(String, '/class_detection', self.class_splitter, 10) # subscribe to the /classifications topic
+        
+        self.dtt = self.create_subscription(Int64, '/scan', self.chatter_callback, 10) # subscribe to the /distance_to_target topic
+        self.classifier = self.create_subscription(Int64, '/sRobotClassifier', self.chatter_callback, 10) # subscribe to the /classifier topic
+        self.alert = self.create_subscription(Bool, '/sRobotAlert', self.chatter_callback, 10) # subscribe to the /alert topic
+        self.halt = self.create_subscription(Bool, '/sRobotHalt', self.chatter_callback, 10) # subscribe to the /halt topic
+        self.slowdown = self.create_subscription(Bool, '/sRobotSlowdown', self.chatter_callback, 10) # subscribe to the /slowdown topic
+        self.state = self.create_subscription(Int64, '/sRobotState', self.chatter_callback, 10) # subscribe to the /state topic
+        self.turnoffUVC = self.create_subscription(Bool, '/sRobotTurnoffUVC', self.chatter_callback, 10) # subscribe to the /turnoffUVC topic
+
+
+
 
     def get_time(self):
         return time.time()
@@ -169,8 +180,8 @@ def main():
     
     # Initialize Flask app
     
-    template_dir = os.path.abspath('src/hds_and_website/ras_reliability_backend/pyflask/templates')
-    static_dir = os.path.abspath('src/hds_and_website/ras_reliability_backend/pyflask/static')
+    template_dir = os.path.abspath('src/Thesis_Workspace/hds_and_website/ras_reliability_backend/pyflask/templates')
+    static_dir = os.path.abspath('src/Thesis_Workspace/hds_and_website/ras_reliability_backend/pyflask/static')
 
     app = Flask(__name__, template_folder=template_dir, static_folder=static_dir, static_url_path='/static')
     
@@ -188,6 +199,15 @@ def main():
     app.config['yolo_image'] = None
     app.config['ul'] = []
     app.config['class_pred_list'] = []
+
+    app.config['dtt'] = []
+    app.config['classifier'] = []
+    app.config['alert'] = []
+    app.config['halt'] = []
+    app.config['slowdown'] = []
+    app.config['state'] = []
+    app.config['turnoffUVC'] = []
+
 
     # Define Flask routes to handle HTTP requests
 
@@ -272,6 +292,43 @@ def main():
         distance = app.config['distance']
         return jsonify(distance)
     
+    @app.route('/dtt')
+    def dtt():
+        dtt = app.config['dtt']
+        return jsonify(dtt)
+    
+    @app.route('/classifier')
+    def classifier():
+        classifier = app.config['classifier']
+        return jsonify(classifier)
+    
+    @app.route('/alert')
+    def alert():
+        alert = app.config['alert']
+        return jsonify(alert)
+    
+    @app.route('/halt')
+    def halt():
+        halt = app.config['halt']
+        return jsonify(halt)
+    
+    @app.route('/slowdown')
+    def slowdown():
+        slowdown = app.config['slowdown']
+        return jsonify(slowdown)
+    
+    @app.route('/state')
+    def state():
+        state = app.config['state']
+        return jsonify(state)
+    
+    @app.route('/turnoffUVC')
+    def turnoffUVC():
+        turnoffUVC = app.config['turnoffUVC']
+        return jsonify(turnoffUVC)
+    
+
+
     # receives the state variable which is created in main.js
     @app.route('/receive_data', methods=['POST'])
     def receive_data():
