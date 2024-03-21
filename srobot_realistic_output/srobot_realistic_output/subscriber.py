@@ -44,6 +44,8 @@ class DynamicSubscriber(Node):
         state, slowdown, halt, alert, turnoffUVC = 0, False, False, False, False
 
         # Implement the logic for changing states based on the requirements
+        if classifier == 0:
+            state = 0
         if classifier == 1:
             if distance_to_target > 7:
                 state = 1
@@ -54,8 +56,6 @@ class DynamicSubscriber(Node):
         elif classifier == 2:
             if distance_to_target > 7:
                 state = 2
-            elif 7 > distance_to_target > 3:
-                state = 3
             else:
                 state = 3
 
