@@ -17,7 +17,8 @@ from cv_bridge import CvBridge, CvBridgeError
 from sensor_msgs.msg import Image
 import logging
 from datetime import datetime
-
+from std_msgs.msg import Int64, Bool # or Int64, depending on your requirements
+from functools import partial
 
 # Set up logging
 
@@ -42,22 +43,54 @@ current_state = None
 class TestPublisher(Node):
     def __init__(self, app):
         super().__init__('test_publisher')
-        self.subscription = self.create_subscription(Log, '/rosout', self.chatter_callback, 10) # subscribe to the /rosout topic
+        self.subscription = self.create_subscription(Log, '/rosout', self.previous_callback, 10) # subscribe to the /rosout topic
         self.latest_message = None
         self.app = app
         self.bridge = CvBridge()
         self.yolo_subber = self.create_subscription(Image, '/yolo_im', self.yolo_callback, 10) # subscribe to the /yolo_im topic
         self.class_subber = self.create_subscription(String, '/class_detection', self.class_splitter, 10) # subscribe to the /classifications topic
+        
+
+        # Initialize Flask app config containers
+        self.app.config['dtt'] = 0
+        self.app.config['classifier'] = 0
+        self.app.config['alert'] = False
+        self.app.config['halt'] = False
+        self.app.config['slowdown'] = False
+        self.app.config['state'] = 0
+        self.app.config['turnoffUVC'] = False
+
+        # Set up subscriptions with specific callback functions
+        self.create_subscription(Int64, '/scan', partial(self.chatter_callback, topic_name='dtt'), 10)
+        self.create_subscription(Int64, '/sRobotClassifier', partial(self.chatter_callback, topic_name='classifier'), 10)
+        self.create_subscription(Bool, '/sRobotAlert', partial(self.chatter_callback, topic_name='alert'), 10)
+        self.create_subscription(Bool, '/sRobotHalt', partial(self.chatter_callback, topic_name='halt'), 10)
+        self.create_subscription(Bool, '/sRobotSlowdown', partial(self.chatter_callback, topic_name='slowdown'), 10)
+        self.create_subscription(Int64, '/sRobotState', partial(self.chatter_callback, topic_name='state'), 10)
+        self.create_subscription(Bool, '/sRobotTurnoffUVC', partial(self.chatter_callback, topic_name='turnoffUVC'), 10)
+
+
+
 
     def get_time(self):
         return time.time()
     
     # This method is called when a new message is received in the /chatter channel
-    def chatter_callback(self, msg):
-        self.latest_message = msg.msg
-
+    def previous_callback(self, msg):
+        self.latest_message = msg.data
+        #changes made msg.msg to msg.data might ifluence the code for yolo
         # Update the message list (ul) and keep only the most recent messages
-        my_topic_callback(msg.msg, self.app)
+        my_topic_callback(msg.data, self.app)
+    
+    def chatter_callback(self, msg, topic_name):
+        # Update the Flask app configuration container for the specific topic
+        if isinstance(msg, Bool):
+            self.app.config[topic_name] = msg.data
+        elif isinstance(msg, Int64):
+            self.app.config[topic_name] = msg.data
+        # Log the received message
+        self.get_logger().info(f'Received on {topic_name}: {self.app.config[topic_name]}')
+
 
     # This method is called when a new message is received in the /yolo_im channel
     def yolo_callback(self, msg):
@@ -169,8 +202,8 @@ def main():
     
     # Initialize Flask app
     
-    template_dir = os.path.abspath('src/hds_and_website/ras_reliability_backend/pyflask/templates')
-    static_dir = os.path.abspath('src/hds_and_website/ras_reliability_backend/pyflask/static')
+    template_dir = os.path.abspath('src/Thesis_Workspace/hds_and_website/ras_reliability_backend/pyflask/templates')
+    static_dir = os.path.abspath('src/Thesis_Workspace/hds_and_website/ras_reliability_backend/pyflask/static')
 
     app = Flask(__name__, template_folder=template_dir, static_folder=static_dir, static_url_path='/static')
     
@@ -188,6 +221,15 @@ def main():
     app.config['yolo_image'] = None
     app.config['ul'] = []
     app.config['class_pred_list'] = []
+
+    app.config['dtt'] = []
+    app.config['classifier'] = []
+    app.config['alert'] = []
+    app.config['halt'] = []
+    app.config['slowdown'] = []
+    app.config['state'] = []
+    app.config['turnoffUVC'] = []
+
 
     # Define Flask routes to handle HTTP requests
 
@@ -272,6 +314,43 @@ def main():
         distance = app.config['distance']
         return jsonify(distance)
     
+    @app.route('/dtt')
+    def dtt():
+        dtt = app.config['dtt']
+        return jsonify(dtt)
+    
+    @app.route('/classifier')
+    def classifier():
+        classifier = app.config['classifier']
+        return jsonify(classifier)
+    
+    @app.route('/alert')
+    def alert():
+        alert = app.config['alert']
+        return jsonify(alert)
+    
+    @app.route('/halt')
+    def halt():
+        halt = app.config['halt']
+        return jsonify(halt)
+    
+    @app.route('/slowdown')
+    def slowdown():
+        slowdown = app.config['slowdown']
+        return jsonify(slowdown)
+    
+    @app.route('/state')
+    def state():
+        state = app.config['state']
+        return jsonify(state)
+    
+    @app.route('/turnoffUVC')
+    def turnoffUVC():
+        turnoffUVC = app.config['turnoffUVC']
+        return jsonify(turnoffUVC)
+    
+
+
     # receives the state variable which is created in main.js
     @app.route('/receive_data', methods=['POST'])
     def receive_data():
