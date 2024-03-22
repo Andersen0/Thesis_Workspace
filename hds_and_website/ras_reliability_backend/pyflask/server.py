@@ -18,13 +18,12 @@ from sensor_msgs.msg import Image
 import logging
 from datetime import datetime
 from std_msgs.msg import Int64, Bool # or Int64, depending on your requirements
-from functools import partial
 
 # Set up logging
 
 # Instead of using the root logger with basicConfig, create a separate logger for your app.
 my_logger = logging.getLogger('my_app_logger')
-my_logger.setLevel(logging.INFO)
+my_logger.setLevel(logging.ERROR)
 
 # Generate a filename with the current date and time
 filename = datetime.now().strftime('log_%Y%m%d_%H%M%S.log')
@@ -61,16 +60,44 @@ class TestPublisher(Node):
         self.app.config['turnoffUVC'] = False
 
         # Set up subscriptions with specific callback functions
-        self.create_subscription(Int64, '/scan', partial(self.chatter_callback, topic_name='dtt'), 10)
-        self.create_subscription(Int64, '/sRobotClassifier', partial(self.chatter_callback, topic_name='classifier'), 10)
-        self.create_subscription(Bool, '/sRobotAlert', partial(self.chatter_callback, topic_name='alert'), 10)
-        self.create_subscription(Bool, '/sRobotHalt', partial(self.chatter_callback, topic_name='halt'), 10)
-        self.create_subscription(Bool, '/sRobotSlowdown', partial(self.chatter_callback, topic_name='slowdown'), 10)
-        self.create_subscription(Int64, '/sRobotState', partial(self.chatter_callback, topic_name='state'), 10)
-        self.create_subscription(Bool, '/sRobotTurnoffUVC', partial(self.chatter_callback, topic_name='turnoffUVC'), 10)
+        self.create_subscription(Int64, '/scan', self.dtt_callback, 10)
+        self.create_subscription(Int64, '/sRobotClassifier', self.classifier_callback, 10)
+        self.create_subscription(Bool, '/sRobotAlert', self.alert_callback, 10)
+        self.create_subscription(Bool, '/sRobotHalt', self.halt_callback, 10)
+        self.create_subscription(Bool, '/sRobotSlowdown', self.slowdown_callback, 10)
+        self.create_subscription(Int64, '/sRobotState', self.state_callback, 10)
+        self.create_subscription(Bool, '/sRobotTurnoffUVC', self.uvc_callback, 10)
 
 
+    def dtt_callback(self, msg):
+        # Handle the Distance To Target (DTT) topic
+        self.app.config['dtt'] = 1
+        my_logger.info(f'DTT Updated: {msg.data}')
 
+    def classifier_callback(self, msg):
+        self.app.config['classifier'] = msg.data
+        my_logger.info(f'Classifier Updated: {msg.data}')
+
+    def alert_callback(self, msg):
+        self.app.config['alert'] = msg.data
+        my_logger.info(f'Alert Updated: {msg.data}')
+
+    def halt_callback(self, msg):
+        # Handle the Distance To Target (DTT) topic
+        self.app.config['halt'] = msg.data
+        my_logger.info(f'halt Updated: {msg.data}')
+        
+    def slowdown_callback(self, msg):
+        self.app.config['slowdown'] = msg.data
+        my_logger.info(f'slowdown Updated: {msg.data}')
+
+    def state_callback(self, msg):
+        self.app.config['state'] = msg.data
+        my_logger.info(f'state Updated: {msg.data}')
+
+    def uvc_callback(self, msg):
+        self.app.config['turnoffUVC'] = msg.data
+        my_logger.info(f'turnoffUVC Updated: {msg.data}')
 
     def get_time(self):
         return time.time()
@@ -81,15 +108,6 @@ class TestPublisher(Node):
         #changes made msg.msg to msg.data might ifluence the code for yolo
         # Update the message list (ul) and keep only the most recent messages
         my_topic_callback(msg.data, self.app)
-    
-    def chatter_callback(self, msg, topic_name):
-        # Update the Flask app configuration container for the specific topic
-        if isinstance(msg, Bool):
-            self.app.config[topic_name] = msg.data
-        elif isinstance(msg, Int64):
-            self.app.config[topic_name] = msg.data
-        # Log the received message
-        self.get_logger().info(f'Received on {topic_name}: {self.app.config[topic_name]}')
 
 
     # This method is called when a new message is received in the /yolo_im channel
@@ -196,24 +214,39 @@ def my_topic_callback(msg, app):
 
 
 def main():
-
     # Initialize ROS
-    rclpy.init(args=None) 
-    
+    rclpy.init(args=None)
+
+    # Set up logging
+    my_logger = logging.getLogger('my_app_logger')
+    my_logger.setLevel(logging.INFO)
+
+    # Generate a filename with the current date and time
+    filename = datetime.now().strftime('log_%Y%m%d_%H%M%S.log')
+    file_handler = logging.FileHandler(filename)
+    file_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    file_handler.setFormatter(file_formatter)
+    my_logger.addHandler(file_handler)
+
     # Initialize Flask app
-    
     template_dir = os.path.abspath('src/Thesis_Workspace/hds_and_website/ras_reliability_backend/pyflask/templates')
     static_dir = os.path.abspath('src/Thesis_Workspace/hds_and_website/ras_reliability_backend/pyflask/static')
 
     app = Flask(__name__, template_folder=template_dir, static_folder=static_dir, static_url_path='/static')
-    
+    app.logger.setLevel(logging.INFO)
+    app.logger.addHandler(file_handler)
+
     # Initialize the TestPublisher ROS node
     ros2_node = TestPublisher(app)
 
-    # Start the ROS spinning in a separate thread    
-    threading.Thread(target=ros2_thread, args=[ros2_node]).start()
+    # Start the ROS spinning in a separate thread
+    ros_thread = threading.Thread(target=ros2_thread, args=[ros2_node])
+    ros_thread.start()
 
-    # Initialize Flask app config
+    # Wait for the ROS thread to complete before starting Flask server
+    ros_thread.join()
+
+    # Initialize Flask app config and other routes...
     app.config['ul_topic'] = []
     app.config['ul_status'] = []
     app.config['distance'] = []

@@ -103,11 +103,32 @@
     <p><code>/topic</code> Time Active (seconds):</p>
     <time id="recent_topic_messages" style="font-weight: bold;"></time>
     
-    <script src="/static/simulationpublisher.js"></script>
-
+    <p>Dtt Value: <span id="dttDisplay"></span></p>
     <p>Classifier Value: <span id="classifierDisplay"></span></p>
-    <p>Distance Value: <span id="dttDisplay"></span></p>
-
+    <p>Alert Value: <span id="alertDisplay"></span></p>
+    <img id="videoElement" src="">
+    
+    <script>
+        function fetchDataAndUpdateDisplay(endpoint, elementId) {
+            fetch(endpoint)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById(elementId).innerText = JSON.stringify(data);
+                })
+                .catch(error => console.error(`Error fetching data from ${endpoint}:`, error));
+        }
+    
+        window.onload = function() {
+            fetchDataAndUpdateDisplay('/dtt', 'dttDisplay');
+            fetchDataAndUpdateDisplay('/classifier', 'classifierDisplay');
+            fetchDataAndUpdateDisplay('/alert', 'alertDisplay');
+            // Add more calls as necessary
+            
+            setInterval(function() {
+                document.getElementById('videoElement').src = "/stream?" + new Date().getTime();
+            }, 50);
+        };
+    </script>
 
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="/static/main.js"></script>
