@@ -8,12 +8,12 @@ class DynamicSubscriber(Node):
         super().__init__(node_name)
         
         # Create a ReentrantCallbackGroup
-        self.reentrant_callback_group = ReentrantCallbackGroup()
+        # self.reentrant_callback_group = ReentrantCallbackGroup()
 
         # Subscribe to /sRobotClassifier and /scan topic
-        self.classifier_subscription = self.create_subscription(Int64, '/sRobotClassifier',  self.classifier_callback, 10, callback_group=self.reentrant_callback_group)
+        self.classifier_subscription = self.create_subscription(Int64, '/FakesRobotClassifier',  self.classifier_callback, 10)
         self.classifier_subscription  # prevent unused variable warning
-        self.distance_subscription = self.create_subscription(Int64, '/scan', self.distance_callback, 10, callback_group=self.reentrant_callback_group)
+        self.distance_subscription = self.create_subscription(Int64, '/Fakescan', self.distance_callback, 10)
         self.distance_subscription  # prevent unused variable warning
 
         # Publishers
@@ -22,9 +22,14 @@ class DynamicSubscriber(Node):
         self.halt_publisher = self.create_publisher(Bool, '/sRobotHalt', 10)
         self.alert_publisher = self.create_publisher(Bool, '/sRobotAlert', 10)
         self.turnoff_uvc_publisher = self.create_publisher(Bool, '/sRobotTurnoffUVC', 10)
+        self.classifier_publisher = self.create_publisher(Int64, '/sRobotClassifier', 10)
+        self.distance_publisher = self.create_publisher(Int64, '/scan', 10)
 
         self.current_classifier = None
         self.current_distance = None
+
+        self.last_published_classifier = None
+        self.last_published_distance = None
 
     def classifier_callback(self, msg):
         self.current_classifier = msg.data
@@ -38,24 +43,56 @@ class DynamicSubscriber(Node):
         # Ensure we have received both classifier and distance data before proceeding
         if self.current_classifier is None or self.current_distance is None:
             return
+        
+        # Check if the current values are different from the last published ones
+        if (self.current_classifier != self.last_published_classifier or
+                self.current_distance != self.last_published_distance):
 
-        classifier = self.current_classifier
-        distance_to_target = self.current_distance
+            classifier = self.current_classifier
+            distance_to_target = self.current_distance
+
+            state, slowdown, halt, alert, turnoffUVC = self.determine_conditions(classifier, distance_to_target)
+
+            # Log the conditions along with the classifier and distance to target
+            self.get_logger().info(
+                f"Classifier: {classifier}, Distance to Target: {distance_to_target}, "
+                f"State: {state}, Slowdown: {slowdown}, Halt: {halt}, Alert: {alert}, TurnoffUVC: {turnoffUVC}")
+
+            # Only update and publish classifier if it has changed
+            #if self.current_classifier != self.last_published_classifier:
+            self.publish_condition(self.classifier_publisher, classifier)
+            
+            self.last_published_classifier = classifier  # Update last published classifier
+
+            # Only update and publish distance if it has changed
+            #if self.current_distance != self.last_published_distance:
+            self.publish_condition(self.distance_publisher, distance_to_target)
+                
+            self.last_published_distance = distance_to_target
+
+            # Publish other conditions condition
+            self.publish_condition(self.state_publisher, state)
+            self.publish_condition(self.slowdown_publisher, slowdown)
+            self.publish_condition(self.halt_publisher, halt)
+            self.publish_condition(self.alert_publisher, alert)
+            self.publish_condition(self.turnoff_uvc_publisher, turnoffUVC)
+
+    def determine_conditions(self, classifier, distance_to_target):
+
         state, slowdown, halt, alert, turnoffUVC = 0, False, False, False, False
-
         # Implement the logic for changing states based on the requirements
+        if classifier == 0:
+            state = 0
         if classifier == 1:
             if distance_to_target > 7:
                 state = 1
-            elif 7 > distance_to_target > 3 :
+            elif 7 >= distance_to_target > 3 :
                 state = 2
             else:
                 state = 3
         elif classifier == 2:
             if distance_to_target > 7:
                 state = 2
-            elif 7 > distance_to_target > 3:
-                state = 3
             else:
                 state = 3
 
@@ -69,26 +106,16 @@ class DynamicSubscriber(Node):
         elif state == 3:
             slowdown, halt, alert, turnoffUVC = False, True, True, True
 
-        # Log the conditions
-        self.get_logger().info(f"State: {state}, Slowdown: {slowdown}, Halt: {halt}, Alert: {alert}, TurnoffUVC: {turnoffUVC}")
-
-        # Publish each condition
-        self.publish_condition(self.state_publisher, state)
-        self.publish_condition(self.slowdown_publisher, slowdown)
-        self.publish_condition(self.halt_publisher, halt)
-        self.publish_condition(self.alert_publisher, alert)
-        self.publish_condition(self.turnoff_uvc_publisher, turnoffUVC)
+        return state, slowdown, halt, alert, turnoffUVC
 
     def publish_condition(self, publisher, value):
         if publisher in [self.slowdown_publisher, self.halt_publisher, self.alert_publisher, self.turnoff_uvc_publisher]:
             msg = Bool()
-        elif publisher == self.state_publisher:
+        else:  # This covers self.state_publisher, self.classifier_publisher, and self.distance_publisher
             msg = Int64()
-        else:
-            self.get_logger().error('Unknown publisher')
-            return
         msg.data = value
         publisher.publish(msg)
+    
 
 def main(args=None):
     rclpy.init(args=args)
