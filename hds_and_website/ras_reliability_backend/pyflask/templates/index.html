@@ -57,6 +57,21 @@
   <p>Halt Status: <span id="haltStatus">-</span></p>
   <p>UVC Status: <span id="uvcStatus">-</span></p>
   <p>Time Active: <span id="timerValue">-</span></p>
+
+  <p>Distance Guard: <span id="handlerDttguard">-</span></p>
+  <p>Classifier Guard: <span id="handlerclassifierguard">-</span></p>
+  <p>Classifier Empty: <span id="handlerclassifierempty">-</span></p>
+  <p>Operational State 0: <span id="handleroperationalstate0">-</span></p>
+  <p>Operational State 1: <span id="handleroperationalstate1">-</span></p>
+  <p>Operational State 2: <span id="handleroperationalstate2">-</span></p>
+  <p>Operational State 3: <span id="handleroperationalstate3">-</span></p>
+  <p>State Request 101: <span id="handlerstate_req101">-</span></p>
+  <p>State Request 102: <span id="handlerstate_req102">-</span></p>
+  <p>State Request 103: <span id="handlerstate_req103">-</span></p>
+  <p>State Request 104: <span id="handlerstate_req104">-</span></p>
+  <p>State Request 201: <span id="handlerstate_req201">-</span></p>
+  <p>State Request 202: <span id="handlerstate_req202">-</span></p>
+  <p>State Request 203: <span id="handlerstate_req203">-</span></p>
   
   <img id="videoElement" src="">
 </div>
@@ -100,6 +115,35 @@
   setInterval(() => fetchData('/timer', 'timerValue'), 100);
 </script>
 
+<script>
+
+  function fetchData(endpoint, elementId) {
+      fetch(endpoint)
+          .then(response => response.json())
+          .then(data => {
+              document.getElementById(elementId).innerText = data[Object.keys(data)[0]];
+          })
+          .catch(error => console.error('Error fetching data from ' + endpoint + ':', error));
+  }
+
+  // Refresh data every second
+
+  setInterval(() => fetchData('/handlerDtt_assumption', 'handlerDttguard'), 100);
+  setInterval(() => fetchData('/handlerclassifier_assumption', 'handlerclassifierguard'), 100);
+  setInterval(() => fetchData('/handlerclassifier_empty', 'handlerclassifierempty'), 100);
+  setInterval(() => fetchData('/handleroperationalstate_0', 'handleroperationalstate0'), 100);
+  setInterval(() => fetchData('/handleroperationalstate_1', 'handleroperationalstate1'), 100);
+  setInterval(() => fetchData('/handleroperationalstate_2', 'handleroperationalstate2'), 100);
+  setInterval(() => fetchData('/handleroperationalstate_3', 'handleroperationalstate3'), 100);
+  setInterval(() => fetchData('/handlerstate_req101', 'handlerstate_req101'), 100);
+  setInterval(() => fetchData('/handlerstate_req102', 'handlerstate_req102'), 100);
+  setInterval(() => fetchData('/handlerstate_req103', 'handlerstate_req103'), 100);
+  setInterval(() => fetchData('/handlerstate_req104', 'handlerstate_req104'), 100);
+  setInterval(() => fetchData('/handlerstate_req201', 'handlerstate_req201'), 100);
+  setInterval(() => fetchData('/handlerstate_req202', 'handlerstate_req202'), 100);
+  setInterval(() => fetchData('/handlerstate_req203', 'handlerstate_req203'), 100);
+
+</script>
 </script>
 
 
