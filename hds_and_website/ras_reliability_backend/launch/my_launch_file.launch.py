@@ -10,16 +10,16 @@ def generate_launch_description():
             executable='server',
             name='my_server'
         ),
-#        Node(
-#            package='pyflask',
-#           executable='talker',
-#            name='my_talker'
-#    ),
-#        Node(
-#         package='pyflask',
-#          executable='robot',
-#           name='my_robot'
-#        ),
+        Node(
+            package='pyflask',
+            executable='talker',
+            name='my_talker'
+        ),
+       Node(
+        package='srobot_publisher',
+         executable='publisher',
+          name='my_publisher'
+       ),
        Node(
            package='yolov6',
            executable='inferer',

@@ -1,13 +1,14 @@
 from setuptools import find_packages, setup
 import os
 import glob
+
 package_name = 'pyflask'
 templates = 'pyflask/templates'
 
 setup(
     name=package_name,
     version='0.0.0',
-    packages=[package_name, templates],
+    packages=find_packages(),
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
@@ -17,7 +18,8 @@ setup(
         (os.path.join('share', package_name, 'launch'), glob.glob(os.path.join('launch', '*.launch.py')))
     ],
     package_data={
-    'pyflask': ['launch/*.launch.py'],},
+        'pyflask': ['launch/*.launch.py', 'subtester.py'],  
+    },
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='eliash',
@@ -30,7 +32,8 @@ setup(
             'server = pyflask.server:main',
             'talker = pyflask.publisher:main',
             'robot = pyflask.robot:main',
-            'cycle_dist = pyflask.cycle_dist:main'
+            'cycle_dist = pyflask.cycle_dist:main',
+            'subtester = pyflask.subtester:main',  
         ],
     },
 )

@@ -1,151 +1,112 @@
 <!DOCTYPE html>
 <html>
-  <script>
-    window.globalState = "idle";
-  </script>
-  <head>
-    <style>
-      #Robotvisualisation {
-      border: 2px solid rgb(62, 148, 210);
-      width: 1000px;
-      height: 600px;
-    }
-      #HDSvisualisation {
-      border: 2px solid rgb(210, 62, 195);
-      width: 1000px;
-      height: 600px;
-    }
-    </style>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="/static/styles.css">
-    
-  </head>
-  <body>
-    
-    <!-- The rest of your HTML here... -->
-    <div class="sidebar">
-        <!-- Display the image -->
-      <img class="sidebar-image" src="/static/nmbu_square.png" alt="NMBU Image" >
-      
-      <div class="button-group">
-        <button id="toggleButton">Toggle State Visual</button>
-        <button id="shutdownButton">Shutdown Server</button>
-        <button id="toggleStatusButton">Toggle Status Messages</button>
-        <button id="toggleTopicButton">Toggle Topic Messages</button>
-        <button id="toggleImageButton">Toggle Live Image</button>
-      </div>
-      <div id="status-circle" display="block"></div>
-      <h3>Choice Matrix</h3>
-      <!-- <p>Last Class: <span id="lastClassDisplay"></span></p>
-      <p>Last Distance: <span id="lastDistanceDisplay"></span></p>
-      <p>Current State: <span id="state"></span></p> -->
-
-      <table>
-        <tr>
-            <td class="empty"></td>
-            <td class="none" id="none_x">none</td>
-            <td class="adult" id="adult">adult</td>
-            <td class="worker" id="worker">worker</td>
-        </tr>
-        <tr>
-            <td class="none" id="none_y">none</td>
-            <td class="moving" id="none_none">moving</td>
-            <td class="moving" id="none_adult">moving</td>
-            <td class="moving" id="none_worker">moving</td>
-        </tr>
-        <tr>
-            <td class="green" id="green">green</td>
-            <td class="error" id="green_none">error</td>
-            <td class="idle" id="green_adult">idle</td>
-            <td class="moving" id="green_worker">moving</td>
-        </tr>
-        <tr>
-            <td class="yellow" id="yellow">yellow</td>
-            <td class="error" id="yellow_none">error</td>
-            <td class="stopped" id="yellow_adult">stopped</td>
-            <td class="idle" id="yellow_worker">idle</td>
-        </tr>
-        <tr>
-            <td class="red" id="red">red</td>
-            <td class="error" id="red_none">error</td>
-            <td class="stopped" id="red_adult">stopped</td>
-            <td class="stopped" id="red_worker">stopped</td>
-        </tr>
-      </table>
-
-
-    </div>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="/static/styles.css">
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+</head>
+<body>
+<div class="sidebar">
+    <!-- Display the image -->
+  <img class="sidebar-image" src="/static/nmbu_square.png" alt="NMBU Image" >
   
-  <div class="content">
-
-    <h1>Safety Properties Monitoring Dashboard</h1>
-
-    <p>Follow README:</p>
-    <ul>
-      <li>Run the launch file:  <code>$ ros2 launch pyflask my_launch_file.launch.py</code></li>
-      <li>Messages are published to:  <code>/rosout</code></li>
-    </ul>
-
-    <p> View the tutorial at <a href="https://github.com/mustafma/ras_reliability_backend" target="_blank">ras_reliability_backend</a> or <a href="https://gitlab.com/henrik.nordlie/summer_job_2023" target="_blank">summer_job_2023</a>.</p>
-    
-    <div class="button-group">
-      <button>Export Monitors</button>
-      <button>Import Robot State Machine</button>
-      <a href="/d3"><button>d3</button> </a>
-      <a href="/graph"><button>Graph page</button> </a>
-      <a href="/circles"><button>Circle page</button> </a>
-    </div>
-
-    <hr/>
-
-    <p>Connection: <span id="status" style="font-weight: bold;"></span></p>
-
-    <p><code>/topic</code> Time Active (seconds):</p>
-    <time id="recent_topic_messages" style="font-weight: bold;"></time>
-    
-    <p>Dtt Value: <span id="dttDisplay"></span></p>
-    <p>Classifier Value: <span id="classifierDisplay"></span></p>
-    <p>Alert Value: <span id="alertDisplay"></span></p>
-    <img id="videoElement" src="">
-    
-    <script>
-        function fetchDataAndUpdateDisplay(endpoint, elementId) {
-            fetch(endpoint)
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById(elementId).innerText = JSON.stringify(data);
-                })
-                .catch(error => console.error(`Error fetching data from ${endpoint}:`, error));
-        }
-    
-        window.onload = function() {
-            fetchDataAndUpdateDisplay('/dtt', 'dttDisplay');
-            fetchDataAndUpdateDisplay('/classifier', 'classifierDisplay');
-            fetchDataAndUpdateDisplay('/alert', 'alertDisplay');
-            // Add more calls as necessary
-            
-            setInterval(function() {
-                document.getElementById('videoElement').src = "/stream?" + new Date().getTime();
-            }, 50);
-        };
-    </script>
-
-    <script src="https://d3js.org/d3.v6.min.js"></script>
-    <script src="/static/main.js"></script>
-    <script src="/static/robotstatemachine.js"></script>
-    <script src="/static/HDSstatemachine.js"></script>
-    <script src="/static/bob_the_builder.js"></script>
-    <script src="/static/d3.js"></script>
-    <div id="chart"></div>
-    <img id="videoElement" src="">
-    
-    <script>
-        setInterval(function() {
-            document.getElementById('videoElement').src = "/stream?" + new Date().getTime();
-        }, 50);
-    </script>
-
+  <div class="button-group">
+    <button id="toggleButton">Toggle State Visual</button>
+    <button id="shutdownButton">Shutdown Server</button>
+    <button id="toggleStatusButton">Toggle Status Messages</button>
+    <button id="toggleTopicButton">Toggle Topic Messages</button>
+    <button id="toggleImageButton">Toggle Live Image</button>
   </div>
+  <div id="status-circle" display="block"></div>
+  <!-- <p>Last Class: <span id="lastClassDisplay"></span></p>
+  <p>Last Distance: <span id="lastDistanceDisplay"></span></p>
+  <p>Current State: <span id="state"></span></p> -->
 
-  </body>
+
+
+
+</div>
+
+<div class="content">
+  <h1>Safety Properties Monitoring Dashboard</h1>
+  <p>Follow README:</p>
+  <ul>
+    <li>Run the launch file:  <code>$ ros2 launch pyflask my_launch_file.launch.py</code></li>
+    <li>Messages are published to:  <code>/rosout</code></li>
+  </ul>
+  <p> View the tutorial at <a href="https://github.com/mustafma/ras_reliability_backend" target="_blank">ras_reliability_backend</a> or <a href="https://gitlab.com/henrik.nordlie/summer_job_2023" target="_blank">summer_job_2023</a>.</p>
+  
+  <div class="button-group">
+    <button>Export Monitors</button>
+    <button>Import Robot State Machine</button>
+    <a href="/dtt_data"><button>distance data</button> </a>
+    <a href="/classifier_data"><button>class data</button> </a>
+    <a href="/alert_data"><button>Alert data</button> </a>
+  </div>
+  
+
+  <hr/>
+  
+  
+  <h3>SRobot Data Display</h3>
+  <p>Current State: <span id="currentState">-</span></p>
+  <p>Received Distance Value: <span id="dttValue">-</span></p>
+  <p>Classifier Value: <span id="classifierValue">-</span></p>
+  <p>Alert Status: <span id="alertStatus">-</span></p>
+  <p>Slowdown Status: <span id="slowdownStatus">-</span></p>
+  <p>Halt Status: <span id="haltStatus">-</span></p>
+  <p>UVC Status: <span id="uvcStatus">-</span></p>
+  <p>Time Active: <span id="timerValue">-</span></p>
+  
+  <img id="videoElement" src="">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+  socket.on('connect', function() {
+    console.log('Connected to server');
+  });
+
+  // Event listener for toggleButton
+  document.getElementById('toggleButton').addEventListener('click', function() {
+  // Handle button click here
+    console.log('Toggle button clicked');
+  // You can emit a socket event or perform any other action here
+  });
+
+
+
+</script> 
+
+<script>
+
+  function fetchData(endpoint, elementId) {
+      fetch(endpoint)
+          .then(response => response.json())
+          .then(data => {
+              document.getElementById(elementId).innerText = data[Object.keys(data)[0]];
+          })
+          .catch(error => console.error('Error fetching data from ' + endpoint + ':', error));
+  }
+
+  // Refresh data every second
+  setInterval(() => fetchData('/dtt', 'dttValue'), 100);
+  setInterval(() => fetchData('/classifier', 'classifierValue'), 100);
+  setInterval(() => fetchData('/alert', 'alertStatus'), 100);
+  setInterval(() => fetchData('/halt', 'haltStatus'), 100);
+  setInterval(() => fetchData('/slowdown', 'slowdownStatus'), 100);
+  setInterval(() => fetchData('/state', 'currentState'), 100);
+  setInterval(() => fetchData('/uvc', 'uvcStatus'), 100);
+  setInterval(() => fetchData('/timer', 'timerValue'), 100);
+</script>
+
+</script>
+
+
+<!-- <script>
+  setInterval(function() {
+    document.getElementById('videoElement').src = "/stream?" + new Date().getTime();
+  }, 50);
+</script> -->
+</body>
 </html>

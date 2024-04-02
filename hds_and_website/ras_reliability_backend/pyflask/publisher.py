@@ -9,7 +9,7 @@ class MinimalPublisher(Node):
         super().__init__('talker') # initialize the Node with the name 'talker'
 
         # Create a publisher on the 'topic' topic with the message type String
-        self.publisher_ = self.create_publisher(String, 'topic', 10) 
+        self.publisher_ = self.create_publisher(String, 'timer', 10) 
 
         timer_period = 1  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)

@@ -23,7 +23,6 @@ class SimplePublisher(Node):
         }
         self.scenario_sequence = scenario_sequence
         self.current_scenario_index = 0
-        self.timer = self.create_timer(2, self.publish_messages)
         self.max_time_diff = float('-inf')  
 
     def publish_messages(self):

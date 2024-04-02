@@ -2,6 +2,7 @@ import os
 import threading
 import json
 from flask import Flask, render_template, jsonify, request, Response
+from flask_socketio import SocketIO
 from std_msgs.msg import String
 from rosbridge_library import rosbridge_protocol
 from rosbridge_library.internal import ros_loader, message_conversion
@@ -23,7 +24,7 @@ from std_msgs.msg import Int64, Bool # or Int64, depending on your requirements
 
 # Instead of using the root logger with basicConfig, create a separate logger for your app.
 my_logger = logging.getLogger('my_app_logger')
-my_logger.setLevel(logging.ERROR)
+my_logger.setLevel(logging.INFO)
 
 # Generate a filename with the current date and time
 filename = datetime.now().strftime('log_%Y%m%d_%H%M%S.log')
@@ -50,29 +51,28 @@ class TestPublisher(Node):
         self.class_subber = self.create_subscription(String, '/class_detection', self.class_splitter, 10) # subscribe to the /classifications topic
         
 
-        # Initialize Flask app config containers
-        self.app.config['dtt'] = 0
-        self.app.config['classifier'] = 0
-        self.app.config['alert'] = False
-        self.app.config['halt'] = False
-        self.app.config['slowdown'] = False
-        self.app.config['state'] = 0
-        self.app.config['turnoffUVC'] = False
-
         # Set up subscriptions with specific callback functions
-        self.create_subscription(Int64, '/scan', self.dtt_callback, 10)
-        self.create_subscription(Int64, '/sRobotClassifier', self.classifier_callback, 10)
-        self.create_subscription(Bool, '/sRobotAlert', self.alert_callback, 10)
-        self.create_subscription(Bool, '/sRobotHalt', self.halt_callback, 10)
-        self.create_subscription(Bool, '/sRobotSlowdown', self.slowdown_callback, 10)
-        self.create_subscription(Int64, '/sRobotState', self.state_callback, 10)
-        self.create_subscription(Bool, '/sRobotTurnoffUVC', self.uvc_callback, 10)
+        self.dtt_subber = self.create_subscription(Int64, '/scan', self.dtt_callback, 10)
+        self.classifier_subber = self.create_subscription(Int64, '/sRobotClassifier', self.classifier_callback, 10)
+        self.alert_subber = self.create_subscription(Bool, '/sRobotAlert', self.alert_callback, 10)
+        self.halt_subber = self.create_subscription(Bool, '/sRobotHalt', self.halt_callback, 10)
+        self.slowdown_subber = self.create_subscription(Bool, '/sRobotSlowdown', self.slowdown_callback, 10)
+        self.state_subber = self.create_subscription(Int64, '/sRobotState', self.state_callback, 10)
+        self.uvc_subber = self.create_subscription(Bool, '/sRobotTurnoffUVC', self.uvc_callback, 10)
+        self.timer = self.create_subscription(String, '/timer', self.timer_callback, 10)
+   
 
+        
+        
+    def timer_callback(self, msg):
+        # Handle the Distance To Target (DTT) topic
+        self.app.config['timer'] = msg.data
+        my_logger.info(f'Timer Updated: {msg.data}')
 
     def dtt_callback(self, msg):
         # Handle the Distance To Target (DTT) topic
-        self.app.config['dtt'] = 1
-        my_logger.info(f'DTT Updated: {msg.data}')
+        self.app.config['dtt'] = msg.data
+        my_logger.info(f'DTT Updated: {msg.msg}')
 
     def classifier_callback(self, msg):
         self.app.config['classifier'] = msg.data
@@ -217,35 +217,36 @@ def main():
     # Initialize ROS
     rclpy.init(args=None)
 
-    # Set up logging
-    my_logger = logging.getLogger('my_app_logger')
-    my_logger.setLevel(logging.INFO)
-
-    # Generate a filename with the current date and time
-    filename = datetime.now().strftime('log_%Y%m%d_%H%M%S.log')
-    file_handler = logging.FileHandler(filename)
-    file_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-    file_handler.setFormatter(file_formatter)
-    my_logger.addHandler(file_handler)
-
     # Initialize Flask app
     template_dir = os.path.abspath('src/Thesis_Workspace/hds_and_website/ras_reliability_backend/pyflask/templates')
     static_dir = os.path.abspath('src/Thesis_Workspace/hds_and_website/ras_reliability_backend/pyflask/static')
 
     app = Flask(__name__, template_folder=template_dir, static_folder=static_dir, static_url_path='/static')
+    socketio = SocketIO(app)
+    socketio.run(app)
+
     app.logger.setLevel(logging.INFO)
     app.logger.addHandler(file_handler)
 
     # Initialize the TestPublisher ROS node
     ros2_node = TestPublisher(app)
-
+    print('--------------------------------------------TestPublisher node initialized------------------------------------------')
     # Start the ROS spinning in a separate thread
     ros_thread = threading.Thread(target=ros2_thread, args=[ros2_node])
     ros_thread.start()
 
+    # Start Flask server in a separate thread
+    flask_thread = threading.Thread(target=start_flask_server, args=[app])
+    flask_thread.start()
+
     # Wait for the ROS thread to complete before starting Flask server
     ros_thread.join()
+    
+    # Shutdown ROS and clean up
+    ros2_node.destroy_node()
+    rclpy.shutdown()
 
+def start_flask_server(app):
     # Initialize Flask app config and other routes...
     app.config['ul_topic'] = []
     app.config['ul_status'] = []
@@ -254,14 +255,6 @@ def main():
     app.config['yolo_image'] = None
     app.config['ul'] = []
     app.config['class_pred_list'] = []
-
-    app.config['dtt'] = []
-    app.config['classifier'] = []
-    app.config['alert'] = []
-    app.config['halt'] = []
-    app.config['slowdown'] = []
-    app.config['state'] = []
-    app.config['turnoffUVC'] = []
 
 
     # Define Flask routes to handle HTTP requests
@@ -335,6 +328,16 @@ def main():
         func()
         return 'Server shutting down...'
     
+    @app.route('/timer')
+    def timer():
+        timer = app.config.get('timer')  # Use get() method to safely retrieve the value
+        return jsonify(timer)
+
+    # Flask route for getting the latest DTT value
+    @app.route('/dtt')
+    def dtt():
+        dtt = app.config.get('dtt')  # Use get() method to safely retrieve the value
+        return jsonify(dtt)
 
     # Flask route for importing the /classifications topic and splitting it into a list after ; and sorting the list after the biggest area
     @app.route('/classes')
@@ -347,10 +350,10 @@ def main():
         distance = app.config['distance']
         return jsonify(distance)
     
-    @app.route('/dtt')
-    def dtt():
-        dtt = app.config['dtt']
-        return jsonify(dtt)
+    # @app.route('/dtt')
+    # def dtt():
+    #     dtt = app.config['dtt']
+    #     return jsonify(dtt)
     
     @app.route('/classifier')
     def classifier():
@@ -400,11 +403,9 @@ def main():
 
     # Start Flask web server
     app.run(host='0.0.0.0', port=5000, debug=False)
+    
 
 
-    # Shutdown ROS and clean up
-    ros2_node.destroy_node()
-    rclpy.shutdown()
 
 
 # open rosbridge connection
@@ -415,5 +416,4 @@ async def connect_to_rosbridge():
 
 
 if __name__ == '__main__':
-    
     main()
