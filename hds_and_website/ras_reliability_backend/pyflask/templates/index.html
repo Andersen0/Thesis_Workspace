@@ -109,12 +109,8 @@
             fetch(endpoint)
                 .then(response => response.json())
                 .then(data => {
-                    const value = data[Object.keys(data)[0]];
-                    document.getElementById(elementId).innerText = value;
-                    // Log a message for demonstration
-                    if (endpoint.includes('violation')) { // Replace 'violation' with actual identifier
-                        logMessage(`Violation reported on ${endpoint}: ${value}`);
-                    }
+                  document.getElementById(elementId).innerText = data[Object.keys(data)[0]];
+                  logMessage(data[Object.keys(data)[0]]);
                 })
                 .catch(error => console.error('Error fetching data from ' + endpoint + ':', error));
             }
