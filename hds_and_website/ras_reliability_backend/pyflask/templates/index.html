@@ -36,12 +36,9 @@
   </ul>
   <p> View the tutorial at <a href="https://github.com/mustafma/ras_reliability_backend" target="_blank">ras_reliability_backend</a> or <a href="https://gitlab.com/henrik.nordlie/summer_job_2023" target="_blank">summer_job_2023</a>.</p>
   
-  <div class="button-group">
+  <div class="buttonw-group">
     <button>Export Monitors</button>
     <button>Import Robot State Machine</button>
-    <a href="/dtt_data"><button>distance data</button> </a>
-    <a href="/classifier_data"><button>class data</button> </a>
-    <a href="/alert_data"><button>Alert data</button> </a>
   </div>
   
 
@@ -81,6 +78,9 @@
       }
       </script>
     
+
+  <p>Error Guard: <span id="errorguard">-</span></p>
+
   
   <img id="videoElement" src="">
 </div>
@@ -124,7 +124,56 @@
   setInterval(() => fetchData('/timer', 'timerValue'), 100);
 </script>
 
-</script>
+<div class="flex-container">
+  <div class="ccontent">
+      <!-- Your existing content here -->
+      <script>
+
+        function fetchVData(endpoint, elementId) {
+            fetch(endpoint)
+                .then(response => response.json())
+                .then(data => {
+                    const value = data[Object.keys(data)[0]];
+                    document.getElementById(elementId).innerText = value;
+                    // Log a message for demonstration
+                    if (endpoint.includes('violation')) { // Replace 'violation' with actual identifier
+                        logMessage(`Violation reported on ${endpoint}: ${value}`);
+                    }
+                })
+                .catch(error => console.error('Error fetching data from ' + endpoint + ':', error));
+            }
+
+        function logMessage(message) {
+            const logList = document.getElementById('logMessages');
+            const newLogItem = document.createElement('li');
+            newLogItem.textContent = message;
+            logList.appendChild(newLogItem);
+            }
+          
+        // Refresh data every second
+      
+        setInterval(() => fetchVData('/handlerDtt_assumption', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerclassifier_assumption', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerclassifier_empty', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handleroperationalstate_0', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handleroperationalstate_1', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handleroperationalstate_2', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handleroperationalstate_3', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req101', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req102', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req103', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req104', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req201', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req202', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req203', 'errorguard'), 100);
+      
+      </script>
+  </div>
+  <div class="log-section">
+      <h2>Log Messages</h2>
+      <ul id="logMessages"></ul>
+  </div>
+</div>
 
 
 <!-- <script>

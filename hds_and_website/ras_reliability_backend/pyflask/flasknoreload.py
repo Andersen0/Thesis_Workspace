@@ -4,14 +4,18 @@ import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 import os
-from std_msgs.msg import Int64, Bool, String
+from std_msgs.msg import Int64, Bool, String, Empty
+from datetime import datetime
+import logging 
 import subprocess
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 template_dir = os.path.join(current_dir, 'templates')
 static_dir = os.path.join(current_dir, 'static')
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir, static_url_path='/static')
-
+# Set Werkzeug log level to WARNING
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.WARNING)
 class TeleopNode(Node):
     def __init__(self, app):
         super().__init__('teleop_flask')
@@ -26,7 +30,24 @@ class TeleopNode(Node):
         self.uvc_subber = self.create_subscription(Bool, '/sRobotTurnoffUVC', self.uvc_callback, 10)
         self.timer = self.create_subscription(String, '/timer', self.timer_callback, 10)
         self.get_logger().info('Initialized!')
-        
+        # create subscribers for the following topics /copilot/handlerDtt_assumption /copilot/handlerclassifier_assumption /copilot/handlerclassifier_empty /copilot/handleroperationalstate_0 /copilot/handleroperationalstate_1 /copilot/handleroperationalstate_2 /copilot/handleroperationalstate_3 /copilot/handlerstate_req101 /copilot/handlerstate_req102 /copilot/handlerstate_req103 /copilot/handlerstate_req104 /copilot/handlerstate_req201 /copilot/handlerstate_req202 /copilot/handlerstate_req203
+
+        self.handlerDtt_assumption_subber = self.create_subscription(Empty, '/copilot/handlerDtt_assumption', self.handlerDtt_assumption_callback, 10)
+        self.handlerclassifier_assumption_subber = self.create_subscription(Empty, '/copilot/handlerclassifier_assumption', self.handlerclassifier_assumption_callback, 10)
+        self.handlerclassifier_empty_subber = self.create_subscription(Empty, '/copilot/handlerclassifier_empty', self.handlerclassifier_empty_callback, 10)
+        self.handleroperationalstate_0_subber = self.create_subscription(Empty, '/copilot/handleroperationalstate_0', self.handleroperationalstate_0_callback, 10)
+        self.handleroperationalstate_1_subber = self.create_subscription(Empty, '/copilot/handleroperationalstate_1', self.handleroperationalstate_1_callback, 10)
+        self.handleroperationalstate_2_subber = self.create_subscription(Empty, '/copilot/handleroperationalstate_2', self.handleroperationalstate_2_callback, 10)
+        self.handleroperationalstate_3_subber = self.create_subscription(Empty, '/copilot/handleroperationalstate_3', self.handleroperationalstate_3_callback, 10)
+        self.handlerstate_req101_subber = self.create_subscription(Empty, '/copilot/handlerstate_req101', self.handlerstate_req101_callback, 10)
+        self.handlerstate_req102_subber = self.create_subscription(Empty, '/copilot/handlerstate_req102', self.handlerstate_req102_callback, 10)
+        self.handlerstate_req103_subber = self.create_subscription(Empty, '/copilot/handlerstate_req103', self.handlerstate_req103_callback, 10)
+        self.handlerstate_req104_subber = self.create_subscription(Empty, '/copilot/handlerstate_req104', self.handlerstate_req104_callback, 10)
+        self.handlerstate_req201_subber = self.create_subscription(Empty, '/copilot/handlerstate_req201', self.handlerstate_req201_callback, 10)
+        self.handlerstate_req202_subber = self.create_subscription(Empty, '/copilot/handlerstate_req202', self.handlerstate_req202_callback, 10)
+        self.handlerstate_req203_subber = self.create_subscription(Empty, '/copilot/handlerstate_req203', self.handlerstate_req203_callback, 10)
+
+
     def scan_callback(self, msg):
         dtt_value = msg.data
         print('Received DTT data:', msg.data)
@@ -66,6 +87,63 @@ class TeleopNode(Node):
         timer_value = msg.data
         print('Received timer data:', msg.data)
         self.app.config['timer'] = msg.data
+
+    def handlerDtt_assumption_callback(self, msg):
+        print('Received handlerDtt_assumption signal')
+        self.app.config['handlerDtt_assumption'] = ("handlerDtt_assumption violation detected:", datetime.now())
+    
+    def handlerclassifier_assumption_callback(self, msg):
+        print('Received handlerclassifier_assumption signal')
+        self.app.config['handlerclassifier_assumption'] = ("handlerclassifier_assumption violation detected:", datetime.now())
+
+    def handlerclassifier_empty_callback(self, msg):
+        print('Received handlerclassifier_empty signal')
+        self.app.config['handlerclassifier_empty'] = ("handlerclassifier_empty violation detected:", datetime.now())
+
+    def handleroperationalstate_0_callback(self, msg):
+        print('Received handleroperationalstate_0 signal')
+        self.app.config['handleroperationalstate_0'] = ("handleroperationalstate_0 violation detected:", datetime.now())
+
+    def handleroperationalstate_1_callback(self, msg):
+        print('Received handleroperationalstate_1 signal')
+        self.app.config['handleroperationalstate_1'] = ("handleroperationalstate_1 violation detected:", datetime.now())
+
+    def handleroperationalstate_2_callback(self, msg):
+        print('Received handleroperationalstate_2 signal')
+        self.app.config['handleroperationalstate_2'] = ("handleroperationalstate_2 violation detected:", datetime.now())
+
+    def handleroperationalstate_3_callback(self, msg):
+        print('Received handleroperationalstate_3 signal')
+        self.app.config['handleroperationalstate_3'] = ("handleroperationalstate_3 violation detected:", datetime.now())
+
+    def handlerstate_req101_callback(self, msg):
+        print('Received handlerstate_req101 signal')
+        self.app.config['handlerstate_req101'] = ("handlerstate_req101 violation detected:", datetime.now())
+
+    def handlerstate_req102_callback(self, msg):
+        print('Received handlerstate_req102 signal')
+        self.app.config['handlerstate_req102'] = ("handlerstate_req102 violation detected:", datetime.now())
+
+    def handlerstate_req103_callback(self, msg):
+        print('Received handlerstate_req103 signal')
+        self.app.config['handlerstate_req103'] = ("handlerstate_req103 violation detected:", datetime.now())
+
+    def handlerstate_req104_callback(self, msg):
+        print('Received handlerstate_req104 signal')
+        self.app.config['handlerstate_req104'] = ("handlerstate_req104 violation detected:", datetime.now())
+
+    def handlerstate_req201_callback(self, msg):
+        print('Received handlerstate_req201 signal')
+        self.app.config['handlerstate_req201'] = ("handlerstate_req201 violation detected:", datetime.now())
+
+    def handlerstate_req202_callback(self, msg):
+        print('Received handlerstate_req202 signal')
+        self.app.config['handlerstate_req202'] = ("handlerstate_req202 violation detected:", datetime.now())
+
+    def handlerstate_req203_callback(self, msg):
+        print('Received handlerstate_req203 signal')
+        self.app.config['handlerstate_req203'] = ("handlerstate_req203 violation detected:", datetime.now())
+
     
 
 def init_ros_node(app):
@@ -137,6 +215,146 @@ def run_script():
         return {"message": "Script executed successfully!"}, 200
     except subprocess.CalledProcessError as e:
         return {"message": "Failed to execute script."}, 500
+
+@app.route('/handlerDtt_assumption')
+def handlerDtt_assumption():
+    handlerDtt_assumption_value = app.config.get('handlerDtt_assumption', "")
+    return jsonify({'handlerDtt_assumption' : handlerDtt_assumption_value})
+
+@app.route('/handlerclassifier_assumption')
+def handlerclassifier_assumption():
+    handlerclassifier_assumption_value = app.config.get('handlerclassifier_assumption', "")
+    return jsonify({'handlerclassifier_assumption' : handlerclassifier_assumption_value})
+
+@app.route('/handlerclassifier_empty')
+def handlerclassifier_empty():
+    handlerclassifier_empty_value = app.config.get('handlerclassifier_empty', "")
+    return jsonify({'handlerclassifier_empty' : handlerclassifier_empty_value})
+
+@app.route('/handleroperationalstate_0')
+def handleroperationalstate_0():
+    handleroperationalstate_0_value = app.config.get('handleroperationalstate_0', "")
+    return jsonify({'handleroperationalstate_0' : handleroperationalstate_0_value})
+
+@app.route('/handleroperationalstate_1')
+def handleroperationalstate_1():
+    handleroperationalstate_1_value = app.config.get('handleroperationalstate_1', "")
+    return jsonify({'handleroperationalstate_1' : handleroperationalstate_1_value})
+
+@app.route('/handleroperationalstate_2')
+def handleroperationalstate_2():
+    handleroperationalstate_2_value = app.config.get('handleroperationalstate_2', "")
+    return jsonify({'handleroperationalstate_2' : handleroperationalstate_2_value})
+
+@app.route('/handleroperationalstate_3')
+def handleroperationalstate_3():
+    handleroperationalstate_3_value = app.config.get('handleroperationalstate_3', "")
+    return jsonify({'handleroperationalstate_3' : handleroperationalstate_3_value})
+
+@app.route('/handlerstate_req101')
+def handlerstate_req101():
+    handlerstate_req101_value = app.config.get('handlerstate_req101', "")
+    return jsonify({'handlerstate_req101' : handlerstate_req101_value})
+
+@app.route('/handlerstate_req102')
+def handlerstate_req102():
+    handlerstate_req102_value = app.config.get('handlerstate_req102', "")
+    return jsonify({'handlerstate_req102' : handlerstate_req102_value})
+
+@app.route('/handlerstate_req103')
+def handlerstate_req103():
+    handlerstate_req103_value = app.config.get('handlerstate_req103', "")
+    return jsonify({'handlerstate_req103' : handlerstate_req103_value})
+
+@app.route('/handlerstate_req104')
+def handlerstate_req104():
+    handlerstate_req104_value = app.config.get('handlerstate_req104', "")
+    return jsonify({'handlerstate_req104' : handlerstate_req104_value})
+
+@app.route('/handlerstate_req201')
+def handlerstate_req201():
+    handlerstate_req201_value = app.config.get('handlerstate_req201', "")
+    return jsonify({'handlerstate_req201' : handlerstate_req201_value})
+
+@app.route('/handlerstate_req202')
+def handlerstate_req202():
+    handlerstate_req202_value = app.config.get('handlerstate_req202', "")
+    return jsonify({'handlerstate_req202' : handlerstate_req202_value})
+
+@app.route('/handlerstate_req203')
+def handlerstate_req203():
+    handlerstate_req203_value = app.config.get('handlerstate_req203', "")
+    return jsonify({'handlerstate_req203' : handlerstate_req203_value})
+
+@app.route('/handlerDtt_assumption')
+def handlerDtt_assumption():
+    handlerDtt_assumption_value = app.config.get('handlerDtt_assumption', "")
+    return jsonify({'handlerDtt_assumption' : handlerDtt_assumption_value})
+
+@app.route('/handlerclassifier_assumption')
+def handlerclassifier_assumption():
+    handlerclassifier_assumption_value = app.config.get('handlerclassifier_assumption', "")
+    return jsonify({'handlerclassifier_assumption' : handlerclassifier_assumption_value})
+
+@app.route('/handlerclassifier_empty')
+def handlerclassifier_empty():
+    handlerclassifier_empty_value = app.config.get('handlerclassifier_empty', "")
+    return jsonify({'handlerclassifier_empty' : handlerclassifier_empty_value})
+
+@app.route('/handleroperationalstate_0')
+def handleroperationalstate_0():
+    handleroperationalstate_0_value = app.config.get('handleroperationalstate_0', "")
+    return jsonify({'handleroperationalstate_0' : handleroperationalstate_0_value})
+
+@app.route('/handleroperationalstate_1')
+def handleroperationalstate_1():
+    handleroperationalstate_1_value = app.config.get('handleroperationalstate_1', "")
+    return jsonify({'handleroperationalstate_1' : handleroperationalstate_1_value})
+
+@app.route('/handleroperationalstate_2')
+def handleroperationalstate_2():
+    handleroperationalstate_2_value = app.config.get('handleroperationalstate_2', "")
+    return jsonify({'handleroperationalstate_2' : handleroperationalstate_2_value})
+
+@app.route('/handleroperationalstate_3')
+def handleroperationalstate_3():
+    handleroperationalstate_3_value = app.config.get('handleroperationalstate_3', "")
+    return jsonify({'handleroperationalstate_3' : handleroperationalstate_3_value})
+
+@app.route('/handlerstate_req101')
+def handlerstate_req101():
+    handlerstate_req101_value = app.config.get('handlerstate_req101', "")
+    return jsonify({'handlerstate_req101' : handlerstate_req101_value})
+
+@app.route('/handlerstate_req102')
+def handlerstate_req102():
+    handlerstate_req102_value = app.config.get('handlerstate_req102', "")
+    return jsonify({'handlerstate_req102' : handlerstate_req102_value})
+
+@app.route('/handlerstate_req103')
+def handlerstate_req103():
+    handlerstate_req103_value = app.config.get('handlerstate_req103', "")
+    return jsonify({'handlerstate_req103' : handlerstate_req103_value})
+
+@app.route('/handlerstate_req104')
+def handlerstate_req104():
+    handlerstate_req104_value = app.config.get('handlerstate_req104', "")
+    return jsonify({'handlerstate_req104' : handlerstate_req104_value})
+
+@app.route('/handlerstate_req201')
+def handlerstate_req201():
+    handlerstate_req201_value = app.config.get('handlerstate_req201', "")
+    return jsonify({'handlerstate_req201' : handlerstate_req201_value})
+
+@app.route('/handlerstate_req202')
+def handlerstate_req202():
+    handlerstate_req202_value = app.config.get('handlerstate_req202', "")
+    return jsonify({'handlerstate_req202' : handlerstate_req202_value})
+
+@app.route('/handlerstate_req203')
+def handlerstate_req203():
+    handlerstate_req203_value = app.config.get('handlerstate_req203', "")
+    return jsonify({'handlerstate_req203' : handlerstate_req203_value})
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)

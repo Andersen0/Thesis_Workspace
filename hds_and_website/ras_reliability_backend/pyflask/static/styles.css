@@ -61,6 +61,18 @@ th, td {
   border: 5px solid #ffd1dc;
   padding: 10px;
   background-color: #ffdbe0;
+  /*Make the button group section a certain length*/
+}
+.buttonw-group {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  justify-content: space-around;
+  margin-bottom: 20px;
+  border: 5px solid #ffd1dc;
+  padding: 10px;
+  background-color: #ffdbe0;
+  /*Make the button group section a certain length*/
+  width: 550px;
 }
 
 .sidebar .button-group button {
@@ -72,7 +84,9 @@ th, td {
 .content .button-group {
   flex-direction: row; /* Distribute buttons horizontally in content area */
 }
-
+.content .buttonw-group {
+  flex-direction: row; /* Distribute buttons horizontally in content area */
+}
 .sidebar-image {
   width: 200px;   /* Width of the image */
   height: auto;   /* Maintain aspect ratio */
@@ -116,4 +130,30 @@ button {
 
 .bar {
   fill: steelblue;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ccontent, .log-section {
+    flex: 1;
+    padding: 20px;
+}
+
+.log-section {
+    border-left: 10px solid #ccc; /* Visual separation */
+    height: 100vh; /* Full height */
+    overflow-y: auto; /* Scrollable */
+    width: 1000px;
+}
+
+.log-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.log-section ul li {
+    margin-bottom: 10px;
 }
