@@ -8,6 +8,7 @@ from std_msgs.msg import Int64, Bool, String, Empty
 from datetime import datetime
 import logging 
 import time
+import subprocess
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 template_dir = os.path.join(current_dir, 'templates')
@@ -251,6 +252,84 @@ def timer():
     timer_value = app.config.get('timer', "error")
     return jsonify({'timer' : timer_value})
 
+@app.route('/run-script', methods=['POST'])
+def run_script():
+    script_path = "/home/andersen/M30-RB_ws/copilot_relaunch.sh"
+    try:
+        subprocess.run(["bash", script_path], check=True)
+        return {"message": "Script executed successfully!"}, 200
+    except subprocess.CalledProcessError as e:
+        return {"message": "Failed to execute script."}, 500
+
+@app.route('/handlerDtt_assumption')
+def handlerDtt_assumption():
+    handlerDtt_assumption_value = app.config.get('handlerDtt_assumption', "")
+    return jsonify({'handlerDtt_assumption' : handlerDtt_assumption_value})
+
+@app.route('/handlerclassifier_assumption')
+def handlerclassifier_assumption():
+    handlerclassifier_assumption_value = app.config.get('handlerclassifier_assumption', "")
+    return jsonify({'handlerclassifier_assumption' : handlerclassifier_assumption_value})
+
+@app.route('/handlerclassifier_empty')
+def handlerclassifier_empty():
+    handlerclassifier_empty_value = app.config.get('handlerclassifier_empty', "")
+    return jsonify({'handlerclassifier_empty' : handlerclassifier_empty_value})
+
+@app.route('/handleroperationalstate_0')
+def handleroperationalstate_0():
+    handleroperationalstate_0_value = app.config.get('handleroperationalstate_0', "")
+    return jsonify({'handleroperationalstate_0' : handleroperationalstate_0_value})
+
+@app.route('/handleroperationalstate_1')
+def handleroperationalstate_1():
+    handleroperationalstate_1_value = app.config.get('handleroperationalstate_1', "")
+    return jsonify({'handleroperationalstate_1' : handleroperationalstate_1_value})
+
+@app.route('/handleroperationalstate_2')
+def handleroperationalstate_2():
+    handleroperationalstate_2_value = app.config.get('handleroperationalstate_2', "")
+    return jsonify({'handleroperationalstate_2' : handleroperationalstate_2_value})
+
+@app.route('/handleroperationalstate_3')
+def handleroperationalstate_3():
+    handleroperationalstate_3_value = app.config.get('handleroperationalstate_3', "")
+    return jsonify({'handleroperationalstate_3' : handleroperationalstate_3_value})
+
+@app.route('/handlerstate_req101')
+def handlerstate_req101():
+    handlerstate_req101_value = app.config.get('handlerstate_req101', "")
+    return jsonify({'handlerstate_req101' : handlerstate_req101_value})
+
+@app.route('/handlerstate_req102')
+def handlerstate_req102():
+    handlerstate_req102_value = app.config.get('handlerstate_req102', "")
+    return jsonify({'handlerstate_req102' : handlerstate_req102_value})
+
+@app.route('/handlerstate_req103')
+def handlerstate_req103():
+    handlerstate_req103_value = app.config.get('handlerstate_req103', "")
+    return jsonify({'handlerstate_req103' : handlerstate_req103_value})
+
+@app.route('/handlerstate_req104')
+def handlerstate_req104():
+    handlerstate_req104_value = app.config.get('handlerstate_req104', "")
+    return jsonify({'handlerstate_req104' : handlerstate_req104_value})
+
+@app.route('/handlerstate_req201')
+def handlerstate_req201():
+    handlerstate_req201_value = app.config.get('handlerstate_req201', "")
+    return jsonify({'handlerstate_req201' : handlerstate_req201_value})
+
+@app.route('/handlerstate_req202')
+def handlerstate_req202():
+    handlerstate_req202_value = app.config.get('handlerstate_req202', "")
+    return jsonify({'handlerstate_req202' : handlerstate_req202_value})
+
+@app.route('/handlerstate_req203')
+def handlerstate_req203():
+    handlerstate_req203_value = app.config.get('handlerstate_req203', "")
+    return jsonify({'handlerstate_req203' : handlerstate_req203_value})
 
 @app.route('/handlerDtt_assumption')
 def handlerDtt_assumption():
@@ -324,6 +403,7 @@ def handlerstate_req203():
 
 
 if __name__ == '__main__':
+    app.run(debug=True, port=8080)
     # Using Flask's CLI to run the server with `flask run --no-reload`
     print("This script should be run with `flask run --no-reload`")
     print("in terminal: export FLASK_APP=flasknoreload.py")
