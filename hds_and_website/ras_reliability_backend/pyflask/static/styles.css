@@ -135,6 +135,7 @@ button {
 .flex-container {
     display: flex;
     justify-content: space-between;
+    margin-left: -100px;
 }
 
 .ccontent, .log-section {
@@ -144,6 +145,7 @@ button {
 
 .log-section {
     border-left: 10px solid #ccc; /* Visual separation */
+    border-right: 10px solid #ccc; /* Visual separation */
     height: 100vh; /* Full height */
     overflow-y: auto; /* Scrollable */
     width: 1000px;
@@ -156,4 +158,5 @@ button {
 
 .log-section ul li {
     margin-bottom: 10px;
+    margin-right: 10px;
 }

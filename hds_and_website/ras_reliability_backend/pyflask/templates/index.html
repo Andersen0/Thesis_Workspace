@@ -113,31 +113,39 @@
                   logMessage(data[Object.keys(data)[0]]);
                 })
                 .catch(error => console.error('Error fetching data from ' + endpoint + ':', error));
-            }
+          }
 
         function logMessage(message) {
             const logList = document.getElementById('logMessages');
             const newLogItem = document.createElement('li');
             newLogItem.textContent = message;
-            logList.appendChild(newLogItem);
+
+            // Check if there are any existing log messages
+            if (logList.firstChild) {
+                // Insert the new log item at the beginning of the log list
+                logList.insertBefore(newLogItem, logList.firstChild);
+            } else {
+                // If the log list is empty, just append the new item (this case is equivalent to the appendChild method)
+                logList.appendChild(newLogItem);
             }
-          
-        // Refresh data every second
-      
-        setInterval(() => fetchVData('/handlerDtt_assumption', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handlerclassifier_assumption', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handlerclassifier_empty', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handleroperationalstate_0', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handleroperationalstate_1', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handleroperationalstate_2', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handleroperationalstate_3', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handlerstate_req101', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handlerstate_req102', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handlerstate_req103', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handlerstate_req104', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handlerstate_req201', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handlerstate_req202', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handlerstate_req203', 'errorguard'), 100);
+
+            // Since new messages are at the top, no need to adjust scroll
+          }
+                
+        setInterval(() => fetchVData('/handlerDtt_assumption', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerclassifier_assumption', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerclassifier_empty', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handleroperationalstate_0', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handleroperationalstate_1', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handleroperationalstate_2', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handleroperationalstate_3', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerstate_req101', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerstate_req102', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerstate_req103', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerstate_req104', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerstate_req201', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerstate_req202', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerstate_req203', 'errorguard'), 1000);
       
       </script>
   </div>
