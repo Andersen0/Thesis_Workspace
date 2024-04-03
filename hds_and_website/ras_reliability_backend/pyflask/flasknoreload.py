@@ -14,8 +14,7 @@ template_dir = os.path.join(current_dir, 'templates')
 static_dir = os.path.join(current_dir, 'static')
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir, static_url_path='/static')
 # Set Werkzeug log level to WARNING
-log = logging.getLogger('werkzeug')
-log.setLevel(logging.WARNING)
+
 class TeleopNode(Node):
     def __init__(self, app):
         super().__init__('teleop_flask')
@@ -30,6 +29,8 @@ class TeleopNode(Node):
         self.uvc_subber = self.create_subscription(Bool, '/sRobotTurnoffUVC', self.uvc_callback, 10)
         self.timer = self.create_subscription(String, '/timer', self.timer_callback, 10)
         self.get_logger().info('Initialized!')
+        log = logging.getLogger('werkzeug')
+        log.setLevel(logging.WARNING)
         # create subscribers for the following topics /copilot/handlerDtt_assumption /copilot/handlerclassifier_assumption /copilot/handlerclassifier_empty /copilot/handleroperationalstate_0 /copilot/handleroperationalstate_1 /copilot/handleroperationalstate_2 /copilot/handleroperationalstate_3 /copilot/handlerstate_req101 /copilot/handlerstate_req102 /copilot/handlerstate_req103 /copilot/handlerstate_req104 /copilot/handlerstate_req201 /copilot/handlerstate_req202 /copilot/handlerstate_req203
 
         self.handlerDtt_assumption_subber = self.create_subscription(Empty, '/copilot/handlerDtt_assumption', self.handlerDtt_assumption_callback, 10)
