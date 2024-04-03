@@ -6,12 +6,15 @@ from geometry_msgs.msg import Twist
 import os
 from std_msgs.msg import Int64, Bool, String, Empty
 from datetime import datetime
+import logging 
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 template_dir = os.path.join(current_dir, 'templates')
 static_dir = os.path.join(current_dir, 'static')
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir, static_url_path='/static')
-
+# Set Werkzeug log level to WARNING
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.WARNING)
 class TeleopNode(Node):
     def __init__(self, app):
         super().__init__('teleop_flask')
