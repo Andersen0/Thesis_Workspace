@@ -57,6 +57,30 @@
   <p>Halt Status: <span id="haltStatus">-</span></p>
   <p>UVC Status: <span id="uvcStatus">-</span></p>
   <p>Time Active: <span id="timerValue">-</span></p>
+  <button onclick="runScript()">Reset Monitor</button>
+    <script>
+      function runScript() {
+          // Using fetch to send a POST request
+          fetch("/run-script", {
+              method: "POST", // Specifying the method
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          })
+          .then(response => {
+              if (!response.ok) { // If the response is not ok, throw an error
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => alert(data.message))
+          .catch((error) => {
+              console.error('There has been a problem with your fetch operation:', error);
+              alert("Failed to execute script.");
+          });
+      }
+      </script>
+    
   
   <img id="videoElement" src="">
 </div>

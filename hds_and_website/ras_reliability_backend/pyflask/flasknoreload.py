@@ -5,6 +5,7 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 import os
 from std_msgs.msg import Int64, Bool, String
+import subprocess
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 template_dir = os.path.join(current_dir, 'templates')
@@ -128,8 +129,17 @@ def timer():
     timer_value = app.config.get('timer', "error")
     return jsonify({'timer' : timer_value})
 
+@app.route('/run-script', methods=['POST'])
+def run_script():
+    script_path = "/home/andersen/M30-RB_ws/copilot_relaunch.sh"
+    try:
+        subprocess.run(["bash", script_path], check=True)
+        return {"message": "Script executed successfully!"}, 200
+    except subprocess.CalledProcessError as e:
+        return {"message": "Failed to execute script."}, 500
 
 if __name__ == '__main__':
+    app.run(debug=True, port=8080)
     # Using Flask's CLI to run the server with `flask run --no-reload`
     print("This script should be run with `flask run --no-reload`")
     print("in terminal: export FLASK_APP=flasknoreload.py")
