@@ -4,7 +4,7 @@ import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 import os
-from std_msgs.msg import Int64, Bool, String, Empty
+from std_msgs.msg import Int64, Bool, String, Empty, Float64
 from sensor_msgs.msg import Image
 from datetime import datetime
 import logging 
@@ -33,7 +33,8 @@ class TeleopNode(Node):
         self.state_subber = self.create_subscription(Int64, '/sRobotState', self.state_callback, 10)
         self.uvc_subber = self.create_subscription(Bool, '/sRobotTurnoffUVC', self.uvc_callback, 10)
         self.timer = self.create_subscription(String, '/timer', self.timer_callback, 10)
-        self.yolo_subber = self.create_subscription(Image, '/yolo_im', self.yolo_callback, 10) # subscribe to the /yolo_im topic
+        self.yolo_subber = self.create_subscription(Image, '/yolo_im', self.yolo_callback, 10) 
+        self.class_subber = self.create_subscription(String, '/class_detection', self.class_splitter, 10) 
 
         self.get_logger().info('Initialized!')
         log = logging.getLogger('werkzeug')
@@ -54,7 +55,7 @@ class TeleopNode(Node):
         self.handlerstate_req201_subber = self.create_subscription(Empty, '/copilot/handlerstate_req201', self.handlerstate_req201_callback, 3)
         self.handlerstate_req202_subber = self.create_subscription(Empty, '/copilot/handlerstate_req202', self.handlerstate_req202_callback, 3)
         self.handlerstate_req203_subber = self.create_subscription(Empty, '/copilot/handlerstate_req203', self.handlerstate_req203_callback, 3)
-    
+
 
     def scan_callback(self, msg):
         dtt_value = msg.data
@@ -205,6 +206,60 @@ class TeleopNode(Node):
         _, jpeg = cv2.imencode('.jpg', cv_image)
         self.app.config['yolo_image'] = jpeg.tobytes()
 
+    # This method is called when a new message is received in the /class_detection channel
+    def class_splitter(self, msg):
+
+        classes = self.app.config['class_pred_list']
+
+        if msg.data != 'none':
+            # Split string into list of strings
+            classes = msg.data.strip().split(';')
+            processed_classes = []
+
+            # For each item in the list
+            for i in range(len(classes)):
+
+                # Split the item into a list of 3 elements separated by ','
+                temp = classes[i].split(',')
+
+                try:
+                    temp[0] = int(temp[0]) # class
+                    temp[1] = float(temp[1]) # p_value
+                    temp[2] = float(temp[2]) # area
+                    temp[3] = float(temp[3]) # x distance mm
+                    temp[4] = str(temp[4]) # state color
+
+                    processed_classes.append(temp)
+
+                except (ValueError, IndexError):
+                    print(f"Error processing class data: {classes[i]}")
+
+            # Sort the list by the biggest area (3rd element in sublist)
+            processed_classes.sort(key=lambda x: x[2], reverse=True)
+            self.app.config['class_pred_list'] = processed_classes
+
+            # create a ros2 publisher that publishes processed_classes[0][0] to /FakesRobotClassifier and processed_classes[0][3] to /Fakescan
+
+            pub = self.create_publisher(Float64, '/FakesRobotClassifier', 10)
+            pub2 = self.create_publisher(Float64, '/Fakescan', 10) #continue making a publisher of distance and class values
+            msg = Float64()
+            msg.data = processed_classes[0][0]
+            msg2 = Float64()
+            msg2.data = processed_classes[0][3]
+            pub.publish(msg)
+            pub2.publish(msg2)
+
+        else:
+            self.app.config['class_pred_list'] = ["none"]
+            pub = self.create_publisher(Float64, '/FakesRobotClassifier', 10)
+            pub2 = self.create_publisher(Float64, '/Fakescan', 10) #continue making a publisher of distance and class values
+            msg = Float64()
+            msg.data = 0
+            msg2 = Float64()
+            msg2.data = 0
+            pub.publish(msg)
+            pub2.publish(msg2)
+
     
 def init_ros_node(app):
     rclpy.init(args=None)
@@ -231,7 +286,7 @@ def index():
 # Flask route for looking at the latest yolo image
 @app.route('/stream')
 def stream():
-    image = app.config.get['yolo_image']
+    image = app.config.get('yolo_image')
     if image is not None:
         return Response(image, mimetype='image/jpeg')
     else:
