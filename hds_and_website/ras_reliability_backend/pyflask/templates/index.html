@@ -44,16 +44,19 @@
 
   <hr/>
   
+  <div class="sdata-display">
+    <h3>SRobot Data Display</h3>
+    <p>Current State: <span id="currentState">-</span></p>
+    <p>Received Distance Value: <span id="dttValue">-</span></p>
+    <p>Classifier Value: <span id="classifierValue">-</span></p>
+    <p>Alert Status: <span id="alertStatus">-</span></p>
+    <p>Slowdown Status: <span id="slowdownStatus">-</span></p>
+    <p>Halt Status: <span id="haltStatus">-</span></p>
+    <p>UVC Status: <span id="uvcStatus">-</span></p>
+    <p>Time Active: <span id="timerValue">-</span></p>
+  </div>
   
-  <h3>SRobot Data Display</h3>
-  <p>Current State: <span id="currentState">-</span></p>
-  <p>Received Distance Value: <span id="dttValue">-</span></p>
-  <p>Classifier Value: <span id="classifierValue">-</span></p>
-  <p>Alert Status: <span id="alertStatus">-</span></p>
-  <p>Slowdown Status: <span id="slowdownStatus">-</span></p>
-  <p>Halt Status: <span id="haltStatus">-</span></p>
-  <p>UVC Status: <span id="uvcStatus">-</span></p>
-  <p>Time Active: <span id="timerValue">-</span></p>
+
   <button onclick="runScript()">Reset Monitor</button>
     <script>
       function runScript() {
@@ -103,7 +106,7 @@
 </script> 
 
 <script>
-
+  
   function fetchData(endpoint, elementId) {
       fetch(endpoint)
           .then(response => response.json())
@@ -126,28 +129,35 @@
 
 <div class="flex-container">
   <div class="ccontent">
-      <!-- Your existing content here -->
       <script>
+        let lastMessages = {}; // Object to track the last message for each endpoint
 
         function fetchVData(endpoint, elementId) {
             fetch(endpoint)
                 .then(response => response.json())
                 .then(data => {
-                  document.getElementById(elementId).innerText = data[Object.keys(data)[0]];
-                  logMessage(data[Object.keys(data)[0]]);
+                    let currentMessage = data[Object.keys(data)[0]];
+                    // Initialize endpoint tracker if not present
+                    if (!lastMessages.hasOwnProperty(endpoint)) {
+                        lastMessages[endpoint] = "";
+                    }
+                    // Only process if the message has changed
+                    if (currentMessage !== lastMessages[endpoint]) {
+                        document.getElementById(elementId).innerText = currentMessage;
+                        logMessage(currentMessage);
+                        lastMessages[endpoint] = currentMessage; // Update the last message tracker
+                    }
                 })
                 .catch(error => console.error('Error fetching data from ' + endpoint + ':', error));
-            }
+        }
 
         function logMessage(message) {
             const logList = document.getElementById('logMessages');
             const newLogItem = document.createElement('li');
             newLogItem.textContent = message;
-            logList.appendChild(newLogItem);
-            }
-          
-        // Refresh data every second
-      
+            logList.insertBefore(newLogItem, logList.firstChild); // Always insert at the beginning
+        }
+                
         setInterval(() => fetchVData('/handlerDtt_assumption', 'errorguard'), 100);
         setInterval(() => fetchVData('/handlerclassifier_assumption', 'errorguard'), 100);
         setInterval(() => fetchVData('/handlerclassifier_empty', 'errorguard'), 100);
