@@ -7,7 +7,7 @@ def generate_launch_description():
         Node(
             package='copilot',
             executable='copilot',
-            name='copilot'
+            name='copilotrv'
         ),
         # Node for copilot_logger
         Node(
@@ -16,18 +16,16 @@ def generate_launch_description():
             name='copilot_logger'
 
         ),
-"""
         # Node for publisher
-        Node(
-            package='srobot_realistic_output',
-            executable='publisher',
-            name='publisher'
-        ),
+#        Node(
+#            package='srobot_realistic_output',
+#            executable='publisher',
+#            name='publisher'
+#        ),
         # Node for subscriber
-        Node(
-            package='srobot_realistic_output',
-            executable='subscriber',
-            name='subscriber'
-        ),
-"""
+#        Node(
+#            package='srobot_realistic_output',
+#            executable='subscriber',
+#            name='subscriber'
+#        ),
     ])

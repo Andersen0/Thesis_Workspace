@@ -1,0 +1,12 @@
+package.xml
+setup.py
+../build/node_manager/node_manager.egg-info/PKG-INFO
+../build/node_manager/node_manager.egg-info/SOURCES.txt
+../build/node_manager/node_manager.egg-info/dependency_links.txt
+../build/node_manager/node_manager.egg-info/entry_points.txt
+../build/node_manager/node_manager.egg-info/requires.txt
+../build/node_manager/node_manager.egg-info/top_level.txt
+../build/node_manager/node_manager.egg-info/zip-safe
+node_manager/__init__.py
+node_manager/node_manager.py
+resource/node_manager
