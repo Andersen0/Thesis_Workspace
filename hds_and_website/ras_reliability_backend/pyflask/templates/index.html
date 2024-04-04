@@ -44,16 +44,19 @@
 
   <hr/>
   
+  <div class="sdata-display">
+    <h3>SRobot Data Display</h3>
+    <p>Current State: <span id="currentState">-</span></p>
+    <p>Received Distance Value: <span id="dttValue">-</span></p>
+    <p>Classifier Value: <span id="classifierValue">-</span></p>
+    <p>Alert Status: <span id="alertStatus">-</span></p>
+    <p>Slowdown Status: <span id="slowdownStatus">-</span></p>
+    <p>Halt Status: <span id="haltStatus">-</span></p>
+    <p>UVC Status: <span id="uvcStatus">-</span></p>
+    <p>Time Active: <span id="timerValue">-</span></p>
+  </div>
   
-  <h3>SRobot Data Display</h3>
-  <p>Current State: <span id="currentState">-</span></p>
-  <p>Received Distance Value: <span id="dttValue">-</span></p>
-  <p>Classifier Value: <span id="classifierValue">-</span></p>
-  <p>Alert Status: <span id="alertStatus">-</span></p>
-  <p>Slowdown Status: <span id="slowdownStatus">-</span></p>
-  <p>Halt Status: <span id="haltStatus">-</span></p>
-  <p>UVC Status: <span id="uvcStatus">-</span></p>
-  <p>Time Active: <span id="timerValue">-</span></p>
+
   <button onclick="runScript()">Reset Monitor</button>
     <script>
       function runScript() {
@@ -155,20 +158,20 @@
             logList.insertBefore(newLogItem, logList.firstChild); // Always insert at the beginning
         }
                 
-        setInterval(() => fetchVData('/handlerDtt_assumption', 'errorguard'), 1000);
-        setInterval(() => fetchVData('/handlerclassifier_assumption', 'errorguard'), 1000);
-        setInterval(() => fetchVData('/handlerclassifier_empty', 'errorguard'), 1000);
-        setInterval(() => fetchVData('/handleroperationalstate_0', 'errorguard'), 1000);
-        setInterval(() => fetchVData('/handleroperationalstate_1', 'errorguard'), 1000);
-        setInterval(() => fetchVData('/handleroperationalstate_2', 'errorguard'), 1000);
-        setInterval(() => fetchVData('/handleroperationalstate_3', 'errorguard'), 1000);
-        setInterval(() => fetchVData('/handlerstate_req101', 'errorguard'), 1000);
-        setInterval(() => fetchVData('/handlerstate_req102', 'errorguard'), 1000);
-        setInterval(() => fetchVData('/handlerstate_req103', 'errorguard'), 1000);
-        setInterval(() => fetchVData('/handlerstate_req104', 'errorguard'), 1000);
-        setInterval(() => fetchVData('/handlerstate_req201', 'errorguard'), 1000);
-        setInterval(() => fetchVData('/handlerstate_req202', 'errorguard'), 1000);
-        setInterval(() => fetchVData('/handlerstate_req203', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerDtt_assumption', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerclassifier_assumption', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerclassifier_empty', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handleroperationalstate_0', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handleroperationalstate_1', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handleroperationalstate_2', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handleroperationalstate_3', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req101', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req102', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req103', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req104', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req201', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req202', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req203', 'errorguard'), 100);
       
       </script>
   </div>

@@ -160,3 +160,20 @@ button {
     margin-bottom: 10px;
     margin-right: 10px;
 }
+
+.sdata-display {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  font-weight: bold;
+  border-radius: 5px; /* Optional: adds rounded corners */
+}
+
+.sdata-display h3, .data-display p {
+  margin: 10px 0; /* Adjust spacing between elements as needed */
+}
+
+/* Optional: Make the header stand out less/more */
+.sdata-display h3 {
+  font-weight: normal; /* Less emphasis on the header */
+}
