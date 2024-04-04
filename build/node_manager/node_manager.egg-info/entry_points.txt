@@ -1,0 +1,3 @@
+[console_scripts]
+node_manager = node_manager.node_manager:main
+

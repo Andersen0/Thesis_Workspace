@@ -1,0 +1,12 @@
+source;share/node_manager/hook/path.ps1
+source;share/node_manager/hook/path.dsv
+source;share/node_manager/hook/path.sh
+source;share/node_manager/hook/pythonpath.ps1
+source;share/node_manager/hook/pythonpath.dsv
+source;share/node_manager/hook/pythonpath.sh
+source;share/node_manager/hook/pythonscriptspath.ps1
+source;share/node_manager/hook/pythonscriptspath.dsv
+source;share/node_manager/hook/pythonscriptspath.sh
+source;share/node_manager/hook/ament_prefix_path.ps1
+source;share/node_manager/hook/ament_prefix_path.dsv
+source;share/node_manager/hook/ament_prefix_path.sh

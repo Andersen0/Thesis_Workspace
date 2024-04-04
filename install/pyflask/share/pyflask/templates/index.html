@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="/static/styles.css">
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+</head>
+<body>
+<div class="sidebar">
+    <!-- Display the image -->
+  <img class="sidebar-image" src="/static/nmbu_square.png" alt="NMBU Image" >
+  
+  <div class="button-group">
+    <button id="toggleButton">Toggle State Visual</button>
+    <button id="shutdownButton">Shutdown Server</button>
+    <button id="toggleStatusButton">Toggle Status Messages</button>
+    <button id="toggleTopicButton">Toggle Topic Messages</button>
+    <button id="toggleImageButton">Toggle Live Image</button>
+  </div>
+  <div id="status-circle" display="block"></div>
+  <!-- <p>Last Class: <span id="lastClassDisplay"></span></p>
+  <p>Last Distance: <span id="lastDistanceDisplay"></span></p>
+  <p>Current State: <span id="state"></span></p> -->
+
+
+
+
+</div>
+
+<div class="content">
+  <h1>Safety Properties Monitoring Dashboard</h1>
+  <p>Follow README:</p>
+  <ul>
+    <li>Run the launch file:  <code>$ ros2 launch pyflask my_launch_file.launch.py</code></li>
+    <li>Messages are published to:  <code>/rosout</code></li>
+  </ul>
+  <p> View the tutorial at <a href="https://github.com/mustafma/ras_reliability_backend" target="_blank">ras_reliability_backend</a> or <a href="https://gitlab.com/henrik.nordlie/summer_job_2023" target="_blank">summer_job_2023</a>.</p>
+  
+  <div class="buttonw-group">
+    <button>Export Monitors</button>
+    <button>Import Robot State Machine</button>
+  </div>
+  
+
+  <hr/>
+  
+  <div class="sdata-display">
+    <h3>SRobot Data Display</h3>
+    <p>Current State: <span id="currentState">-</span></p>
+    <p>Received Distance Value: <span id="dttValue">-</span></p>
+    <p>Classifier Value: <span id="classifierValue">-</span></p>
+    <p>Alert Status: <span id="alertStatus">-</span></p>
+    <p>Slowdown Status: <span id="slowdownStatus">-</span></p>
+    <p>Halt Status: <span id="haltStatus">-</span></p>
+    <p>UVC Status: <span id="uvcStatus">-</span></p>
+    <p>Time Active: <span id="timerValue">-</span></p>
+  </div>
+  
+
+  <button onclick="runScript()">Reset Monitor</button>
+    <script>
+      function runScript() {
+          // Using fetch to send a POST request
+          fetch("/run-script", {
+              method: "POST", // Specifying the method
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          })
+          .then(response => {
+              if (!response.ok) { // If the response is not ok, throw an error
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => alert(data.message))
+          .catch((error) => {
+              console.error('There has been a problem with your fetch operation:', error);
+              alert("Failed to execute script.");
+          });
+      }
+      </script>
+    
+
+  <p>Error Guard: <span id="errorguard">-</span></p>
+
+  
+  <img id="videoElement" src="">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+  socket.on('connect', function() {
+    console.log('Connected to server');
+  });
+
+  // Event listener for toggleButton
+  document.getElementById('toggleButton').addEventListener('click', function() {
+  // Handle button click here
+    console.log('Toggle button clicked');
+  // You can emit a socket event or perform any other action here
+  });
+
+
+
+</script> 
+
+<script>
+  
+  function fetchData(endpoint, elementId) {
+      fetch(endpoint)
+          .then(response => response.json())
+          .then(data => {
+              document.getElementById(elementId).innerText = data[Object.keys(data)[0]];
+          })
+          .catch(error => console.error('Error fetching data from ' + endpoint + ':', error));
+  }
+
+  // Refresh data every second
+  setInterval(() => fetchData('/dtt', 'dttValue'), 100);
+  setInterval(() => fetchData('/classifier', 'classifierValue'), 100);
+  setInterval(() => fetchData('/alert', 'alertStatus'), 100);
+  setInterval(() => fetchData('/halt', 'haltStatus'), 100);
+  setInterval(() => fetchData('/slowdown', 'slowdownStatus'), 100);
+  setInterval(() => fetchData('/state', 'currentState'), 100);
+  setInterval(() => fetchData('/uvc', 'uvcStatus'), 100);
+  setInterval(() => fetchData('/timer', 'timerValue'), 100);
+</script>
+
+<div class="flex-container">
+  <div class="ccontent">
+      <script>
+        let lastMessages = {}; // Object to track the last message for each endpoint
+
+        function fetchVData(endpoint, elementId) {
+            fetch(endpoint)
+                .then(response => response.json())
+                .then(data => {
+                    let currentMessage = data[Object.keys(data)[0]];
+                    // Initialize endpoint tracker if not present
+                    if (!lastMessages.hasOwnProperty(endpoint)) {
+                        lastMessages[endpoint] = "";
+                    }
+                    // Only process if the message has changed
+                    if (currentMessage !== lastMessages[endpoint]) {
+                        document.getElementById(elementId).innerText = currentMessage;
+                        logMessage(currentMessage);
+                        lastMessages[endpoint] = currentMessage; // Update the last message tracker
+                    }
+                })
+                .catch(error => console.error('Error fetching data from ' + endpoint + ':', error));
+        }
+
+        function logMessage(message) {
+            const logList = document.getElementById('logMessages');
+            const newLogItem = document.createElement('li');
+            newLogItem.textContent = message;
+            logList.insertBefore(newLogItem, logList.firstChild); // Always insert at the beginning
+        }
+                
+        setInterval(() => fetchVData('/handlerDtt_assumption', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerclassifier_assumption', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerclassifier_empty', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handleroperationalstate_0', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handleroperationalstate_1', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handleroperationalstate_2', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handleroperationalstate_3', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req101', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req102', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req103', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req104', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req201', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req202', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerstate_req203', 'errorguard'), 100);
+      
+      </script>
+  </div>
+  <div class="log-section">
+      <h2>Log Messages</h2>
+      <ul id="logMessages"></ul>
+  </div>
+</div>
+
+
+<!-- <script>
+  setInterval(function() {
+    document.getElementById('videoElement').src = "/stream?" + new Date().getTime();
+  }, 50);
+</script> -->
+</body>
+</html>

@@ -1,0 +1,187 @@
+[3.218s] Invoking command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/hds_and_website/yolov6': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/yolov6 build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/install.log --single-version-externally-managed install_data
+[3.852s] running egg_info
+[3.853s] creating ../../build/yolov6/yolov6.egg-info
+[3.855s] writing ../../build/yolov6/yolov6.egg-info/PKG-INFO
+[3.856s] writing dependency_links to ../../build/yolov6/yolov6.egg-info/dependency_links.txt
+[3.857s] writing entry points to ../../build/yolov6/yolov6.egg-info/entry_points.txt
+[3.858s] writing requirements to ../../build/yolov6/yolov6.egg-info/requires.txt
+[3.858s] writing top-level names to ../../build/yolov6/yolov6.egg-info/top_level.txt
+[3.859s] writing manifest file '../../build/yolov6/yolov6.egg-info/SOURCES.txt'
+[3.863s] package init file 'yolov6/core/__init__.py' not found (or not a regular file)
+[3.863s] package init file 'yolov6/utils/__init__.py' not found (or not a regular file)
+[3.864s] package init file 'yolov6/data/__init__.py' not found (or not a regular file)
+[3.865s] package init file 'yolov6/layers/__init__.py' not found (or not a regular file)
+[3.865s] package init file 'yolov6/models/__init__.py' not found (or not a regular file)
+[3.865s] package init file 'yolov6/models/heads/__init__.py' not found (or not a regular file)
+[3.866s] package init file 'yolov6/models/losses/__init__.py' not found (or not a regular file)
+[3.866s] package init file 'yolov6/solver/__init__.py' not found (or not a regular file)
+[3.868s] reading manifest file '../../build/yolov6/yolov6.egg-info/SOURCES.txt'
+[3.870s] writing manifest file '../../build/yolov6/yolov6.egg-info/SOURCES.txt'
+[3.870s] running build
+[3.871s] running build_py
+[3.871s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build
+[3.872s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib
+[3.873s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6
+[3.873s] copying yolov6/__init__.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6
+[3.873s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/core
+[3.874s] copying yolov6/core/evaler.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/core
+[3.875s] copying yolov6/core/inferer.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/core
+[3.876s] copying yolov6/core/depth_cam.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/core
+[3.877s] copying yolov6/core/engine.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/core
+[3.879s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils
+[3.880s] copying yolov6/utils/envs.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils
+[3.881s] copying yolov6/utils/metrics.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils
+[3.882s] copying yolov6/utils/checkpoint.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils
+[3.883s] copying yolov6/utils/events.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils
+[3.884s] copying yolov6/utils/config.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils
+[3.895s] copying yolov6/utils/torch_utils.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils
+[3.897s] copying yolov6/utils/general.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils
+[3.897s] copying yolov6/utils/RepOptimizer.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils
+[3.897s] copying yolov6/utils/nms.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils
+[3.905s] copying yolov6/utils/ema.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils
+[3.906s] copying yolov6/utils/figure_iou.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils
+[3.906s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/data
+[3.906s] copying yolov6/data/data_load.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/data
+[3.906s] copying yolov6/data/voc2yolo.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/data
+[3.907s] copying yolov6/data/data_augment.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/data
+[3.907s] copying yolov6/data/datasets.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/data
+[3.908s] copying yolov6/data/vis_dataset.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/data
+[3.908s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/layers
+[3.908s] copying yolov6/layers/dbb_transforms.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/layers
+[3.909s] copying yolov6/layers/common.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/layers
+[3.909s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models
+[3.909s] copying yolov6/models/end2end.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models
+[3.910s] copying yolov6/models/reppan.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models
+[3.910s] copying yolov6/models/yolo_lite.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models
+[3.911s] copying yolov6/models/efficientrep.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models
+[3.912s] copying yolov6/models/yolo.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models
+[3.913s] copying yolov6/models/effidehead.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models
+[3.913s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/heads
+[3.913s] copying yolov6/models/heads/effidehead_fuseab.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/heads
+[3.914s] copying yolov6/models/heads/effidehead_distill_ns.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/heads
+[3.914s] copying yolov6/models/heads/effidehead_lite.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/heads
+[3.914s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/losses
+[3.915s] copying yolov6/models/losses/loss_distill_ns.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/losses
+[3.915s] copying yolov6/models/losses/loss_fuseab.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/losses
+[3.916s] copying yolov6/models/losses/loss.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/losses
+[3.916s] copying yolov6/models/losses/loss_distill.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/losses
+[3.916s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/solver
+[3.916s] copying yolov6/solver/build.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/solver
+[3.917s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/assigners
+[3.917s] copying yolov6/assigners/assigner_utils.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/assigners
+[3.918s] copying yolov6/assigners/__init__.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/assigners
+[3.918s] copying yolov6/assigners/tal_assigner.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/assigners
+[3.918s] copying yolov6/assigners/atss_assigner.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/assigners
+[3.918s] copying yolov6/assigners/iou2d_calculator.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/assigners
+[3.919s] copying yolov6/assigners/anchor_generator.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/assigners
+[3.919s] running install
+[3.920s] running install_lib
+[3.920s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6
+[3.920s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/core
+[3.920s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/core/evaler.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/core
+[3.921s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/core/inferer.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/core
+[3.921s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/core/depth_cam.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/core
+[3.921s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/core/engine.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/core
+[3.922s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/__init__.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6
+[3.922s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils
+[3.923s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils/envs.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils
+[3.923s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils/metrics.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils
+[3.923s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils/checkpoint.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils
+[3.924s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils/events.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils
+[3.924s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils/config.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils
+[3.925s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils/torch_utils.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils
+[3.925s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils/general.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils
+[3.926s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils/RepOptimizer.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils
+[3.926s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils/nms.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils
+[3.926s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils/ema.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils
+[3.927s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/utils/figure_iou.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils
+[3.927s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/assigners
+[3.927s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/assigners/assigner_utils.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/assigners
+[3.928s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/assigners/__init__.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/assigners
+[3.932s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/assigners/tal_assigner.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/assigners
+[3.933s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/assigners/atss_assigner.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/assigners
+[3.933s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/assigners/iou2d_calculator.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/assigners
+[3.934s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/assigners/anchor_generator.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/assigners
+[3.934s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/data
+[3.934s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/data/data_load.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/data
+[3.934s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/data/voc2yolo.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/data
+[3.934s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/data/data_augment.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/data
+[3.935s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/data/datasets.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/data
+[3.935s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/data/vis_dataset.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/data
+[3.935s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/solver
+[3.935s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/solver/build.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/solver
+[3.936s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models
+[3.936s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/heads
+[3.937s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/heads/effidehead_fuseab.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/heads
+[3.937s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/heads/effidehead_distill_ns.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/heads
+[3.937s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/heads/effidehead_lite.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/heads
+[3.937s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/end2end.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models
+[3.938s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/losses
+[3.938s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/losses/loss_distill_ns.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/losses
+[3.938s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/losses/loss_fuseab.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/losses
+[3.938s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/losses/loss.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/losses
+[3.939s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/losses/loss_distill.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/losses
+[3.939s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/reppan.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models
+[3.939s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/yolo_lite.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models
+[3.939s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/efficientrep.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models
+[3.940s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/yolo.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models
+[3.940s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/models/effidehead.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models
+[3.940s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/layers
+[3.940s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/layers/dbb_transforms.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/layers
+[3.940s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/layers/common.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/layers
+[3.941s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/core/evaler.py to evaler.cpython-310.pyc
+[3.945s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/core/inferer.py to inferer.cpython-310.pyc
+[3.951s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/core/depth_cam.py to depth_cam.cpython-310.pyc
+[3.952s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/core/engine.py to engine.cpython-310.pyc
+[3.960s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/__init__.py to __init__.cpython-310.pyc
+[3.962s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils/envs.py to envs.cpython-310.pyc
+[3.962s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils/metrics.py to metrics.cpython-310.pyc
+[3.967s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils/checkpoint.py to checkpoint.cpython-310.pyc
+[3.970s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils/events.py to events.cpython-310.pyc
+[3.970s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils/config.py to config.cpython-310.pyc
+[3.972s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils/torch_utils.py to torch_utils.cpython-310.pyc
+[3.974s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils/general.py to general.cpython-310.pyc
+[3.976s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils/RepOptimizer.py to RepOptimizer.cpython-310.pyc
+[3.980s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils/nms.py to nms.cpython-310.pyc
+[3.981s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils/ema.py to ema.cpython-310.pyc
+[3.984s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/utils/figure_iou.py to figure_iou.cpython-310.pyc
+[3.986s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/assigners/assigner_utils.py to assigner_utils.cpython-310.pyc
+[3.988s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/assigners/__init__.py to __init__.cpython-310.pyc
+[3.988s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/assigners/tal_assigner.py to tal_assigner.cpython-310.pyc
+[3.991s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/assigners/atss_assigner.py to atss_assigner.cpython-310.pyc
+[3.993s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/assigners/iou2d_calculator.py to iou2d_calculator.cpython-310.pyc
+[3.996s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/assigners/anchor_generator.py to anchor_generator.cpython-310.pyc
+[3.998s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/data/data_load.py to data_load.cpython-310.pyc
+[4.003s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/data/voc2yolo.py to voc2yolo.cpython-310.pyc
+[4.007s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/data/data_augment.py to data_augment.cpython-310.pyc
+[4.009s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/data/datasets.py to datasets.cpython-310.pyc
+[4.018s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/data/vis_dataset.py to vis_dataset.cpython-310.pyc
+[4.023s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/solver/build.py to build.cpython-310.pyc
+[4.024s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/heads/effidehead_fuseab.py to effidehead_fuseab.cpython-310.pyc
+[4.025s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/heads/effidehead_distill_ns.py to effidehead_distill_ns.cpython-310.pyc
+[4.028s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/heads/effidehead_lite.py to effidehead_lite.cpython-310.pyc
+[4.055s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/end2end.py to end2end.cpython-310.pyc
+[4.056s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/losses/loss_distill_ns.py to loss_distill_ns.cpython-310.pyc
+[4.056s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/losses/loss_fuseab.py to loss_fuseab.cpython-310.pyc
+[4.056s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/losses/loss.py to loss.cpython-310.pyc
+[4.056s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/losses/loss_distill.py to loss_distill.cpython-310.pyc
+[4.059s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/reppan.py to reppan.cpython-310.pyc
+[4.071s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/yolo_lite.py to yolo_lite.cpython-310.pyc
+[4.075s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/efficientrep.py to efficientrep.cpython-310.pyc
+[4.084s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/yolo.py to yolo.cpython-310.pyc
+[4.093s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/models/effidehead.py to effidehead.cpython-310.pyc
+[4.107s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/layers/dbb_transforms.py to dbb_transforms.cpython-310.pyc
+[4.110s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/layers/common.py to common.cpython-310.pyc
+[4.155s] running install_data
+[4.156s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/share/ament_index
+[4.156s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/share/ament_index/resource_index
+[4.157s] creating /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/share/ament_index/resource_index/packages
+[4.158s] copying resource/yolov6 -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/share/ament_index/resource_index/packages
+[4.158s] copying package.xml -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/share/yolov6
+[4.159s] running install_egg_info
+[4.164s] Copying ../../build/yolov6/yolov6.egg-info to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6-0.0.0-py3.10.egg-info
+[4.167s] running install_scripts
+[4.222s] Installing depth_cam script to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/yolov6
+[4.222s] Installing inferer script to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/yolov6
+[4.226s] writing list of installed files to '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/install.log'
+[4.331s] Invoked command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/hds_and_website/yolov6' returned '0': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/yolov6 build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/install.log --single-version-externally-managed install_data
