@@ -254,7 +254,8 @@ def timer():
 
 @app.route('/run-script', methods=['POST'])
 def run_script():
-    script_path = "/home/andersen/M30-RB_ws/copilot_relaunch.sh"
+
+    script_path = (current_dir + "/copilot_relaunch.sh")
     try:
         subprocess.run(["bash", script_path], check=True)
         return {"message": "Script executed successfully!"}, 200
