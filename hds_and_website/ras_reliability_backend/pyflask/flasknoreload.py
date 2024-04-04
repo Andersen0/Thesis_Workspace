@@ -332,7 +332,6 @@ def handlerstate_req203():
     handlerstate_req203_value = app.config.get('handlerstate_req203', "")
     return jsonify({'handlerstate_req203' : handlerstate_req203_value})
 
-
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
     # Using Flask's CLI to run the server with `flask run --no-reload`
