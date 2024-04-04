@@ -368,7 +368,7 @@ class Inferer(Node):
                         thickness=tf, lineType=cv2.LINE_AA)
 
     @staticmethod
-    def font_check(font=str(osp.join(ROOT, "src/hds_and_website/yolov6/yolov6/utils/Arial.ttf")), size=10):
+    def font_check(font=str(osp.join(ROOT, "src/Thesis_Workspace/hds_and_website/yolov6/yolov6/utils/Arial.ttf")), size=10):
         # Return a PIL TrueType Font, downloading to CONFIG_DIR if necessary
         assert osp.exists(font), f'font path not exists: {font}'
         try:
@@ -416,9 +416,9 @@ def main():
     current_dir = os.path.dirname(os.path.realpath(__file__))
     sys.path.append(current_dir)
     tage = Inferer(source="",
-                   weights=osp.join(ROOT, "src/hds_and_website/yolov6/yolov6/core/best_ckpt.pt"),
+                   weights=osp.join(ROOT, "src/Thesis_Workspace/hds_and_website/yolov6/yolov6/core/best_ckpt.pt"),
                    webcam=False, 
-                   yaml=osp.join(ROOT, "src/hds_and_website/yolov6/yolov6/core/worker_data.yaml"),
+                   yaml=osp.join(ROOT, "src/Thesis_Workspace/hds_and_website/yolov6/yolov6/core/worker_data.yaml"),
                    webcam_addr="0",
                    device='0',
                    img_size=640,
