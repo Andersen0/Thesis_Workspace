@@ -3,7 +3,7 @@
 # Define your nodes and workspace
 COPILOT_NODE="copilot"
 cd ../../../../..
-ROS2_WS_PATH="$pwd"
+ROS2_WS_PATH="$PWD"
 
 printf "ROS2_WS_PATH: $ROS2_WS_PATH\n"
 
