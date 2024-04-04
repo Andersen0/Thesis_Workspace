@@ -231,7 +231,7 @@ def index():
 # Flask route for looking at the latest yolo image
 @app.route('/stream')
 def stream():
-    image = app.config['yolo_image']
+    image = app.config.get['yolo_image']
     if image is not None:
         return Response(image, mimetype='image/jpeg')
     else:
