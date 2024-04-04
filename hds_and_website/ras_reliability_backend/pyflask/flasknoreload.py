@@ -1,14 +1,17 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, Response
 import threading
 import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 import os
 from std_msgs.msg import Int64, Bool, String, Empty
+from sensor_msgs.msg import Image
 from datetime import datetime
 import logging 
 import time
 import subprocess
+from cv_bridge import CvBridge, CvBridgeError
+import cv2
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 template_dir = os.path.join(current_dir, 'templates')
@@ -21,6 +24,7 @@ class TeleopNode(Node):
         super().__init__('teleop_flask')
         self.app = app
         self.get_logger().info('Initializing My Node!')
+        self.bridge = CvBridge()
         self.dtt_subber = self.create_subscription(Int64, '/scan', self.scan_callback, 10)
         self.classifier_subber = self.create_subscription(Int64, '/sRobotClassifier', self.classifier_callback, 10)
         self.alert_subber = self.create_subscription(Bool, '/sRobotAlert', self.alert_callback, 10)
@@ -29,6 +33,8 @@ class TeleopNode(Node):
         self.state_subber = self.create_subscription(Int64, '/sRobotState', self.state_callback, 10)
         self.uvc_subber = self.create_subscription(Bool, '/sRobotTurnoffUVC', self.uvc_callback, 10)
         self.timer = self.create_subscription(String, '/timer', self.timer_callback, 10)
+        self.yolo_subber = self.create_subscription(Image, '/yolo_im', self.yolo_callback, 10) # subscribe to the /yolo_im topic
+
         self.get_logger().info('Initialized!')
         log = logging.getLogger('werkzeug')
         log.setLevel(logging.WARNING)
@@ -188,8 +194,18 @@ class TeleopNode(Node):
         message = f"handlerstate_req203 violation detected: {format_time}"
         self.app.config['handlerstate_req203'] = message
 
-    
+        # This method is called when a new message is received in the /yolo_im channel
+    def yolo_callback(self, msg):
+        try:
+            cv_image = self.bridge.imgmsg_to_cv2(msg, "bgr8")
+        except CvBridgeError as e:
+            print(e)
+            return
+        
+        _, jpeg = cv2.imencode('.jpg', cv_image)
+        self.app.config['yolo_image'] = jpeg.tobytes()
 
+    
 def init_ros_node(app):
     rclpy.init(args=None)
     global node
@@ -211,6 +227,15 @@ threading.Thread(target=init_ros_node, args=(app,), daemon=True).start()
 @app.route('/')
 def index():
     return render_template('index.html')
+
+# Flask route for looking at the latest yolo image
+@app.route('/stream')
+def stream():
+    image = app.config['yolo_image']
+    if image is not None:
+        return Response(image, mimetype='image/jpeg')
+    else:
+        return Response('')
 
 @app.route('/dtt')
 def dtt():
