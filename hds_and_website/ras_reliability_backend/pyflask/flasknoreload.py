@@ -93,98 +93,98 @@ class TeleopNode(Node):
     def handlerDtt_assumption_callback(self, msg):
         print('Received handlerDtt_assumption signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H:%M:%S GMT")  # Formatting datetime to a string
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M GMT")  # Formatting datetime to a string
         message = f"handlerDtt_assumption violation detected: {format_time}"
         self.app.config['handlerDtt_assumption'] = message
     
     def handlerclassifier_assumption_callback(self, msg):
         print('Received handlerclassifier_assumption signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H:%M:%S GMT")
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M GMT")
         message = f"handlerclassifier_assumption violation detected: {format_time}"
         self.app.config['handlerclassifier_assumption'] = message
 
     def handlerclassifier_empty_callback(self, msg):
         print('Received handlerclassifier_empty signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H:%M:%S GMT")
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M GMT")
         message = f"handlerclassifier_empty violation detected: {format_time}"
         self.app.config['handlerclassifier_empty'] = message
 
     def handleroperationalstate_0_callback(self, msg):
         print('Received handleroperationalstate_0 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H:%M:%S GMT")
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M GMT")
         message = f"handleroperationalstate_0 violation detected: {format_time}"
         self.app.config['handleroperationalstate_0'] = message
 
     def handleroperationalstate_1_callback(self, msg):
         print('Received handleroperationalstate_1 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H:%M:%S GMT")
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M GMT")
         message = f"handleroperationalstate_1 violation detected: {format_time}"
         self.app.config['handleroperationalstate_1'] = message
 
     def handleroperationalstate_2_callback(self, msg):
         print('Received handleroperationalstate_2 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H:%M:%S GMT")
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M GMT")
         message = f"handleroperationalstate_2 violation detected: {format_time}"
         self.app.config['handleroperationalstate_2'] = message
 
     def handleroperationalstate_3_callback(self, msg):
         print('Received handleroperationalstate_3 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H:%M:%S GMT")
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M GMT")
         message = f"handleroperationalstate_3 violation detected: {format_time}"
         self.app.config['handleroperationalstate_3'] = message
 
     def handlerstate_req101_callback(self, msg):
         print('Received handlerstate_req101 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H:%M:%S GMT")
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M GMT")
         message = f"handlerstate_req101 violation detected: {format_time}"
         self.app.config['handlerstate_req101'] = message
 
     def handlerstate_req102_callback(self, msg):
         print('Received handlerstate_req102 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H:%M:%S GMT")
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M GMT")
         message = f"handlerstate_req102 violation detected: {format_time}"
         self.app.config['handlerstate_req102'] = message
 
     def handlerstate_req103_callback(self, msg):
         print('Received handlerstate_req103 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H:%M:%S GMT")
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M GMT")
         message = f"handlerstate_req103 violation detected: {format_time}"
         self.app.config['handlerstate_req103'] = message
 
     def handlerstate_req104_callback(self, msg):
         print('Received handlerstate_req104 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H:%M:%S GMT")
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M GMT")
         message = f"handlerstate_req104 violation detected: {format_time}"
         self.app.config['handlerstate_req104'] = message
 
     def handlerstate_req201_callback(self, msg):
         print('Received handlerstate_req201 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H:%M:%S GMT")
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M GMT")
         message = f"handlerstate_req201 violation detected: {format_time}"
         self.app.config['handlerstate_req201'] = message
 
     def handlerstate_req202_callback(self, msg):
         print('Received handlerstate_req202 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H:%M:%S GMT")
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M GMT")
         message = f"handlerstate_req202 violation detected: {format_time}"
         self.app.config['handlerstate_req202'] = message
 
     def handlerstate_req203_callback(self, msg):
         print('Received handlerstate_req203 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H:%M:%S GMT")
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M GMT")
         message = f"handlerstate_req203 violation detected: {format_time}"
         self.app.config['handlerstate_req203'] = message
 
@@ -260,76 +260,6 @@ def run_script():
         return {"message": "Script executed successfully!"}, 200
     except subprocess.CalledProcessError as e:
         return {"message": "Failed to execute script."}, 500
-
-@app.route('/handlerDtt_assumption')
-def handlerDtt_assumption():
-    handlerDtt_assumption_value = app.config.get('handlerDtt_assumption', "")
-    return jsonify({'handlerDtt_assumption' : handlerDtt_assumption_value})
-
-@app.route('/handlerclassifier_assumption')
-def handlerclassifier_assumption():
-    handlerclassifier_assumption_value = app.config.get('handlerclassifier_assumption', "")
-    return jsonify({'handlerclassifier_assumption' : handlerclassifier_assumption_value})
-
-@app.route('/handlerclassifier_empty')
-def handlerclassifier_empty():
-    handlerclassifier_empty_value = app.config.get('handlerclassifier_empty', "")
-    return jsonify({'handlerclassifier_empty' : handlerclassifier_empty_value})
-
-@app.route('/handleroperationalstate_0')
-def handleroperationalstate_0():
-    handleroperationalstate_0_value = app.config.get('handleroperationalstate_0', "")
-    return jsonify({'handleroperationalstate_0' : handleroperationalstate_0_value})
-
-@app.route('/handleroperationalstate_1')
-def handleroperationalstate_1():
-    handleroperationalstate_1_value = app.config.get('handleroperationalstate_1', "")
-    return jsonify({'handleroperationalstate_1' : handleroperationalstate_1_value})
-
-@app.route('/handleroperationalstate_2')
-def handleroperationalstate_2():
-    handleroperationalstate_2_value = app.config.get('handleroperationalstate_2', "")
-    return jsonify({'handleroperationalstate_2' : handleroperationalstate_2_value})
-
-@app.route('/handleroperationalstate_3')
-def handleroperationalstate_3():
-    handleroperationalstate_3_value = app.config.get('handleroperationalstate_3', "")
-    return jsonify({'handleroperationalstate_3' : handleroperationalstate_3_value})
-
-@app.route('/handlerstate_req101')
-def handlerstate_req101():
-    handlerstate_req101_value = app.config.get('handlerstate_req101', "")
-    return jsonify({'handlerstate_req101' : handlerstate_req101_value})
-
-@app.route('/handlerstate_req102')
-def handlerstate_req102():
-    handlerstate_req102_value = app.config.get('handlerstate_req102', "")
-    return jsonify({'handlerstate_req102' : handlerstate_req102_value})
-
-@app.route('/handlerstate_req103')
-def handlerstate_req103():
-    handlerstate_req103_value = app.config.get('handlerstate_req103', "")
-    return jsonify({'handlerstate_req103' : handlerstate_req103_value})
-
-@app.route('/handlerstate_req104')
-def handlerstate_req104():
-    handlerstate_req104_value = app.config.get('handlerstate_req104', "")
-    return jsonify({'handlerstate_req104' : handlerstate_req104_value})
-
-@app.route('/handlerstate_req201')
-def handlerstate_req201():
-    handlerstate_req201_value = app.config.get('handlerstate_req201', "")
-    return jsonify({'handlerstate_req201' : handlerstate_req201_value})
-
-@app.route('/handlerstate_req202')
-def handlerstate_req202():
-    handlerstate_req202_value = app.config.get('handlerstate_req202', "")
-    return jsonify({'handlerstate_req202' : handlerstate_req202_value})
-
-@app.route('/handlerstate_req203')
-def handlerstate_req203():
-    handlerstate_req203_value = app.config.get('handlerstate_req203', "")
-    return jsonify({'handlerstate_req203' : handlerstate_req203_value})
 
 @app.route('/handlerDtt_assumption')
 def handlerDtt_assumption():

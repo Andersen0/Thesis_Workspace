@@ -103,7 +103,7 @@
 </script> 
 
 <script>
-
+  
   function fetchData(endpoint, elementId) {
       fetch(endpoint)
           .then(response => response.json())
@@ -126,35 +126,34 @@
 
 <div class="flex-container">
   <div class="ccontent">
-      <!-- Your existing content here -->
       <script>
+        let lastMessages = {}; // Object to track the last message for each endpoint
 
         function fetchVData(endpoint, elementId) {
             fetch(endpoint)
                 .then(response => response.json())
                 .then(data => {
-                  document.getElementById(elementId).innerText = data[Object.keys(data)[0]];
-                  logMessage(data[Object.keys(data)[0]]);
+                    let currentMessage = data[Object.keys(data)[0]];
+                    // Initialize endpoint tracker if not present
+                    if (!lastMessages.hasOwnProperty(endpoint)) {
+                        lastMessages[endpoint] = "";
+                    }
+                    // Only process if the message has changed
+                    if (currentMessage !== lastMessages[endpoint]) {
+                        document.getElementById(elementId).innerText = currentMessage;
+                        logMessage(currentMessage);
+                        lastMessages[endpoint] = currentMessage; // Update the last message tracker
+                    }
                 })
                 .catch(error => console.error('Error fetching data from ' + endpoint + ':', error));
-          }
+        }
 
         function logMessage(message) {
             const logList = document.getElementById('logMessages');
             const newLogItem = document.createElement('li');
             newLogItem.textContent = message;
-
-            // Check if there are any existing log messages
-            if (logList.firstChild) {
-                // Insert the new log item at the beginning of the log list
-                logList.insertBefore(newLogItem, logList.firstChild);
-            } else {
-                // If the log list is empty, just append the new item (this case is equivalent to the appendChild method)
-                logList.appendChild(newLogItem);
-            }
-
-            // Since new messages are at the top, no need to adjust scroll
-          }
+            logList.insertBefore(newLogItem, logList.firstChild); // Always insert at the beginning
+        }
                 
         setInterval(() => fetchVData('/handlerDtt_assumption', 'errorguard'), 1000);
         setInterval(() => fetchVData('/handlerclassifier_assumption', 'errorguard'), 1000);
