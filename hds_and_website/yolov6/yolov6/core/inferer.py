@@ -416,9 +416,9 @@ def main():
     current_dir = os.path.dirname(os.path.realpath(__file__))
     sys.path.append(current_dir)
     tage = Inferer(source="",
-                   weights=osp.join(ROOT, "src/hds_and_website/yolov6/yolov6/core/best_ckpt.pt"),
+                   weights=osp.join(ROOT, "src/Thesis_Workspace/hds_and_website/yolov6/yolov6/core/best_ckpt.pt"),
                    webcam=False, 
-                   yaml=osp.join(ROOT, "src/hds_and_website/yolov6/yolov6/core/worker_data.yaml"),
+                   yaml=osp.join(ROOT, "src/Thesis_Workspace/hds_and_website/yolov6/yolov6/core/worker_data.yaml"),
                    webcam_addr="0",
                    device='0',
                    img_size=640,
