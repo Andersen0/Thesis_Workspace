@@ -102,15 +102,11 @@ class DynamicSubscriber(Node):
         if state == 0:
             slowdown, halt, alert, turnoffUVC = False, False, False, False
         elif state == 1:
-            slowdown, halt, alert, turnoffUVC = True, False, False, False
+            slowdown, halt, alert, turnoffUVC = True, False, True, False
         elif state == 2:
-            slowdown, halt, alert, turnoffUVC = False, False, True, False
-        elif state == 3:
             slowdown, halt, alert, turnoffUVC = False, True, True, False
-        elif state == 4:
-            slowdown, halt, alert, turnoffUVC = False, False, False, True 
-        elif state == 5:
-            slowdown, halt, alert, turnoffUVC = False, True, False, True 
+        elif state == 3:
+            slowdown, halt, alert, turnoffUVC = False, True, True, True
 
         return state, slowdown, halt, alert, turnoffUVC
 
