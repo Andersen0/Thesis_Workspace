@@ -1,6 +1,6 @@
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Int64
+from std_msgs.msg import Int64, Float64
 import random
 from rclpy.clock import Clock
 from rclpy.time import Time
@@ -11,8 +11,8 @@ class DynamicPublisher(Node):
         super().__init__(node_name)
 
         # Publishers
-        self.classifier_publisher = self.create_publisher(Int64, '/FakesRobotClassifier', 10)
-        self.distance_publisher = self.create_publisher(Int64, '/Fakescan', 10)
+        self.classifier_publisher = self.create_publisher(Float64, '/FakesRobotClassifier', 10)
+        self.distance_publisher = self.create_publisher(Float64, '/Fakescan', 10)
 
         # Timer for classifier - cycles between 1 and 2
         # self.classifier_timer = self.create_timer(1, self.classifier_callback)

@@ -102,12 +102,14 @@ class CopilotRV : public rclcpp::Node {
 
       handleroperationalstate_2_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
         "copilot/handleroperationalstate_2", 10);
-      
+
+    /*
       timer_ = this->create_wall_timer(
           std::chrono::milliseconds(10),
           std::bind(&CopilotRV::step_wrapper, this));
+  
+    */
     }
-
     // Report (publish) monitor violations.
     void handlerstate_req101() {
       auto output = std_msgs::msg::Empty();
@@ -224,8 +226,10 @@ class CopilotRV : public rclcpp::Node {
     }
 
     void turnoffUVC_callback(const std_msgs::msg::Bool::SharedPtr msg) const {
-      turnoffUVC = msg->data;
+    turnoffUVC = msg->data;
+    step();  // Call step directly here.
     }
+
 
     rclcpp::Subscription<std_msgs::msg::Int64>::SharedPtr classifier_subscription_;
 

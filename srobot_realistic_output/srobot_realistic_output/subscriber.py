@@ -1,6 +1,6 @@
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Int64, Bool
+from std_msgs.msg import Int64, Bool, Float64
 from rclpy.callback_groups import ReentrantCallbackGroup
 
 class DynamicSubscriber(Node):
@@ -11,9 +11,9 @@ class DynamicSubscriber(Node):
         # self.reentrant_callback_group = ReentrantCallbackGroup()
 
         # Subscribe to /sRobotClassifier and /scan topic
-        self.classifier_subscription = self.create_subscription(Int64, '/FakesRobotClassifier',  self.classifier_callback, 10)
+        self.classifier_subscription = self.create_subscription(Float64, '/FakesRobotClassifier',  self.classifier_callback, 10)
         self.classifier_subscription  # prevent unused variable warning
-        self.distance_subscription = self.create_subscription(Int64, '/Fakescan', self.distance_callback, 10)
+        self.distance_subscription = self.create_subscription(Float64, '/Fakescan', self.distance_callback, 10)
         self.distance_subscription  # prevent unused variable warning
 
         # Publishers
