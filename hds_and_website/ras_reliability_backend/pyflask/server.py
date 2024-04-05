@@ -138,11 +138,11 @@ class TestPublisher(Node):
                 temp = classes[i].split(',')
 
                 try:
-                    temp[0] = int(temp[0])
-                    temp[1] = float(temp[1])
-                    temp[2] = float(temp[2])
-                    temp[3] = float(temp[3])
-                    temp[4] = str(temp[4])
+                    temp[0] = int(temp[0]) # class
+                    temp[1] = float(temp[1]) # p_value
+                    temp[2] = float(temp[2]) # area
+                    temp[3] = float(temp[3]) # x distance mm
+                    temp[4] = str(temp[4]) # state color
 
                     processed_classes.append(temp)
 
