@@ -215,7 +215,6 @@ class TeleopNode(Node):
             # Split string into list of strings
             classes = msg.data.strip().split(';')
             processed_classes = []
-            print(f"Raw msg.data: {msg.data}")  # Debugging line
 
             # For each item in the list
             for i in range(len(classes)):
@@ -247,7 +246,7 @@ class TeleopNode(Node):
             msg = Int64()
             msg.data = processed_classes[0][0]
             msg2 = Float64()
-            msg2.data = processed_classes[0][3]
+            msg2.data = processed_classes[0][3]/1000
             pub.publish(msg)
             pub2.publish(msg2)
 
