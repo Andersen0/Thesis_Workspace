@@ -168,9 +168,9 @@ class Inferer(Node):
                     pred_depth_img[xyxy_list[1]:xyxy_list[3], xyxy_list[0]:xyxy_list[2]] = self.depth_img[xyxy_list[1]:xyxy_list[3], xyxy_list[0]:xyxy_list[2]]
                     depth_detection_section = self.depth_img[xyxy_list[1]:xyxy_list[3], xyxy_list[0]:xyxy_list[2]]
                     depth_detection_section = np.array(depth_detection_section, dtype=np.float32)
-                    reduced_depth_detection_section = self.remove_outliers(depth_detection_section)
+                   #reduced_depth_detection_section = self.remove_outliers(depth_detection_section)
                     depth = Float32() 
-                    depth.data = float(np.mean(reduced_depth_detection_section))
+                    depth.data = float(np.mean(depth_detection_section))
                     self.depth_pub.publish(depth) 
                     #self.get_logger.info("Detected class depth: {}".format(detected_class_depth))
                 if save_txt:  # Write to file
