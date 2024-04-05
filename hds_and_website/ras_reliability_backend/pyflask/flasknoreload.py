@@ -223,26 +223,19 @@ class TeleopNode(Node):
 
                     # Split the item into a list of 3 elements separated by ','
                     temp = classes[i].split(',')
-                    print(f"temp: {temp}")  # Debugging line
 
                     try:
                         temp[0] = int(temp[0]) # class
-                        print(f"temp[0]: {temp[0]}")  # Debugging line
                         temp[1] = float(temp[1]) # p_value
-                        print(f"temp[1]: {temp[1]}")  # Debugging line
                         temp[2] = float(temp[2]) # area
-                        print(f"temp[2]: {temp[2]}")  # Debugging line
                         temp[3] = float(temp[3]) # x distance mm
-                        print(f"temp[3]: {temp[3]}")  # Debugging line
                         temp[4] = str(temp[4]) # state color
-                        print(f"temp[4]: {temp[4]}")  # Debugging line
 
                         processed_classes.append(temp)
 
                     except (ValueError, IndexError):
                         print(f"Error processing class data: {classes[i]}")
-                else:
-                    print("Skipped processing for empty data segment.")
+
             # Sort the list by the biggest area (3rd element in sublist)
             processed_classes.sort(key=lambda x: x[2], reverse=True)
             self.app.config['class_pred_list'] = processed_classes
