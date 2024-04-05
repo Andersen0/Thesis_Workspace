@@ -209,40 +209,49 @@ class TeleopNode(Node):
     # This method is called when a new message is received in the /class_detection channel
     def class_splitter(self, msg):
 
-        classes = self.app.config['class_pred_list']
+        classes = self.app.config.get('class_pred_list')
 
         if msg.data != 'none':
             # Split string into list of strings
             classes = msg.data.strip().split(';')
             processed_classes = []
+            print(f"Raw msg.data: {msg.data}")  # Debugging line
 
             # For each item in the list
             for i in range(len(classes)):
+                if classes[i]:
 
-                # Split the item into a list of 3 elements separated by ','
-                temp = classes[i].split(',')
+                    # Split the item into a list of 3 elements separated by ','
+                    temp = classes[i].split(',')
+                    print(f"temp: {temp}")  # Debugging line
 
-                try:
-                    temp[0] = int(temp[0]) # class
-                    temp[1] = float(temp[1]) # p_value
-                    temp[2] = float(temp[2]) # area
-                    temp[3] = float(temp[3]) # x distance mm
-                    temp[4] = str(temp[4]) # state color
+                    try:
+                        temp[0] = int(temp[0]) # class
+                        print(f"temp[0]: {temp[0]}")  # Debugging line
+                        temp[1] = float(temp[1]) # p_value
+                        print(f"temp[1]: {temp[1]}")  # Debugging line
+                        temp[2] = float(temp[2]) # area
+                        print(f"temp[2]: {temp[2]}")  # Debugging line
+                        temp[3] = float(temp[3]) # x distance mm
+                        print(f"temp[3]: {temp[3]}")  # Debugging line
+                        temp[4] = str(temp[4]) # state color
+                        print(f"temp[4]: {temp[4]}")  # Debugging line
 
-                    processed_classes.append(temp)
+                        processed_classes.append(temp)
 
-                except (ValueError, IndexError):
-                    print(f"Error processing class data: {classes[i]}")
-
+                    except (ValueError, IndexError):
+                        print(f"Error processing class data: {classes[i]}")
+                else:
+                    print("Skipped processing for empty data segment.")
             # Sort the list by the biggest area (3rd element in sublist)
             processed_classes.sort(key=lambda x: x[2], reverse=True)
             self.app.config['class_pred_list'] = processed_classes
 
             # create a ros2 publisher that publishes processed_classes[0][0] to /FakesRobotClassifier and processed_classes[0][3] to /Fakescan
 
-            pub = self.create_publisher(Float64, '/FakesRobotClassifier', 10)
+            pub = self.create_publisher(Int64, '/FakesRobotClassifier', 10)
             pub2 = self.create_publisher(Float64, '/Fakescan', 10) #continue making a publisher of distance and class values
-            msg = Float64()
+            msg = Int64()
             msg.data = processed_classes[0][0]
             msg2 = Float64()
             msg2.data = processed_classes[0][3]
@@ -251,12 +260,12 @@ class TeleopNode(Node):
 
         else:
             self.app.config['class_pred_list'] = ["none"]
-            pub = self.create_publisher(Float64, '/FakesRobotClassifier', 10)
+            pub = self.create_publisher(Int64, '/FakesRobotClassifier', 10)
             pub2 = self.create_publisher(Float64, '/Fakescan', 10) #continue making a publisher of distance and class values
-            msg = Float64()
+            msg = Int64()
             msg.data = 0
             msg2 = Float64()
-            msg2.data = 0
+            msg2.data = 0.0
             pub.publish(msg)
             pub2.publish(msg2)
 
