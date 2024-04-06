@@ -142,6 +142,13 @@
             logList.insertBefore(newLogItem, logList.firstChild); // Always insert at the beginning
             runScript()
         }
+
+        function logInject(message) {
+            const logList = document.getElementById('logMessages');
+            const newLogItem = document.createElement('li');
+            newLogItem.textContent = message;
+            logList.insertBefore(newLogItem, logList.firstChild); // Always insert at the beginning
+        }
                 
         setInterval(() => fetchVData('/handlerDtt_assumption', 'errorguard'), 1000);
         setInterval(() => fetchVData('/handlerclassifier_assumption', 'errorguard'), 1000);
@@ -161,11 +168,37 @@
       </script>
   </div>
   <div class="log-section">
-      <h2>Log Messages</h2>
+      <div class="handlers-section">
+        <h2>Handler Injectors</h2>
+        <div class="violationgrid-container">
+          <button onclick="injectHandler('dtt_assumption')">Inject dtt_assumption</button>
+          <button onclick="injectHandler('classifier_assumption')">Inject classifier_assumption</button>
+          <button onclick="injectHandler('classifier_empty')">Inject classifier_empty</button>
+          <button onclick="injectHandler('operationalstate_0')">Inject operationalstate_0</button>
+          <button onclick="injectHandler('operationalstate_1')">Inject operationalstate_1</button>
+          <button onclick="injectHandler('operationalstate_2')">Inject operationalstate_2</button>
+          <button onclick="injectHandler('operationalstate_3')">Inject operationalstate_3</button>
+          <button onclick="injectHandler('state_req101')">Inject state_req101</button>
+          <button onclick="injectHandler('state_req102')">Inject state_req102</button>
+          <button onclick="injectHandler('state_req103')">Inject state_req103</button>
+          <button onclick="injectHandler('state_req104')">Inject state_req104</button>
+          <button onclick="injectHandler('state_req201')">Inject state_req201</button>
+          <button onclick="injectHandler('state_req202')">Inject state_req202</button>
+          <button onclick="injectHandler('state_req203')">Inject state_req203</button>
+        </div>
+      </div>
+      <h2>Violation Log Messages</h2>
       <ul id="logMessages"></ul>
   </div>
 </div>
 
+<script>
+  function injectHandler(handlerName) {
+    console.log("Injecting " + handlerName);
+    logInject("Injecting " + handlerName);
+    
+  }
+</script>
 
 <script>
   setInterval(function() {

@@ -17,6 +17,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 template_dir = os.path.join(current_dir, 'templates')
 static_dir = os.path.join(current_dir, 'static')
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir, static_url_path='/static')
+app.debug = True
 # Set Werkzeug log level to WARNING
 
 class TeleopNode(Node):
@@ -419,3 +420,4 @@ if __name__ == '__main__':
     print("This script should be run with `flask run --no-reload`")
     print("in terminal: export FLASK_APP=flasknoreload.py")
     print("then execute: flask run --no-reload")
+    app.run(debug=True)

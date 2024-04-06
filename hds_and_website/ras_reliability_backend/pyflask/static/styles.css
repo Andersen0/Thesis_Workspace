@@ -135,7 +135,7 @@ button {
 .flex-container {
     display: flex;
     justify-content: space-between;
-    margin-left: -100px;
+    margin-left: -600px;
 }
 
 .ccontent, .log-section {
@@ -148,7 +148,7 @@ button {
     border-right: 10px solid #ccc; /* Visual separation */
     height: 100vh; /* Full height */
     overflow-y: auto; /* Scrollable */
-    width: 1000px;
+    width: 1400px;
 }
 
 .log-section ul {
@@ -176,4 +176,27 @@ button {
 /* Optional: Make the header stand out less/more */
 .sdata-display h3 {
   font-weight: normal; /* Less emphasis on the header */
+}
+
+
+.handlers-section {
+  margin: 20px 0;
+}
+
+.violationgrid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Creates a 3-column grid */
+  grid-gap: 10px; /* Adjusts the space between grid items */
+}
+
+.violationgrid-container button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for the color change */
+}
+.violationgrid-container button:hover {
+  background-color: #0056b3;
 }
