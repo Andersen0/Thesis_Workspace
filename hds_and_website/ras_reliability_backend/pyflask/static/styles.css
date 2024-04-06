@@ -200,3 +200,11 @@ button {
 .violationgrid-container button:hover {
   background-color: #0056b3;
 }
+
+.button-group button:hover {
+  background-color: #ff7f7f;
+}
+
+.buttonw-group button:hover {
+  background-color: #ff7f7f;
+}
