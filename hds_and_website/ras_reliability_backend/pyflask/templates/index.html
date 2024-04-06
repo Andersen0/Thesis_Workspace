@@ -13,7 +13,7 @@
   <div class="button-group">
     <button id="toggleButton">Toggle State Visual</button>
     <button id="shutdownButton">Shutdown Server</button>
-    <button id="toggleStatusButton">Toggle Status Messages</button>
+    <button onclick="clearLog()" id="toggleStatusButton">Toggle Status Messages</button>
     <button id="toggleTopicButton">Toggle Topic Messages</button>
     <button id="toggleImageButton">Toggle Live Image</button>
   </div>
@@ -37,8 +37,8 @@
   <p> View the tutorial at <a href="https://github.com/mustafma/ras_reliability_backend" target="_blank">ras_reliability_backend</a> or <a href="https://gitlab.com/henrik.nordlie/summer_job_2023" target="_blank">summer_job_2023</a>.</p>
   
   <div class="buttonw-group">
-    <button>Export Monitors</button>
-    <button>Import Robot State Machine</button>
+    <button id="exportmonitor">Export Monitors</button>
+    <button id="importmonitor">Import Robot State Machine</button>
   </div>
   
 
@@ -58,10 +58,10 @@
   </div>
   
   <div class="button-group">
-    <button onclick="runScript()">Reset Monitor</button>
-    <button onclick="clearLog()">Clear Log</button> 
+    <button onclick="runScript()" id="resetmonitor">Reset Monitor</button>
+    <button onclick="clearLog()" id="clearlog">Clear Log</button> 
   </div>
-  
+
     <script>
       function runScript() {
           // Using fetch to send a POST request
@@ -210,7 +210,7 @@
 <script>
   setInterval(function() {
     document.getElementById('videoElement').src = "/stream?" + new Date().getTime();
-  }, 100);
+  }, 1000);
 </script>
 </body>
 </html>
