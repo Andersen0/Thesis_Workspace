@@ -12,11 +12,11 @@ import time
 import subprocess
 from cv_bridge import CvBridge, CvBridgeError
 import cv2
-
 current_dir = os.path.dirname(os.path.abspath(__file__))
 template_dir = os.path.join(current_dir, 'templates')
 static_dir = os.path.join(current_dir, 'static')
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir, static_url_path='/static')
+
 # Set Werkzeug log level to WARNING
 
 class TeleopNode(Node):
@@ -39,6 +39,8 @@ class TeleopNode(Node):
         self.get_logger().info('Initialized!')
         log = logging.getLogger('werkzeug')
         log.setLevel(logging.WARNING)
+        logging.getLogger().setLevel(logging.WARNING)
+
         # create subscribers for the following topics /copilot/handlerDtt_assumption /copilot/handlerclassifier_assumption /copilot/handlerclassifier_empty /copilot/handleroperationalstate_0 /copilot/handleroperationalstate_1 /copilot/handleroperationalstate_2 /copilot/handleroperationalstate_3 /copilot/handlerstate_req101 /copilot/handlerstate_req102 /copilot/handlerstate_req103 /copilot/handlerstate_req104 /copilot/handlerstate_req201 /copilot/handlerstate_req202 /copilot/handlerstate_req203
 
         self.handlerDtt_assumption_subber = self.create_subscription(Empty, '/copilot/handlerDtt_assumption', self.handlerDtt_assumption_callback, 3)
@@ -211,7 +213,7 @@ class TeleopNode(Node):
 
         classes = self.app.config.get('class_pred_list')
 
-        if msg.data != 'none':
+        if msg.data != 'none;':
             # Split string into list of strings
             classes = msg.data.strip().split(';')
             processed_classes = []
@@ -414,7 +416,8 @@ def handlerstate_req203():
     return jsonify({'handlerstate_req203' : handlerstate_req203_value})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    #app.run(debug=True, port=8080)
+    app.run(debug=True, port=8080, use_reloader=False)
     # Using Flask's CLI to run the server with `flask run --no-reload`
     print("This script should be run with `flask run --no-reload`")
     print("in terminal: export FLASK_APP=flasknoreload.py")

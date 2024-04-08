@@ -4,6 +4,28 @@
   <meta charset="utf-8" />
   <link rel="stylesheet" type="text/css" href="/static/styles.css">
   <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+  <!-- <script src="https://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"></script> -->
+  <script src="/static/node_modules/roslib/build/roslib.min.js"></script>
+
+  <script>
+    var ros = new ROSLIB.Ros({
+      url: 'ws://localhost:9090' // This is the default address for ROSBridge; adjust if your setup differs.
+    });
+    
+    ros.on('connection', function() {
+      console.log('Connected to websocket server.');
+    });
+    
+    ros.on('error', function(error) {
+      console.log('Error connecting to websocket server: ', error);
+    });
+    
+    ros.on('close', function() {
+      console.log('Connection to websocket server closed.');
+    });
+</script>
+
+
 </head>
 <body>
 <div class="sidebar">
@@ -199,10 +221,23 @@
       <ul id="logMessages"></ul>
   </div>
 </div>
-
 <script>
+
   function injectHandler(handlerName) {
     logInject("Injecting " + handlerName);
+    
+    var talker = new ROSLIB.Topic({
+    ros: ros,
+    name: '/scan',
+    messageType: 'std_msgs/Int64'
+    });
+
+    var msg = new ROSLIB.Message({
+      data: -10
+    });
+
+    talker.publish(msg);
+
 
   }
 </script>
