@@ -115,7 +115,7 @@ class ClassDistanceProcessor(Node):
         # Publish the conditions
         self.publish_condition(self.classifier_publisher, classifier)
         self.publish_condition(self.distance_publisher, distance_to_target)
-        self.publish_condition(self.state_publisher, state)a
+        self.publish_condition(self.state_publisher, state)
         self.publish_condition(self.slowdown_publisher, slowdown)
         self.publish_condition(self.halt_publisher, halt)
         self.publish_condition(self.alert_publisher, alert)
