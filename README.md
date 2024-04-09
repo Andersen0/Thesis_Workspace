@@ -83,4 +83,5 @@ pred_depth_img (depth image cropped with only predicitons, sections are used to 
 
 
 
-
+# For rosbridge server to run for use with injection device
+ros2 launch rosbridge_server rosbridge_websocket_launch.xml
