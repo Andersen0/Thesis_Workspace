@@ -227,18 +227,39 @@
 
     logInject("Injecting " + handlerName);
     
-    var talker = new ROSLIB.Topic({
+    var steptalker = new ROSLIB.Topic({
+    ros: ros,
+    name: '/sRobotTurnoffUVC',
+    messageType: 'std_msgs/Bool'
+    });
+
+    var scantalker = new ROSLIB.Topic({
     ros: ros,
     name: '/scan',
     messageType: 'std_msgs/Int64'
     });
 
-    var msg = new ROSLIB.Message({
+    var classtalker = new ROSLIB.Topic({
+    ros: ros,
+    name: '/sRobotClassifier',
+    messageType: 'std_msgs/Int64'
+    });
+
+    var stepmsg = new ROSLIB.Message({
+      data: true
+    });
+
+    var scanmsg = new ROSLIB.Message({
       data: -10
     });
 
-    talker.publish(msg);
-
+    var classmsg = new ROSLIB.Message({
+      data: 1
+    });
+    
+    scantalker.publish(scanmsg);
+    classtalker.publish(classmsg);
+    steptalker.publish(stepmsg);
 
   }
 </script>
