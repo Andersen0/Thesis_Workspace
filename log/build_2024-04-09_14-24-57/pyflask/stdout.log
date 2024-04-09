@@ -1,0 +1,27 @@
+running egg_info
+writing ../../build/pyflask/pyflask.egg-info/PKG-INFO
+writing dependency_links to ../../build/pyflask/pyflask.egg-info/dependency_links.txt
+writing entry points to ../../build/pyflask/pyflask.egg-info/entry_points.txt
+writing requirements to ../../build/pyflask/pyflask.egg-info/requires.txt
+writing top-level names to ../../build/pyflask/pyflask.egg-info/top_level.txt
+reading manifest file '../../build/pyflask/pyflask.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file '../../build/pyflask/pyflask.egg-info/SOURCES.txt'
+running build
+running build_py
+copying pyflask/flasknoreload.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask/build/lib/pyflask
+running install
+running install_lib
+copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask/build/lib/pyflask/flasknoreload.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/python3.10/site-packages/pyflask
+byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/python3.10/site-packages/pyflask/flasknoreload.py to flasknoreload.cpython-310.pyc
+running install_data
+running install_egg_info
+removing '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/python3.10/site-packages/pyflask-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/pyflask/pyflask.egg-info to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/python3.10/site-packages/pyflask-0.0.0-py3.10.egg-info
+running install_scripts
+Installing cycle_dist script to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/pyflask
+Installing robot script to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/pyflask
+Installing server script to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/pyflask
+Installing subtester script to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/pyflask
+Installing talker script to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/pyflask
+writing list of installed files to '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask/install.log'

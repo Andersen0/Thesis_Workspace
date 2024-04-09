@@ -1,0 +1,21 @@
+[3.277s] Invoking command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/srobot_publisher': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_publisher/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../build/srobot_publisher build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_publisher/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_publisher/install.log --single-version-externally-managed install_data
+[3.795s] running egg_info
+[3.797s] writing ../build/srobot_publisher/srobot_publisher.egg-info/PKG-INFO
+[3.797s] writing dependency_links to ../build/srobot_publisher/srobot_publisher.egg-info/dependency_links.txt
+[3.800s] writing entry points to ../build/srobot_publisher/srobot_publisher.egg-info/entry_points.txt
+[3.800s] writing requirements to ../build/srobot_publisher/srobot_publisher.egg-info/requires.txt
+[3.800s] writing top-level names to ../build/srobot_publisher/srobot_publisher.egg-info/top_level.txt
+[3.802s] reading manifest file '../build/srobot_publisher/srobot_publisher.egg-info/SOURCES.txt'
+[3.804s] writing manifest file '../build/srobot_publisher/srobot_publisher.egg-info/SOURCES.txt'
+[3.805s] running build
+[3.805s] running build_py
+[3.806s] running install
+[3.806s] running install_lib
+[3.810s] running install_data
+[3.811s] running install_egg_info
+[3.814s] removing '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/lib/python3.10/site-packages/srobot_publisher-0.0.0-py3.10.egg-info' (and everything under it)
+[3.815s] Copying ../build/srobot_publisher/srobot_publisher.egg-info to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/lib/python3.10/site-packages/srobot_publisher-0.0.0-py3.10.egg-info
+[3.820s] running install_scripts
+[3.856s] Installing publisher script to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/lib/srobot_publisher
+[3.857s] writing list of installed files to '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_publisher/install.log'
+[3.935s] Invoked command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/srobot_publisher' returned '0': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_publisher/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../build/srobot_publisher build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_publisher/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_publisher/install.log --single-version-externally-managed install_data

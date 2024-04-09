@@ -1,0 +1,23 @@
+[ 50%] Built target copilot_logger
+[100%] Built target copilot
+-- Install configuration: ""
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/lib/copilot/copilot
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/lib/copilot/copilot_logger
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot//launch
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot//launch/copilot_launch.py
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot//launch/rosnode_launch.py
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/ament_index/resource_index/package_run_dependencies/copilot
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/ament_index/resource_index/parent_prefix_path/copilot
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/environment/ament_prefix_path.sh
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/environment/path.sh
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/environment/path.dsv
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/local_setup.bash
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/local_setup.sh
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/local_setup.zsh
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/local_setup.dsv
+-- Installing: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/package.dsv
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/ament_index/resource_index/packages/copilot
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/cmake/copilotConfig.cmake
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/cmake/copilotConfig-version.cmake
+-- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/package.xml

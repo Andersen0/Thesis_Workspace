@@ -1,0 +1,35 @@
+[0.084s] Invoking command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot -- -j8 -l8
+[2.439s] [35m[1mConsolidate compiler generated dependencies of target copilot_logger[0m
+[2.439s] [35m[1mConsolidate compiler generated dependencies of target copilot[0m
+[2.439s] [ 25%] [32mBuilding CXX object CMakeFiles/copilot_logger.dir/src/copilot_logger.cpp.o[0m
+[2.439s] [ 50%] [32mBuilding CXX object CMakeFiles/copilot.dir/src/copilot_monitor.cpp.o[0m
+[14.522s] [ 75%] [32m[1mLinking CXX executable copilot_logger[0m
+[15.333s] [ 75%] Built target copilot_logger
+[18.238s] [100%] [32m[1mLinking CXX executable copilot[0m
+[19.176s] [100%] Built target copilot
+[19.200s] Invoked command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot -- -j8 -l8
+[19.281s] Invoking command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot
+[19.293s] -- Install configuration: ""
+[19.295s] -- Installing: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/lib/copilot/copilot
+[19.307s] -- Set runtime path of "/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/lib/copilot/copilot" to ""
+[19.308s] -- Installing: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/lib/copilot/copilot_logger
+[19.316s] -- Set runtime path of "/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/lib/copilot/copilot_logger" to ""
+[19.316s] -- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot//launch
+[19.317s] -- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot//launch/copilot_launch.py
+[19.317s] -- Installing: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot//launch/rosnode_launch.py
+[19.319s] -- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/ament_index/resource_index/package_run_dependencies/copilot
+[19.319s] -- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/ament_index/resource_index/parent_prefix_path/copilot
+[19.321s] -- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/environment/ament_prefix_path.sh
+[19.321s] -- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/environment/ament_prefix_path.dsv
+[19.322s] -- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/environment/path.sh
+[19.322s] -- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/environment/path.dsv
+[19.322s] -- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/local_setup.bash
+[19.322s] -- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/local_setup.sh
+[19.322s] -- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/local_setup.zsh
+[19.322s] -- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/local_setup.dsv
+[19.323s] -- Installing: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/package.dsv
+[19.323s] -- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/ament_index/resource_index/packages/copilot
+[19.323s] -- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/cmake/copilotConfig.cmake
+[19.324s] -- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/cmake/copilotConfig-version.cmake
+[19.324s] -- Up-to-date: /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/package.xml
+[19.327s] Invoked command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot

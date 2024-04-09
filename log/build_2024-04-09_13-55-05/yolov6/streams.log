@@ -1,0 +1,33 @@
+[4.341s] Invoking command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/hds_and_website/yolov6': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/yolov6 build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/install.log --single-version-externally-managed install_data
+[5.230s] running egg_info
+[5.232s] writing ../../build/yolov6/yolov6.egg-info/PKG-INFO
+[5.232s] writing dependency_links to ../../build/yolov6/yolov6.egg-info/dependency_links.txt
+[5.233s] writing entry points to ../../build/yolov6/yolov6.egg-info/entry_points.txt
+[5.236s] writing requirements to ../../build/yolov6/yolov6.egg-info/requires.txt
+[5.236s] writing top-level names to ../../build/yolov6/yolov6.egg-info/top_level.txt
+[5.240s] package init file 'yolov6/core/__init__.py' not found (or not a regular file)
+[5.241s] package init file 'yolov6/utils/__init__.py' not found (or not a regular file)
+[5.241s] package init file 'yolov6/data/__init__.py' not found (or not a regular file)
+[5.242s] package init file 'yolov6/layers/__init__.py' not found (or not a regular file)
+[5.242s] package init file 'yolov6/models/__init__.py' not found (or not a regular file)
+[5.242s] package init file 'yolov6/models/heads/__init__.py' not found (or not a regular file)
+[5.243s] package init file 'yolov6/models/losses/__init__.py' not found (or not a regular file)
+[5.243s] package init file 'yolov6/solver/__init__.py' not found (or not a regular file)
+[5.244s] reading manifest file '../../build/yolov6/yolov6.egg-info/SOURCES.txt'
+[5.249s] writing manifest file '../../build/yolov6/yolov6.egg-info/SOURCES.txt'
+[5.250s] running build
+[5.250s] running build_py
+[5.250s] copying yolov6/core/inferer.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/core
+[5.262s] running install
+[5.262s] running install_lib
+[5.265s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build/lib/yolov6/core/inferer.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/core
+[5.270s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6/core/inferer.py to inferer.cpython-310.pyc
+[5.283s] running install_data
+[5.284s] running install_egg_info
+[5.288s] removing '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6-0.0.0-py3.10.egg-info' (and everything under it)
+[5.289s] Copying ../../build/yolov6/yolov6.egg-info to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages/yolov6-0.0.0-py3.10.egg-info
+[5.300s] running install_scripts
+[5.352s] Installing depth_cam script to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/yolov6
+[5.352s] Installing inferer script to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/yolov6
+[5.356s] writing list of installed files to '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/install.log'
+[5.476s] Invoked command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/hds_and_website/yolov6' returned '0': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/yolov6 build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/install.log --single-version-externally-managed install_data

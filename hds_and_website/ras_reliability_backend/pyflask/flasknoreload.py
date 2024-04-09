@@ -46,7 +46,7 @@ class TeleopNode(Node):
 
         # create subscribers for the following topics /copilot/handlerDtt_assumption /copilot/handlerclassifier_assumption /copilot/handlerclassifier_empty /copilot/handleroperationalstate_0 /copilot/handleroperationalstate_1 /copilot/handleroperationalstate_2 /copilot/handleroperationalstate_3 /copilot/handlerstate_req101 /copilot/handlerstate_req102 /copilot/handlerstate_req103 /copilot/handlerstate_req104 /copilot/handlerstate_req201 /copilot/handlerstate_req202 /copilot/handlerstate_req203
 
-        self.handlerDtt_assumption_subber = self.create_subscription(Empty, '/copilot/handlerDtt_assumption', self.handlerDtt_assumption_callback, 3)
+        self.handlerDtt_assumption_subber = self.create_subscription(Empty, '/copilot/handlerdtt_assumption', self.handlerDtt_assumption_callback, 3)
         self.handlerclassifier_assumption_subber = self.create_subscription(Empty, '/copilot/handlerclassifier_assumption', self.handlerclassifier_assumption_callback, 3)
         self.handlerclassifier_empty_subber = self.create_subscription(Empty, '/copilot/handlerclassifier_empty', self.handlerclassifier_empty_callback, 3)
         self.handleroperationalstate_0_subber = self.create_subscription(Empty, '/copilot/handleroperationalstate_0', self.handleroperationalstate_0_callback, 3)

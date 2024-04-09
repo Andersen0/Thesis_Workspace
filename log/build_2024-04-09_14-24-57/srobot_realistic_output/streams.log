@@ -1,0 +1,22 @@
+[3.267s] Invoking command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/srobot_realistic_output': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_realistic_output/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../build/srobot_realistic_output build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_realistic_output/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_realistic_output/install.log --single-version-externally-managed install_data
+[3.866s] running egg_info
+[3.868s] writing ../build/srobot_realistic_output/srobot_realistic_output.egg-info/PKG-INFO
+[3.869s] writing dependency_links to ../build/srobot_realistic_output/srobot_realistic_output.egg-info/dependency_links.txt
+[3.869s] writing entry points to ../build/srobot_realistic_output/srobot_realistic_output.egg-info/entry_points.txt
+[3.870s] writing requirements to ../build/srobot_realistic_output/srobot_realistic_output.egg-info/requires.txt
+[3.870s] writing top-level names to ../build/srobot_realistic_output/srobot_realistic_output.egg-info/top_level.txt
+[3.881s] reading manifest file '../build/srobot_realistic_output/srobot_realistic_output.egg-info/SOURCES.txt'
+[3.881s] writing manifest file '../build/srobot_realistic_output/srobot_realistic_output.egg-info/SOURCES.txt'
+[3.881s] running build
+[3.882s] running build_py
+[3.884s] running install
+[3.884s] running install_lib
+[3.886s] running install_data
+[3.887s] running install_egg_info
+[3.889s] removing '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/lib/python3.10/site-packages/srobot_realistic_output-0.0.0-py3.10.egg-info' (and everything under it)
+[3.890s] Copying ../build/srobot_realistic_output/srobot_realistic_output.egg-info to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/lib/python3.10/site-packages/srobot_realistic_output-0.0.0-py3.10.egg-info
+[3.893s] running install_scripts
+[3.942s] Installing publisher script to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/lib/srobot_realistic_output
+[3.942s] Installing subscriber script to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/lib/srobot_realistic_output
+[3.944s] writing list of installed files to '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_realistic_output/install.log'
+[4.024s] Invoked command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/srobot_realistic_output' returned '0': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_realistic_output/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../build/srobot_realistic_output build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_realistic_output/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_realistic_output/install.log --single-version-externally-managed install_data

@@ -4,6 +4,29 @@
   <meta charset="utf-8" />
   <link rel="stylesheet" type="text/css" href="/static/styles.css">
   <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+  <!-- <script src="https://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"></script> -->
+  <script src="/static/node_modules/roslib/build/roslib.min.js"></script>
+
+  <script>
+    var ros = new ROSLIB.Ros({
+      url: 'ws://localhost:9090' // This is the default address for ROSBridge; adjust if your setup differs.
+    });
+    
+    ros.on('connection', function() {
+      console.log('Connected to websocket server.');
+    });
+    
+    ros.on('error', function(error) {
+      console.log('Error connecting to websocket server: ', error);
+    });
+    
+    ros.on('close', function() {
+      console.log('Connection to websocket server closed.');
+    });
+
+</script>
+
+
 </head>
 <body>
 <div class="sidebar">
@@ -13,7 +36,7 @@
   <div class="button-group">
     <button id="toggleButton">Toggle State Visual</button>
     <button id="shutdownButton">Shutdown Server</button>
-    <button id="toggleStatusButton">Toggle Status Messages</button>
+    <button onclick="runScript()" id="toggleStatusButton">Toggle Status Messages</button>
     <button id="toggleTopicButton">Toggle Topic Messages</button>
     <button id="toggleImageButton">Toggle Live Image</button>
   </div>
@@ -37,8 +60,8 @@
   <p> View the tutorial at <a href="https://github.com/mustafma/ras_reliability_backend" target="_blank">ras_reliability_backend</a> or <a href="https://gitlab.com/henrik.nordlie/summer_job_2023" target="_blank">summer_job_2023</a>.</p>
   
   <div class="buttonw-group">
-    <button>Export Monitors</button>
-    <button>Import Robot State Machine</button>
+    <button id="exportmonitor">Export Monitors</button>
+    <button id="importmonitor">Import Robot State Machine</button>
   </div>
   
 
@@ -54,10 +77,14 @@
     <p>Halt Status: <span id="haltStatus">-</span></p>
     <p>UVC Status: <span id="uvcStatus">-</span></p>
     <p>Time Active: <span id="timerValue">-</span></p>
+    <p>Violation Message: <span id="errorguard">-</span></p>
   </div>
   
+  <div class="button-group">
+    <button onclick="runScript()" id="resetmonitor">Reset Monitor</button>
+    <button onclick="clearLog()" id="clearlog">Clear Log</button> 
+  </div>
 
-  <button onclick="runScript()">Reset Monitor</button>
     <script>
       function runScript() {
           // Using fetch to send a POST request
@@ -82,28 +109,11 @@
       </script>
     
 
-  <p>Error Guard: <span id="errorguard">-</span></p>
 
   
   <img id="videoElement" src="">
 </div>
 
-<script type="text/javascript" charset="utf-8">
-
-  socket.on('connect', function() {
-    console.log('Connected to server');
-  });
-
-  // Event listener for toggleButton
-  document.getElementById('toggleButton').addEventListener('click', function() {
-  // Handle button click here
-    console.log('Toggle button clicked');
-  // You can emit a socket event or perform any other action here
-  });
-
-
-
-</script> 
 
 <script>
   
@@ -156,36 +166,88 @@
             const newLogItem = document.createElement('li');
             newLogItem.textContent = message;
             logList.insertBefore(newLogItem, logList.firstChild); // Always insert at the beginning
+            runScript()
+        }
+
+        function logInject(message) {
+            const logList = document.getElementById('logMessages');
+            const newLogItem = document.createElement('li');
+            newLogItem.textContent = message;
+            logList.insertBefore(newLogItem, logList.firstChild); // Always insert at the beginning
+        }
+        function clearLog() {
+          //document.getElementById('logMessages').innerHTML = '';
+          console.log("Clearing log messages");
+          logMessage("Log cleared");
         }
                 
-        setInterval(() => fetchVData('/handlerDtt_assumption', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handlerclassifier_assumption', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handlerclassifier_empty', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handleroperationalstate_0', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handleroperationalstate_1', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handleroperationalstate_2', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handleroperationalstate_3', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handlerstate_req101', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handlerstate_req102', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handlerstate_req103', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handlerstate_req104', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handlerstate_req201', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handlerstate_req202', 'errorguard'), 100);
-        setInterval(() => fetchVData('/handlerstate_req203', 'errorguard'), 100);
+        setInterval(() => fetchVData('/handlerDtt_assumption', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerclassifier_assumption', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerclassifier_empty', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handleroperationalstate_0', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handleroperationalstate_1', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handleroperationalstate_2', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handleroperationalstate_3', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerstate_req101', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerstate_req102', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerstate_req103', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerstate_req104', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerstate_req201', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerstate_req202', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerstate_req203', 'errorguard'), 1000);
       
       </script>
   </div>
   <div class="log-section">
-      <h2>Log Messages</h2>
+      <div class="handlers-section">
+        <h2>Handler Injectors</h2>
+        <div class="violationgrid-container">
+          <button onclick="injectHandler('dtt_assumption')">Inject dtt_assumption</button>
+          <button onclick="injectHandler('classifier_assumption')">Inject classifier_assumption</button>
+          <button onclick="injectHandler('classifier_empty')">Inject classifier_empty</button>
+          <button onclick="injectHandler('operationalstate_0')">Inject operationalstate_0</button>
+          <button onclick="injectHandler('operationalstate_1')">Inject operationalstate_1</button>
+          <button onclick="injectHandler('operationalstate_2')">Inject operationalstate_2</button>
+          <button onclick="injectHandler('operationalstate_3')">Inject operationalstate_3</button>
+          <button onclick="injectHandler('state_req101')">Inject state_req101</button>
+          <button onclick="injectHandler('state_req102')">Inject state_req102</button>
+          <button onclick="injectHandler('state_req103')">Inject state_req103</button>
+          <button onclick="injectHandler('state_req104')">Inject state_req104</button>
+          <button onclick="injectHandler('state_req201')">Inject state_req201</button>
+          <button onclick="injectHandler('state_req202')">Inject state_req202</button>
+          <button onclick="injectHandler('state_req203')">Inject state_req203</button>
+        </div>
+      </div>
+      <h2>Violation Log Messages</h2>
       <ul id="logMessages"></ul>
   </div>
 </div>
+<script>
+
+  function injectHandler(handlerName) {
+
+    logInject("Injecting " + handlerName);
+    
+    var injectiontalker = new ROSLIB.Topic({
+    ros: ros,
+    name: '/injection_detection',
+    messageType: 'std_msgs/String'
+    });
 
 
-<!-- <script>
+    var injectionmsg = new ROSLIB.Message({
+      data: "1,-1,3,false,true,true,true"
+    });
+
+    injectiontalker.publish(injectionmsg);
+
+  }
+</script>
+
+<script>
   setInterval(function() {
     document.getElementById('videoElement').src = "/stream?" + new Date().getTime();
-  }, 50);
-</script> -->
+  }, 1000);
+</script>
 </body>
 </html>

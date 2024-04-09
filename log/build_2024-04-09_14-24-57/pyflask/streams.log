@@ -1,0 +1,29 @@
+[3.315s] Invoking command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/hds_and_website/ras_reliability_backend': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/pyflask build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask/install.log --single-version-externally-managed install_data
+[3.883s] running egg_info
+[3.884s] writing ../../build/pyflask/pyflask.egg-info/PKG-INFO
+[3.884s] writing dependency_links to ../../build/pyflask/pyflask.egg-info/dependency_links.txt
+[3.885s] writing entry points to ../../build/pyflask/pyflask.egg-info/entry_points.txt
+[3.885s] writing requirements to ../../build/pyflask/pyflask.egg-info/requires.txt
+[3.886s] writing top-level names to ../../build/pyflask/pyflask.egg-info/top_level.txt
+[3.889s] reading manifest file '../../build/pyflask/pyflask.egg-info/SOURCES.txt'
+[3.890s] adding license file 'LICENSE'
+[3.892s] writing manifest file '../../build/pyflask/pyflask.egg-info/SOURCES.txt'
+[3.892s] running build
+[3.892s] running build_py
+[3.892s] copying pyflask/flasknoreload.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask/build/lib/pyflask
+[3.895s] running install
+[3.895s] running install_lib
+[3.899s] copying /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask/build/lib/pyflask/flasknoreload.py -> /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/python3.10/site-packages/pyflask
+[3.906s] byte-compiling /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/python3.10/site-packages/pyflask/flasknoreload.py to flasknoreload.cpython-310.pyc
+[3.911s] running install_data
+[3.911s] running install_egg_info
+[3.914s] removing '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/python3.10/site-packages/pyflask-0.0.0-py3.10.egg-info' (and everything under it)
+[3.914s] Copying ../../build/pyflask/pyflask.egg-info to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/python3.10/site-packages/pyflask-0.0.0-py3.10.egg-info
+[3.917s] running install_scripts
+[3.956s] Installing cycle_dist script to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/pyflask
+[3.956s] Installing robot script to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/pyflask
+[3.957s] Installing server script to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/pyflask
+[3.957s] Installing subtester script to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/pyflask
+[3.957s] Installing talker script to /home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/pyflask
+[3.958s] writing list of installed files to '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask/install.log'
+[4.030s] Invoked command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/hds_and_website/ras_reliability_backend' returned '0': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/pyflask build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask/install.log --single-version-externally-managed install_data

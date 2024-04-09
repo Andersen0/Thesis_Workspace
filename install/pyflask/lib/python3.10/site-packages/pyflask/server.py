@@ -123,8 +123,7 @@ class TestPublisher(Node):
     
     # This method is called when a new message is received in the /class_detection channel
     def class_splitter(self, msg):
-
-        classes = self.app.config['class_pred_list']
+        classes = self.app.config.get('class_pred_list', [])
 
         if msg.data != 'none':
             # Split string into list of strings
@@ -138,11 +137,11 @@ class TestPublisher(Node):
                 temp = classes[i].split(',')
 
                 try:
-                    temp[0] = int(temp[0])
-                    temp[1] = float(temp[1])
-                    temp[2] = float(temp[2])
-                    temp[3] = float(temp[3])
-                    temp[4] = str(temp[4])
+                    temp[0] = int(temp[0]) # class
+                    temp[1] = float(temp[1]) # p_value
+                    temp[2] = float(temp[2]) # area
+                    temp[3] = float(temp[3]) # x distance mm
+                    temp[4] = str(temp[4]) # state color
 
                     processed_classes.append(temp)
 
@@ -342,7 +341,7 @@ def start_flask_server(app):
     # Flask route for importing the /classifications topic and splitting it into a list after ; and sorting the list after the biggest area
     @app.route('/classes')
     def classes():
-        class_pred_list = app.config['class_pred_list']
+        class_pred_list = app.config.get('class_pred_list', [])
         return jsonify(class_pred_list)
     
     @app.route('/distance')

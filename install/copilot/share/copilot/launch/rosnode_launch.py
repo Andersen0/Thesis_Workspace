@@ -7,7 +7,7 @@ def generate_launch_description():
         Node(
             package='copilot',
             executable='copilot',
-            name='copilot'
+            name='copilotrv'
         ),
         # Node for copilot_logger
         Node(

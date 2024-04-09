@@ -33,14 +33,15 @@ class ClassDistanceProcessor(Node):
         injection[0] = int(injection[0]) # classifier
         injection[1] = int(injection[1]) # distance
         injection[2] = int(injection[2]) # state
-        injection[3] = bool(injection[3]) # slowdown
-        injection[4] = bool(injection[4]) # halt
-        injection[5] = bool(injection[5]) # alert
-        injection[6] = bool(injection[6]) # turnoffUVC
+        # Converting string 'true'/'false' to Boolean True/False
+        injection[3] = injection[3].lower() == 'true'  # slowdown
+        injection[4] = injection[4].lower() == 'true'  # halt
+        injection[5] = injection[5].lower() == 'true'  # alert
+        injection[6] = injection[6].lower() == 'true'  # turnoffUVC
 
         # Debugging lines
         print(f"Injecting failure: {injection}")
-        # print(f"Classifier: {classifier}, Distance to Target: {distance_to_target}")
+        print(f"Classifier: {injection[0]}, Distance to Target: {injection[1]}, State: {injection[2]}, Slowdown: {injection[3]}, Halt: {injection[4]}, Alert: {injection[5]}, TurnoffUVC: {injection[6]}")
 
         # Publish the conditions
         self.publish_condition(self.classifier_publisher, injection[0])

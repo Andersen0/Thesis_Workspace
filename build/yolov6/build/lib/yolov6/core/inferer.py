@@ -168,9 +168,9 @@ class Inferer(Node):
                     pred_depth_img[xyxy_list[1]:xyxy_list[3], xyxy_list[0]:xyxy_list[2]] = self.depth_img[xyxy_list[1]:xyxy_list[3], xyxy_list[0]:xyxy_list[2]]
                     depth_detection_section = self.depth_img[xyxy_list[1]:xyxy_list[3], xyxy_list[0]:xyxy_list[2]]
                     depth_detection_section = np.array(depth_detection_section, dtype=np.float32)
-                    reduced_depth_detection_section = self.remove_outliers(depth_detection_section)
+                   #reduced_depth_detection_section = self.remove_outliers(depth_detection_section)
                     depth = Float32() 
-                    depth.data = float(np.mean(reduced_depth_detection_section))
+                    depth.data = float(np.mean(depth_detection_section))
                     self.depth_pub.publish(depth) 
                     #self.get_logger.info("Detected class depth: {}".format(detected_class_depth))
                 if save_txt:  # Write to file
@@ -213,7 +213,7 @@ class Inferer(Node):
 
         else:
             pub_msg = String()
-            pub_msg.data = str("none")
+            pub_msg.data = str("none;")
             self.class_detection.publish(pub_msg)
         # FPS counter
         fps_calculator.update(1.0 / (t2 - t1))
@@ -368,7 +368,7 @@ class Inferer(Node):
                         thickness=tf, lineType=cv2.LINE_AA)
 
     @staticmethod
-    def font_check(font=str(osp.join(ROOT, "src/hds_and_website/yolov6/yolov6/utils/Arial.ttf")), size=10):
+    def font_check(font=str(osp.join(ROOT, "src/Thesis_Workspace/hds_and_website/yolov6/yolov6/utils/Arial.ttf")), size=10):
         # Return a PIL TrueType Font, downloading to CONFIG_DIR if necessary
         assert osp.exists(font), f'font path not exists: {font}'
         try:
@@ -416,9 +416,9 @@ def main():
     current_dir = os.path.dirname(os.path.realpath(__file__))
     sys.path.append(current_dir)
     tage = Inferer(source="",
-                   weights=osp.join(ROOT, "src/hds_and_website/yolov6/yolov6/core/best_ckpt.pt"),
+                   weights=osp.join(ROOT, "src/Thesis_Workspace/hds_and_website/yolov6/yolov6/core/best_ckpt.pt"),
                    webcam=False, 
-                   yaml=osp.join(ROOT, "src/hds_and_website/yolov6/yolov6/core/worker_data.yaml"),
+                   yaml=osp.join(ROOT, "src/Thesis_Workspace/hds_and_website/yolov6/yolov6/core/worker_data.yaml"),
                    webcam_addr="0",
                    device='0',
                    img_size=640,

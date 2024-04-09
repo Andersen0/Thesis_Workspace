@@ -1,0 +1,399 @@
+[0.159s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.159s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=8, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x713f0be3ea70>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x713f0be3e470>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x713f0be3e470>>)
+[0.457s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.458s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.458s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.458s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.458s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.458s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.458s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/andersen/M30-RB_ws/src/Thesis_Workspace'
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.459s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.459s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.459s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.474s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.474s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.474s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.475s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.475s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.475s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.475s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.475s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.475s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website) by extensions ['ignore', 'ignore_ament_install']
+[0.475s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website) by extension 'ignore'
+[0.475s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website) by extension 'ignore_ament_install'
+[0.475s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website) by extensions ['colcon_pkg']
+[0.476s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website) by extension 'colcon_pkg'
+[0.476s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website) by extensions ['colcon_meta']
+[0.476s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website) by extension 'colcon_meta'
+[0.476s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website) by extensions ['ros']
+[0.476s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website) by extension 'ros'
+[0.476s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website) by extensions ['cmake', 'python']
+[0.476s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website) by extension 'cmake'
+[0.476s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website) by extension 'python'
+[0.476s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website) by extensions ['python_setup_py']
+[0.476s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website) by extension 'python_setup_py'
+[0.476s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website/ras_reliability_backend) by extensions ['ignore', 'ignore_ament_install']
+[0.476s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website/ras_reliability_backend) by extension 'ignore'
+[0.476s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website/ras_reliability_backend) by extension 'ignore_ament_install'
+[0.477s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website/ras_reliability_backend) by extensions ['colcon_pkg']
+[0.477s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website/ras_reliability_backend) by extension 'colcon_pkg'
+[0.477s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website/ras_reliability_backend) by extensions ['colcon_meta']
+[0.477s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website/ras_reliability_backend) by extension 'colcon_meta'
+[0.477s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website/ras_reliability_backend) by extensions ['ros']
+[0.477s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website/ras_reliability_backend) by extension 'ros'
+[0.480s] DEBUG:colcon.colcon_core.package_identification:Package 'hds_and_website/ras_reliability_backend' with type 'ros.ament_python' and name 'pyflask'
+[0.481s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website/yolov6) by extensions ['ignore', 'ignore_ament_install']
+[0.481s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website/yolov6) by extension 'ignore'
+[0.481s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website/yolov6) by extension 'ignore_ament_install'
+[0.481s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website/yolov6) by extensions ['colcon_pkg']
+[0.481s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website/yolov6) by extension 'colcon_pkg'
+[0.481s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website/yolov6) by extensions ['colcon_meta']
+[0.481s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website/yolov6) by extension 'colcon_meta'
+[0.481s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website/yolov6) by extensions ['ros']
+[0.481s] Level 1:colcon.colcon_core.package_identification:_identify(hds_and_website/yolov6) by extension 'ros'
+[0.482s] DEBUG:colcon.colcon_core.package_identification:Package 'hds_and_website/yolov6' with type 'ros.ament_python' and name 'yolov6'
+[0.482s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.482s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.482s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.482s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.483s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.483s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.483s] Level 1:colcon.colcon_core.package_identification:_identify(node_manager) by extensions ['ignore', 'ignore_ament_install']
+[0.483s] Level 1:colcon.colcon_core.package_identification:_identify(node_manager) by extension 'ignore'
+[0.483s] Level 1:colcon.colcon_core.package_identification:_identify(node_manager) by extension 'ignore_ament_install'
+[0.483s] Level 1:colcon.colcon_core.package_identification:_identify(node_manager) by extensions ['colcon_pkg']
+[0.483s] Level 1:colcon.colcon_core.package_identification:_identify(node_manager) by extension 'colcon_pkg'
+[0.483s] Level 1:colcon.colcon_core.package_identification:_identify(node_manager) by extensions ['colcon_meta']
+[0.483s] Level 1:colcon.colcon_core.package_identification:_identify(node_manager) by extension 'colcon_meta'
+[0.483s] Level 1:colcon.colcon_core.package_identification:_identify(node_manager) by extensions ['ros']
+[0.483s] Level 1:colcon.colcon_core.package_identification:_identify(node_manager) by extension 'ros'
+[0.484s] DEBUG:colcon.colcon_core.package_identification:Package 'node_manager' with type 'ros.ament_python' and name 'node_manager'
+[0.484s] Level 1:colcon.colcon_core.package_identification:_identify(ros_demo) by extensions ['ignore', 'ignore_ament_install']
+[0.484s] Level 1:colcon.colcon_core.package_identification:_identify(ros_demo) by extension 'ignore'
+[0.484s] Level 1:colcon.colcon_core.package_identification:_identify(ros_demo) by extension 'ignore_ament_install'
+[0.484s] Level 1:colcon.colcon_core.package_identification:_identify(ros_demo) by extensions ['colcon_pkg']
+[0.484s] Level 1:colcon.colcon_core.package_identification:_identify(ros_demo) by extension 'colcon_pkg'
+[0.484s] Level 1:colcon.colcon_core.package_identification:_identify(ros_demo) by extensions ['colcon_meta']
+[0.484s] Level 1:colcon.colcon_core.package_identification:_identify(ros_demo) by extension 'colcon_meta'
+[0.485s] Level 1:colcon.colcon_core.package_identification:_identify(ros_demo) by extensions ['ros']
+[0.485s] Level 1:colcon.colcon_core.package_identification:_identify(ros_demo) by extension 'ros'
+[0.487s] DEBUG:colcon.colcon_core.package_identification:Package 'ros_demo' with type 'ros.ament_cmake' and name 'copilot'
+[0.488s] Level 1:colcon.colcon_core.package_identification:_identify(srobot_publisher) by extensions ['ignore', 'ignore_ament_install']
+[0.488s] Level 1:colcon.colcon_core.package_identification:_identify(srobot_publisher) by extension 'ignore'
+[0.488s] Level 1:colcon.colcon_core.package_identification:_identify(srobot_publisher) by extension 'ignore_ament_install'
+[0.488s] Level 1:colcon.colcon_core.package_identification:_identify(srobot_publisher) by extensions ['colcon_pkg']
+[0.488s] Level 1:colcon.colcon_core.package_identification:_identify(srobot_publisher) by extension 'colcon_pkg'
+[0.488s] Level 1:colcon.colcon_core.package_identification:_identify(srobot_publisher) by extensions ['colcon_meta']
+[0.488s] Level 1:colcon.colcon_core.package_identification:_identify(srobot_publisher) by extension 'colcon_meta'
+[0.488s] Level 1:colcon.colcon_core.package_identification:_identify(srobot_publisher) by extensions ['ros']
+[0.488s] Level 1:colcon.colcon_core.package_identification:_identify(srobot_publisher) by extension 'ros'
+[0.489s] DEBUG:colcon.colcon_core.package_identification:Package 'srobot_publisher' with type 'ros.ament_python' and name 'srobot_publisher'
+[0.490s] Level 1:colcon.colcon_core.package_identification:_identify(srobot_realistic_output) by extensions ['ignore', 'ignore_ament_install']
+[0.490s] Level 1:colcon.colcon_core.package_identification:_identify(srobot_realistic_output) by extension 'ignore'
+[0.490s] Level 1:colcon.colcon_core.package_identification:_identify(srobot_realistic_output) by extension 'ignore_ament_install'
+[0.490s] Level 1:colcon.colcon_core.package_identification:_identify(srobot_realistic_output) by extensions ['colcon_pkg']
+[0.490s] Level 1:colcon.colcon_core.package_identification:_identify(srobot_realistic_output) by extension 'colcon_pkg'
+[0.490s] Level 1:colcon.colcon_core.package_identification:_identify(srobot_realistic_output) by extensions ['colcon_meta']
+[0.490s] Level 1:colcon.colcon_core.package_identification:_identify(srobot_realistic_output) by extension 'colcon_meta'
+[0.490s] Level 1:colcon.colcon_core.package_identification:_identify(srobot_realistic_output) by extensions ['ros']
+[0.490s] Level 1:colcon.colcon_core.package_identification:_identify(srobot_realistic_output) by extension 'ros'
+[0.491s] DEBUG:colcon.colcon_core.package_identification:Package 'srobot_realistic_output' with type 'ros.ament_python' and name 'srobot_realistic_output'
+[0.491s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.491s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.491s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.491s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.491s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.542s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.542s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.545s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 6 installed packages in /home/andersen/M30-RB_ws/src/Thesis_Workspace/install
+[0.548s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 408 installed packages in /opt/ros/humble
+[0.551s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.629s] Level 5:colcon.colcon_core.verb:set package 'copilot' build argument 'cmake_args' from command line to 'None'
+[0.630s] Level 5:colcon.colcon_core.verb:set package 'copilot' build argument 'cmake_target' from command line to 'None'
+[0.630s] Level 5:colcon.colcon_core.verb:set package 'copilot' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.630s] Level 5:colcon.colcon_core.verb:set package 'copilot' build argument 'cmake_clean_cache' from command line to 'False'
+[0.630s] Level 5:colcon.colcon_core.verb:set package 'copilot' build argument 'cmake_clean_first' from command line to 'False'
+[0.630s] Level 5:colcon.colcon_core.verb:set package 'copilot' build argument 'cmake_force_configure' from command line to 'False'
+[0.630s] Level 5:colcon.colcon_core.verb:set package 'copilot' build argument 'ament_cmake_args' from command line to 'None'
+[0.630s] Level 5:colcon.colcon_core.verb:set package 'copilot' build argument 'catkin_cmake_args' from command line to 'None'
+[0.630s] Level 5:colcon.colcon_core.verb:set package 'copilot' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.630s] DEBUG:colcon.colcon_core.verb:Building package 'copilot' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot', 'merge_install': False, 'path': '/home/andersen/M30-RB_ws/src/Thesis_Workspace/ros_demo', 'symlink_install': False, 'test_result_base': None}
+[0.632s] Level 5:colcon.colcon_core.verb:set package 'node_manager' build argument 'cmake_args' from command line to 'None'
+[0.632s] Level 5:colcon.colcon_core.verb:set package 'node_manager' build argument 'cmake_target' from command line to 'None'
+[0.633s] Level 5:colcon.colcon_core.verb:set package 'node_manager' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.633s] Level 5:colcon.colcon_core.verb:set package 'node_manager' build argument 'cmake_clean_cache' from command line to 'False'
+[0.633s] Level 5:colcon.colcon_core.verb:set package 'node_manager' build argument 'cmake_clean_first' from command line to 'False'
+[0.633s] Level 5:colcon.colcon_core.verb:set package 'node_manager' build argument 'cmake_force_configure' from command line to 'False'
+[0.633s] Level 5:colcon.colcon_core.verb:set package 'node_manager' build argument 'ament_cmake_args' from command line to 'None'
+[0.633s] Level 5:colcon.colcon_core.verb:set package 'node_manager' build argument 'catkin_cmake_args' from command line to 'None'
+[0.633s] Level 5:colcon.colcon_core.verb:set package 'node_manager' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.633s] DEBUG:colcon.colcon_core.verb:Building package 'node_manager' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/node_manager', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager', 'merge_install': False, 'path': '/home/andersen/M30-RB_ws/src/Thesis_Workspace/node_manager', 'symlink_install': False, 'test_result_base': None}
+[0.634s] Level 5:colcon.colcon_core.verb:set package 'pyflask' build argument 'cmake_args' from command line to 'None'
+[0.634s] Level 5:colcon.colcon_core.verb:set package 'pyflask' build argument 'cmake_target' from command line to 'None'
+[0.634s] Level 5:colcon.colcon_core.verb:set package 'pyflask' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.634s] Level 5:colcon.colcon_core.verb:set package 'pyflask' build argument 'cmake_clean_cache' from command line to 'False'
+[0.634s] Level 5:colcon.colcon_core.verb:set package 'pyflask' build argument 'cmake_clean_first' from command line to 'False'
+[0.634s] Level 5:colcon.colcon_core.verb:set package 'pyflask' build argument 'cmake_force_configure' from command line to 'False'
+[0.635s] Level 5:colcon.colcon_core.verb:set package 'pyflask' build argument 'ament_cmake_args' from command line to 'None'
+[0.635s] Level 5:colcon.colcon_core.verb:set package 'pyflask' build argument 'catkin_cmake_args' from command line to 'None'
+[0.635s] Level 5:colcon.colcon_core.verb:set package 'pyflask' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.635s] DEBUG:colcon.colcon_core.verb:Building package 'pyflask' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask', 'merge_install': False, 'path': '/home/andersen/M30-RB_ws/src/Thesis_Workspace/hds_and_website/ras_reliability_backend', 'symlink_install': False, 'test_result_base': None}
+[0.635s] Level 5:colcon.colcon_core.verb:set package 'srobot_publisher' build argument 'cmake_args' from command line to 'None'
+[0.636s] Level 5:colcon.colcon_core.verb:set package 'srobot_publisher' build argument 'cmake_target' from command line to 'None'
+[0.636s] Level 5:colcon.colcon_core.verb:set package 'srobot_publisher' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.636s] Level 5:colcon.colcon_core.verb:set package 'srobot_publisher' build argument 'cmake_clean_cache' from command line to 'False'
+[0.636s] Level 5:colcon.colcon_core.verb:set package 'srobot_publisher' build argument 'cmake_clean_first' from command line to 'False'
+[0.636s] Level 5:colcon.colcon_core.verb:set package 'srobot_publisher' build argument 'cmake_force_configure' from command line to 'False'
+[0.636s] Level 5:colcon.colcon_core.verb:set package 'srobot_publisher' build argument 'ament_cmake_args' from command line to 'None'
+[0.636s] Level 5:colcon.colcon_core.verb:set package 'srobot_publisher' build argument 'catkin_cmake_args' from command line to 'None'
+[0.636s] Level 5:colcon.colcon_core.verb:set package 'srobot_publisher' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.636s] DEBUG:colcon.colcon_core.verb:Building package 'srobot_publisher' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_publisher', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher', 'merge_install': False, 'path': '/home/andersen/M30-RB_ws/src/Thesis_Workspace/srobot_publisher', 'symlink_install': False, 'test_result_base': None}
+[0.637s] Level 5:colcon.colcon_core.verb:set package 'srobot_realistic_output' build argument 'cmake_args' from command line to 'None'
+[0.637s] Level 5:colcon.colcon_core.verb:set package 'srobot_realistic_output' build argument 'cmake_target' from command line to 'None'
+[0.637s] Level 5:colcon.colcon_core.verb:set package 'srobot_realistic_output' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'srobot_realistic_output' build argument 'cmake_clean_cache' from command line to 'False'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'srobot_realistic_output' build argument 'cmake_clean_first' from command line to 'False'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'srobot_realistic_output' build argument 'cmake_force_configure' from command line to 'False'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'srobot_realistic_output' build argument 'ament_cmake_args' from command line to 'None'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'srobot_realistic_output' build argument 'catkin_cmake_args' from command line to 'None'
+[0.638s] Level 5:colcon.colcon_core.verb:set package 'srobot_realistic_output' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.638s] DEBUG:colcon.colcon_core.verb:Building package 'srobot_realistic_output' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_realistic_output', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output', 'merge_install': False, 'path': '/home/andersen/M30-RB_ws/src/Thesis_Workspace/srobot_realistic_output', 'symlink_install': False, 'test_result_base': None}
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'yolov6' build argument 'cmake_args' from command line to 'None'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'yolov6' build argument 'cmake_target' from command line to 'None'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'yolov6' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'yolov6' build argument 'cmake_clean_cache' from command line to 'False'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'yolov6' build argument 'cmake_clean_first' from command line to 'False'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'yolov6' build argument 'cmake_force_configure' from command line to 'False'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'yolov6' build argument 'ament_cmake_args' from command line to 'None'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'yolov6' build argument 'catkin_cmake_args' from command line to 'None'
+[0.639s] Level 5:colcon.colcon_core.verb:set package 'yolov6' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.639s] DEBUG:colcon.colcon_core.verb:Building package 'yolov6' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6', 'merge_install': False, 'path': '/home/andersen/M30-RB_ws/src/Thesis_Workspace/hds_and_website/yolov6', 'symlink_install': False, 'test_result_base': None}
+[0.640s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.641s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.642s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/ros_demo' with build type 'ament_cmake'
+[0.642s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/ros_demo'
+[0.646s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.647s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.647s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.656s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/node_manager' with build type 'ament_python'
+[0.656s] Level 1:colcon.colcon_core.shell:create_environment_hook('node_manager', 'ament_prefix_path')
+[0.657s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/share/node_manager/hook/ament_prefix_path.ps1'
+[0.658s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/share/node_manager/hook/ament_prefix_path.dsv'
+[0.659s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/share/node_manager/hook/ament_prefix_path.sh'
+[0.660s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.660s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.668s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/hds_and_website/ras_reliability_backend' with build type 'ament_python'
+[0.668s] Level 1:colcon.colcon_core.shell:create_environment_hook('pyflask', 'ament_prefix_path')
+[0.669s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/share/pyflask/hook/ament_prefix_path.ps1'
+[0.670s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/share/pyflask/hook/ament_prefix_path.dsv'
+[0.671s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/share/pyflask/hook/ament_prefix_path.sh'
+[0.672s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.672s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.680s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/srobot_publisher' with build type 'ament_python'
+[0.680s] Level 1:colcon.colcon_core.shell:create_environment_hook('srobot_publisher', 'ament_prefix_path')
+[0.681s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/share/srobot_publisher/hook/ament_prefix_path.ps1'
+[0.682s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/share/srobot_publisher/hook/ament_prefix_path.dsv'
+[0.683s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/share/srobot_publisher/hook/ament_prefix_path.sh'
+[0.685s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.685s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.693s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/srobot_realistic_output' with build type 'ament_python'
+[0.694s] Level 1:colcon.colcon_core.shell:create_environment_hook('srobot_realistic_output', 'ament_prefix_path')
+[0.695s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/share/srobot_realistic_output/hook/ament_prefix_path.ps1'
+[0.696s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/share/srobot_realistic_output/hook/ament_prefix_path.dsv'
+[0.697s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/share/srobot_realistic_output/hook/ament_prefix_path.sh'
+[0.698s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.698s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.706s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/hds_and_website/yolov6' with build type 'ament_python'
+[0.707s] Level 1:colcon.colcon_core.shell:create_environment_hook('yolov6', 'ament_prefix_path')
+[0.708s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/share/yolov6/hook/ament_prefix_path.ps1'
+[0.709s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/share/yolov6/hook/ament_prefix_path.dsv'
+[0.710s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/share/yolov6/hook/ament_prefix_path.sh'
+[0.712s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.714s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.735s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager:/opt/ros/humble /usr/bin/cmake --build /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot -- -j8 -l8
+[1.315s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/node_manager'
+[1.316s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.316s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.848s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/hds_and_website/ras_reliability_backend'
+[1.848s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.848s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.308s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/srobot_publisher'
+[2.309s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.309s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.730s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/srobot_realistic_output'
+[2.731s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.731s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.215s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/hds_and_website/yolov6'
+[3.216s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.216s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.228s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager:/opt/ros/humble /usr/bin/cmake --build /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot -- -j8 -l8
+[3.317s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager:/opt/ros/humble /usr/bin/cmake --install /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot
+[3.342s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(copilot)
+[3.348s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot' for CMake module files
+[3.349s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot' for CMake config files
+[3.349s] Level 1:colcon.colcon_core.shell:create_environment_hook('copilot', 'cmake_prefix_path')
+[3.351s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/hook/cmake_prefix_path.ps1'
+[3.357s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/hook/cmake_prefix_path.dsv'
+[3.358s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/hook/cmake_prefix_path.sh'
+[3.359s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager:/opt/ros/humble /usr/bin/cmake --install /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot
+[3.360s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/lib'
+[3.360s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/bin'
+[3.361s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/lib/pkgconfig/copilot.pc'
+[3.361s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/lib/python3.10/site-packages'
+[3.361s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/bin'
+[3.362s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/package.ps1'
+[3.364s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/package.dsv'
+[3.365s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/package.sh'
+[3.367s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/package.bash'
+[3.369s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/package.zsh'
+[3.370s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/colcon-core/packages/copilot)
+[3.452s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(copilot)
+[3.453s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot' for CMake module files
+[3.454s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot' for CMake config files
+[3.455s] Level 1:colcon.colcon_core.shell:create_environment_hook('copilot', 'cmake_prefix_path')
+[3.456s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/hook/cmake_prefix_path.ps1'
+[3.459s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/hook/cmake_prefix_path.dsv'
+[3.461s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/hook/cmake_prefix_path.sh'
+[3.465s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/lib'
+[3.465s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/bin'
+[3.466s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/lib/pkgconfig/copilot.pc'
+[3.467s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/lib/python3.10/site-packages'
+[3.467s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/bin'
+[3.468s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/package.ps1'
+[3.473s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/package.dsv'
+[3.475s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/package.sh'
+[3.477s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/package.bash'
+[3.479s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/copilot/package.zsh'
+[3.480s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/copilot/share/colcon-core/packages/copilot)
+[4.069s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/hds_and_website/yolov6': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/yolov6 build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/install.log --single-version-externally-managed install_data
+[4.112s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/srobot_publisher': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_publisher/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../build/srobot_publisher build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_publisher/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_publisher/install.log --single-version-externally-managed install_data
+[4.148s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/hds_and_website/ras_reliability_backend': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/pyflask build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask/install.log --single-version-externally-managed install_data
+[4.201s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/node_manager': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/node_manager/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../build/node_manager build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/node_manager/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/node_manager/install.log --single-version-externally-managed install_data
+[4.206s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/srobot_realistic_output': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_realistic_output/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../build/srobot_realistic_output build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_realistic_output/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_realistic_output/install.log --single-version-externally-managed install_data
+[4.817s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6' for CMake module files
+[4.820s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/hds_and_website/yolov6' returned '0': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/yolov6 build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/yolov6/install.log --single-version-externally-managed install_data
+[4.821s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6' for CMake config files
+[4.828s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib'
+[4.828s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/bin'
+[4.830s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/pkgconfig/yolov6.pc'
+[4.830s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/lib/python3.10/site-packages'
+[4.831s] Level 1:colcon.colcon_core.shell:create_environment_hook('yolov6', 'pythonpath')
+[4.831s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/share/yolov6/hook/pythonpath.ps1'
+[4.833s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/share/yolov6/hook/pythonpath.dsv'
+[4.834s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/share/yolov6/hook/pythonpath.sh'
+[4.836s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/bin'
+[4.836s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(yolov6)
+[4.837s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/share/yolov6/package.ps1'
+[4.840s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/share/yolov6/package.dsv'
+[4.841s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/share/yolov6/package.sh'
+[4.843s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/share/yolov6/package.bash'
+[4.843s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/share/yolov6/package.zsh'
+[4.844s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/yolov6/share/colcon-core/packages/yolov6)
+[4.848s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher' for CMake module files
+[4.849s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher' for CMake config files
+[4.850s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/lib'
+[4.850s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/bin'
+[4.850s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/lib/pkgconfig/srobot_publisher.pc'
+[4.851s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/lib/python3.10/site-packages'
+[4.851s] Level 1:colcon.colcon_core.shell:create_environment_hook('srobot_publisher', 'pythonpath')
+[4.851s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/share/srobot_publisher/hook/pythonpath.ps1'
+[4.852s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/share/srobot_publisher/hook/pythonpath.dsv'
+[4.853s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/share/srobot_publisher/hook/pythonpath.sh'
+[4.854s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/srobot_publisher' returned '0': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_publisher/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../build/srobot_publisher build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_publisher/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_publisher/install.log --single-version-externally-managed install_data
+[4.856s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/bin'
+[4.856s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(srobot_publisher)
+[4.857s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/share/srobot_publisher/package.ps1'
+[4.859s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/share/srobot_publisher/package.dsv'
+[4.860s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/share/srobot_publisher/package.sh'
+[4.862s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/share/srobot_publisher/package.bash'
+[4.864s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/share/srobot_publisher/package.zsh'
+[4.866s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_publisher/share/colcon-core/packages/srobot_publisher)
+[4.936s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager' for CMake module files
+[4.937s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/node_manager' returned '0': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/node_manager/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../build/node_manager build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/node_manager/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/node_manager/install.log --single-version-externally-managed install_data
+[4.938s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager' for CMake config files
+[4.939s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/lib'
+[4.940s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/bin'
+[4.940s] Level 1:colcon.colcon_core.shell:create_environment_hook('node_manager', 'path')
+[4.940s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/share/node_manager/hook/path.ps1'
+[4.941s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/share/node_manager/hook/path.dsv'
+[4.942s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/share/node_manager/hook/path.sh'
+[4.944s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/lib/pkgconfig/node_manager.pc'
+[4.944s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/lib/python3.10/site-packages'
+[4.945s] Level 1:colcon.colcon_core.shell:create_environment_hook('node_manager', 'pythonpath')
+[4.945s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/share/node_manager/hook/pythonpath.ps1'
+[4.946s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/share/node_manager/hook/pythonpath.dsv'
+[4.948s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/share/node_manager/hook/pythonpath.sh'
+[4.950s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/bin'
+[4.950s] Level 1:colcon.colcon_core.shell:create_environment_hook('node_manager', 'pythonscriptspath')
+[4.950s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/share/node_manager/hook/pythonscriptspath.ps1'
+[4.951s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/share/node_manager/hook/pythonscriptspath.dsv'
+[4.952s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/share/node_manager/hook/pythonscriptspath.sh'
+[4.953s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(node_manager)
+[4.953s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/share/node_manager/package.ps1'
+[4.955s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/share/node_manager/package.dsv'
+[4.956s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/share/node_manager/package.sh'
+[4.957s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/share/node_manager/package.bash'
+[4.957s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/share/node_manager/package.zsh'
+[4.958s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/node_manager/share/colcon-core/packages/node_manager)
+[4.966s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask' for CMake module files
+[4.967s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/hds_and_website/ras_reliability_backend' returned '0': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/pyflask build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/pyflask/install.log --single-version-externally-managed install_data
+[4.968s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask' for CMake config files
+[4.970s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib'
+[4.970s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/bin'
+[4.970s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/pkgconfig/pyflask.pc'
+[4.970s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/lib/python3.10/site-packages'
+[4.971s] Level 1:colcon.colcon_core.shell:create_environment_hook('pyflask', 'pythonpath')
+[4.971s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/share/pyflask/hook/pythonpath.ps1'
+[4.972s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/share/pyflask/hook/pythonpath.dsv'
+[4.973s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/share/pyflask/hook/pythonpath.sh'
+[4.974s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/bin'
+[4.974s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(pyflask)
+[4.975s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/share/pyflask/package.ps1'
+[4.976s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/share/pyflask/package.dsv'
+[4.977s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/share/pyflask/package.sh'
+[4.978s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/share/pyflask/package.bash'
+[4.980s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/share/pyflask/package.zsh'
+[4.981s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/pyflask/share/colcon-core/packages/pyflask)
+[5.016s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output' for CMake module files
+[5.017s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output' for CMake config files
+[5.018s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/lib'
+[5.018s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/bin'
+[5.019s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/lib/pkgconfig/srobot_realistic_output.pc'
+[5.021s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/lib/python3.10/site-packages'
+[5.022s] Level 1:colcon.colcon_core.shell:create_environment_hook('srobot_realistic_output', 'pythonpath')
+[5.020s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/srobot_realistic_output' returned '0': PYTHONPATH=/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_realistic_output/prefix_override:/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../build/srobot_realistic_output build --build-base /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_realistic_output/build install --record /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/srobot_realistic_output/install.log --single-version-externally-managed install_data
+[5.023s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/share/srobot_realistic_output/hook/pythonpath.ps1'
+[5.025s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/share/srobot_realistic_output/hook/pythonpath.dsv'
+[5.027s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/share/srobot_realistic_output/hook/pythonpath.sh'
+[5.030s] Level 1:colcon.colcon_core.environment:checking '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/bin'
+[5.030s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(srobot_realistic_output)
+[5.031s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/share/srobot_realistic_output/package.ps1'
+[5.034s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/share/srobot_realistic_output/package.dsv'
+[5.036s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/share/srobot_realistic_output/package.sh'
+[5.038s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/share/srobot_realistic_output/package.bash'
+[5.040s] INFO:colcon.colcon_core.shell:Creating package script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/share/srobot_realistic_output/package.zsh'
+[5.043s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/srobot_realistic_output/share/colcon-core/packages/srobot_realistic_output)
+[5.046s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[5.047s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[5.047s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[5.048s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[5.061s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[5.062s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[5.062s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[5.088s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[5.089s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/local_setup.ps1'
+[5.091s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/_local_setup_util_ps1.py'
+[5.094s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/setup.ps1'
+[5.097s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/local_setup.sh'
+[5.099s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/_local_setup_util_sh.py'
+[5.100s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/setup.sh'
+[5.103s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/local_setup.bash'
+[5.104s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/setup.bash'
+[5.107s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/local_setup.zsh'
+[5.109s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/andersen/M30-RB_ws/src/Thesis_Workspace/install/setup.zsh'

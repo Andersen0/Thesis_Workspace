@@ -9,6 +9,7 @@ setup.py
 ../build/srobot_realistic_output/srobot_realistic_output.egg-info/top_level.txt
 ../build/srobot_realistic_output/srobot_realistic_output.egg-info/zip-safe
 launch/srobot_launch.py
+msg/ClassifierAndDistance.msg
 resource/srobot_realistic_output
 srobot_realistic_output/__init__.py
 srobot_realistic_output/publisher.py
