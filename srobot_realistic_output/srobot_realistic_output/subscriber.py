@@ -2,22 +2,24 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Int64, Bool, Float64, String
 from rclpy.callback_groups import ReentrantCallbackGroup
+from rclpy.qos import QoSProfile, DurabilityPolicy
 
 class ClassDistanceProcessor(Node):
     def __init__(self):
         super().__init__('class_distance_processor')
         self.reentrant_callback_group = ReentrantCallbackGroup()
+        qos_profile = QoSProfile(depth=10, durability=DurabilityPolicy.VOLATILE)
 
-        self.subscription = self.create_subscription(String, 'class_detection', self.listener_callback, 10)
+        self.subscription = self.create_subscription(String, 'class_detection', self.listener_callback, qos_profile)
         # self.subscription  # prevent unused variable warning
         # Publishers
-        self.state_publisher = self.create_publisher(Int64, '/sRobotState', 10, callback_group=self.reentrant_callback_group)
-        self.slowdown_publisher = self.create_publisher(Bool, '/sRobotSlowdown', 10, callback_group=self.reentrant_callback_group)
-        self.halt_publisher = self.create_publisher(Bool, '/sRobotHalt', 10, callback_group=self.reentrant_callback_group)
-        self.alert_publisher = self.create_publisher(Bool, '/sRobotAlert', 10, callback_group=self.reentrant_callback_group)
-        self.turnoff_uvc_publisher = self.create_publisher(Bool, '/sRobotTurnoffUVC', 10, callback_group=self.reentrant_callback_group)
-        self.classifier_publisher = self.create_publisher(Int64, '/sRobotClassifier', 10, callback_group=self.reentrant_callback_group)
-        self.distance_publisher = self.create_publisher(Int64, '/scan', 10, callback_group=self.reentrant_callback_group)
+        self.state_publisher = self.create_publisher(Int64, '/sRobotState', qos_profile, callback_group=self.reentrant_callback_group)
+        self.slowdown_publisher = self.create_publisher(Bool, '/sRobotSlowdown', qos_profile, callback_group=self.reentrant_callback_group)
+        self.halt_publisher = self.create_publisher(Bool, '/sRobotHalt', qos_profile, callback_group=self.reentrant_callback_group)
+        self.alert_publisher = self.create_publisher(Bool, '/sRobotAlert', qos_profile, callback_group=self.reentrant_callback_group)
+        self.turnoff_uvc_publisher = self.create_publisher(Bool, '/sRobotTurnoffUVC', qos_profile, callback_group=self.reentrant_callback_group)
+        self.classifier_publisher = self.create_publisher(Int64, '/sRobotClassifier', qos_profile, callback_group=self.reentrant_callback_group)
+        self.distance_publisher = self.create_publisher(Int64, '/scan', qos_profile, callback_group=self.reentrant_callback_group)
 
         self.distance_to_target = None
         self.classifier = None
@@ -41,7 +43,7 @@ class ClassDistanceProcessor(Node):
                         temp[0] = int(temp[0]) # class
                         temp[1] = float(temp[1]) # p_value
                         temp[2] = float(temp[2]) # area
-                        temp[3] = float(temp[3]) # x distance mm
+                        temp[3] = int(float(temp[3]) / 1000) # Convert mm to meters and then to int
                         temp[4] = temp[4] # color remains a string, no conversion needed
 
                         processed_classes.append(temp)
