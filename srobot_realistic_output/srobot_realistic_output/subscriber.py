@@ -31,10 +31,10 @@ class ClassDistanceProcessor(Node):
         injection = msg.data.split(',')
 
         injection[0] = int(injection[0]) # classifier
-        injection[1] = int(injection[3]) # distance
-        injection[2] = int(injection[1]) # state
-        injection[3] = bool(injection[2]) # halt
-        injection[4] = bool(injection[4]) # slowdown
+        injection[1] = int(injection[1]) # distance
+        injection[2] = int(injection[2]) # state
+        injection[3] = bool(injection[3]) # slowdown
+        injection[4] = bool(injection[4]) # halt
         injection[5] = bool(injection[5]) # alert
         injection[6] = bool(injection[6]) # turnoffUVC
 
@@ -42,10 +42,17 @@ class ClassDistanceProcessor(Node):
         distance_to_target = injection[1]
 
         # Debugging lines
-        print(f"injection: {injection}")
-        print(f"Classifier: {classifier}, Distance to Target: {distance_to_target}")
+        print(f"Injecting failure: {injection}")
+        # print(f"Classifier: {classifier}, Distance to Target: {distance_to_target}")
 
-        self.evaluate_and_publish_conditions(classifier, distance_to_target)
+        # Publish the conditions
+        self.publish_condition(self.classifier_publisher, injection[0])
+        self.publish_condition(self.distance_publisher, injection[1])
+        self.publish_condition(self.state_publisher, injection[2])
+        self.publish_condition(self.slowdown_publisher, injection[3])
+        self.publish_condition(self.halt_publisher, injection[4])
+        self.publish_condition(self.alert_publisher, injection[5])
+        self.publish_condition(self.turnoff_uvc_publisher, injection[6])
 
     def listener_callback(self, msg):
         
