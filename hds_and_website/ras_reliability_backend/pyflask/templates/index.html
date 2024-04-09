@@ -23,6 +23,7 @@
     ros.on('close', function() {
       console.log('Connection to websocket server closed.');
     });
+
 </script>
 
 
@@ -227,39 +228,18 @@
 
     logInject("Injecting " + handlerName);
     
-    var steptalker = new ROSLIB.Topic({
+    var injectiontalker = new ROSLIB.Topic({
     ros: ros,
-    name: '/sRobotTurnoffUVC',
-    messageType: 'std_msgs/Bool'
+    name: '/injection_detection',
+    messageType: 'std_msgs/String'
     });
 
-    var scantalker = new ROSLIB.Topic({
-    ros: ros,
-    name: '/scan',
-    messageType: 'std_msgs/Int64'
+
+    var injectionmsg = new ROSLIB.Message({
+      data: "1,-1,3,false,true,true,true"
     });
 
-    var classtalker = new ROSLIB.Topic({
-    ros: ros,
-    name: '/sRobotClassifier',
-    messageType: 'std_msgs/Int64'
-    });
-
-    var stepmsg = new ROSLIB.Message({
-      data: true
-    });
-
-    var scanmsg = new ROSLIB.Message({
-      data: -10
-    });
-
-    var classmsg = new ROSLIB.Message({
-      data: 1
-    });
-    
-    scantalker.publish(scanmsg);
-    classtalker.publish(classmsg);
-    steptalker.publish(stepmsg);
+    injectiontalker.publish(injectionmsg);
 
   }
 </script>
