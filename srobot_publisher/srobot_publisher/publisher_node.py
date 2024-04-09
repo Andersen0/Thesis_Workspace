@@ -5,21 +5,24 @@ import sys
 import time
 import os
 from datetime import datetime
+from rclpy.qos import QoSProfile, DurabilityPolicy
 
 class SimplePublisher(Node):
     def __init__(self, scenario_sequence, node_name='simple_publisher'):
         super().__init__(node_name)
+        qos_profile = QoSProfile(depth=10, durability=DurabilityPolicy.VOLATILE)
+
         self.timer = self.create_timer(2.0, self.publish_messages)
         self.time_log_file = os.path.join(os.getcwd(), 'time_log.txt')
 
         self._publishers_dict = {
-            'distance_to_target': self.create_publisher(Int64, '/scan', 10),
-            'classifier': self.create_publisher(Int64, '/sRobotClassifier', 10),
-            'alert': self.create_publisher(Bool, '/sRobotAlert', 10),
-            'halt': self.create_publisher(Bool, '/sRobotHalt', 10),
-            'slowdown': self.create_publisher(Bool, '/sRobotSlowdown', 10),
-            'state': self.create_publisher(Int64, '/sRobotState', 10),
-            'turnoffUVC': self.create_publisher(Bool, '/sRobotTurnoffUVC', 10),
+            'distance_to_target': self.create_publisher(Int64, '/scan', qos_profile),
+            'classifier': self.create_publisher(Int64, '/sRobotClassifier', qos_profile),
+            'alert': self.create_publisher(Bool, '/sRobotAlert', qos_profile),
+            'halt': self.create_publisher(Bool, '/sRobotHalt', qos_profile),
+            'slowdown': self.create_publisher(Bool, '/sRobotSlowdown', qos_profile),
+            'state': self.create_publisher(Int64, '/sRobotState', qos_profile),
+            'turnoffUVC': self.create_publisher(Bool, '/sRobotTurnoffUVC', qos_profile),
         }
         self.scenario_sequence = scenario_sequence
         self.current_scenario_index = 0

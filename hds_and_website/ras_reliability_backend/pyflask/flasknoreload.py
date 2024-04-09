@@ -12,31 +12,32 @@ import time
 import subprocess
 from cv_bridge import CvBridge, CvBridgeError
 import cv2
+from rclpy.qos import QoSProfile, DurabilityPolicy
+
 current_dir = os.path.dirname(os.path.abspath(__file__))
 template_dir = os.path.join(current_dir, 'templates')
 static_dir = os.path.join(current_dir, 'static')
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir, static_url_path='/static')
 
-# Set Werkzeug log level to WARNING
-log = logging.getLogger('werkzeug')
-log.setLevel(logging.WARNING)
-logging.getLogger().setLevel(logging.WARNING)
+
+
 class TeleopNode(Node):
     def __init__(self, app):
         super().__init__('teleop_flask')
+        qos_profile = QoSProfile(depth=10, durability=DurabilityPolicy.VOLATILE)
         self.app = app
         self.get_logger().info('Initializing My Node!')
         self.bridge = CvBridge()
-        self.dtt_subber = self.create_subscription(Int64, '/scan', self.scan_callback, 10)
-        self.classifier_subber = self.create_subscription(Int64, '/sRobotClassifier', self.classifier_callback, 10)
-        self.alert_subber = self.create_subscription(Bool, '/sRobotAlert', self.alert_callback, 10)
-        self.halt_subber = self.create_subscription(Bool, '/sRobotHalt', self.halt_callback, 10)
-        self.slowdown_subber = self.create_subscription(Bool, '/sRobotSlowdown', self.slowdown_callback, 10)
-        self.state_subber = self.create_subscription(Int64, '/sRobotState', self.state_callback, 10)
-        self.uvc_subber = self.create_subscription(Bool, '/sRobotTurnoffUVC', self.uvc_callback, 10)
-        self.timer = self.create_subscription(String, '/timer', self.timer_callback, 10)
-        self.yolo_subber = self.create_subscription(Image, '/yolo_im', self.yolo_callback, 10) 
-        self.class_subber = self.create_subscription(String, '/class_detection', self.class_splitter, 10) 
+        self.dtt_subber = self.create_subscription(Int64, '/scan', self.scan_callback, qos_profile)
+        self.classifier_subber = self.create_subscription(Int64, '/sRobotClassifier', self.classifier_callback, qos_profile)
+        self.alert_subber = self.create_subscription(Bool, '/sRobotAlert', self.alert_callback, qos_profile)
+        self.halt_subber = self.create_subscription(Bool, '/sRobotHalt', self.halt_callback, qos_profile)
+        self.slowdown_subber = self.create_subscription(Bool, '/sRobotSlowdown', self.slowdown_callback, qos_profile)
+        self.state_subber = self.create_subscription(Int64, '/sRobotState', self.state_callback, qos_profile)
+        self.uvc_subber = self.create_subscription(Bool, '/sRobotTurnoffUVC', self.uvc_callback, qos_profile)
+        self.timer = self.create_subscription(String, '/timer', self.timer_callback, qos_profile)
+        self.yolo_subber = self.create_subscription(Image, '/yolo_im', self.yolo_callback, qos_profile) 
+        self.class_subber = self.create_subscription(String, '/class_detection', self.class_splitter, qos_profile) 
 
         self.get_logger().info('Initialized!')
         log = logging.getLogger('werkzeug')
@@ -251,8 +252,8 @@ class TeleopNode(Node):
             msg.data = processed_classes[0][0]
             msg2 = Float64()
             msg2.data = processed_classes[0][3]/1000
-            pub.publish(msg)
-            pub2.publish(msg2)
+            # pub.publish(msg)
+            # pub2.publish(msg2)
 
         else:
             self.app.config['class_pred_list'] = ["none"]
@@ -262,8 +263,8 @@ class TeleopNode(Node):
             msg.data = 0
             msg2 = Float64()
             msg2.data = 0.0
-            pub.publish(msg)
-            pub2.publish(msg2)
+            # pub.publish(msg)
+            # pub2.publish(msg2)
 
     
 def init_ros_node(app):
