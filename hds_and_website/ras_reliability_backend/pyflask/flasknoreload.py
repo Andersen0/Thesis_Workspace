@@ -18,7 +18,9 @@ static_dir = os.path.join(current_dir, 'static')
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir, static_url_path='/static')
 
 # Set Werkzeug log level to WARNING
-
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.WARNING)
+logging.getLogger().setLevel(logging.WARNING)
 class TeleopNode(Node):
     def __init__(self, app):
         super().__init__('teleop_flask')
@@ -237,8 +239,8 @@ class TeleopNode(Node):
                     except (ValueError, IndexError):
                         print(f"Error processing class data: {classes[i]}")
 
-            # Sort the list by the biggest area (3rd element in sublist)
-            processed_classes.sort(key=lambda x: x[2], reverse=True)
+            # Sort the list by the smallest area (4th element in sublist)
+            processed_classes.sort(key=lambda x: x[3], reverse=False)
             self.app.config['class_pred_list'] = processed_classes
 
             # create a ros2 publisher that publishes processed_classes[0][0] to /FakesRobotClassifier and processed_classes[0][3] to /Fakescan
