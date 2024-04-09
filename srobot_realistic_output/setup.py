@@ -13,6 +13,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name), glob('launch/*.py')),  # Include launch files
+        (os.path.join('share', package_name, 'msg'), glob('msg/*.msg')),  # Include msg files
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -28,3 +29,4 @@ setup(
         ],
     },
 )
+

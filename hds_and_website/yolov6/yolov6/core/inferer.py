@@ -213,7 +213,7 @@ class Inferer(Node):
 
         else:
             pub_msg = String()
-            pub_msg.data = str("none")
+            pub_msg.data = str("none;")
             self.class_detection.publish(pub_msg)
         # FPS counter
         fps_calculator.update(1.0 / (t2 - t1))

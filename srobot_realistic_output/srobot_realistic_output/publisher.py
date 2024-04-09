@@ -5,13 +5,14 @@ import random
 from rclpy.clock import Clock
 from rclpy.time import Time
 import time
+from srobot_realistic_output.msg import ClassifierAndDistance
 
 class DynamicPublisher(Node):
     def __init__(self, node_name='dynamic_publisher'):
         super().__init__(node_name)
 
         # Publishers
-        self.classifier_publisher = self.create_publisher(Float64, '/FakesRobotClassifier', 10)
+        self.classifier_publisher = self.create_publisher(Int64, '/FakesRobotClassifier', 10)
         self.distance_publisher = self.create_publisher(Float64, '/Fakescan', 10)
 
         # Timer for classifier - cycles between 1 and 2
@@ -22,7 +23,7 @@ class DynamicPublisher(Node):
         # Timer for distance - climbs and falls, with direction change
         # self.distance_timer = self.create_timer(1, self.distance_callback)
         self.direction_change_timer = self.create_timer(2.0, self.change_direction)
-        self.distance_value = 0
+        self.distance_value = 0.0
         self.distance_direction = 1  # 1 for climbing, -1 for falling
 
         self.update_timer = self.create_timer(1, self.update_callback)
@@ -64,33 +65,33 @@ class DynamicPublisher(Node):
     """
 
     def update_callback(self):
-        # Update the classifier
-        classifier_msg = Int64()
-        classifier_msg.data = self.classifier_sequence[self.classifier_index]
-        self.classifier_publisher.publish(classifier_msg)
-        self.get_logger().info(f'Publishing to /FakesRobotClassifier: {classifier_msg.data}')
-
+        # Create the combined message
+        combined_msg = ClassifierAndDistance()
+        combined_msg.classifier = self.classifier_sequence[self.classifier_index]
+        
         # Determine and update the distance based on the current classifier
-        if classifier_msg.data == 0:
-            self.distance_value = 0
+        if combined_msg.classifier == 0:
+            self.distance_value = 0.0
         else:
-            # Logic to update distance based on the direction and bounds
+            # Logic to update distance
             self.distance_value += self.distance_direction
-            if self.distance_value > 14:
-                self.distance_value = 14
+            if self.distance_value > 14.0:
+                self.distance_value = 14.0
                 self.distance_direction = -1
-            elif self.distance_value < 1:
-                self.distance_value = random.randint(1, 14)  # Ensure non-zero distance
+            elif self.distance_value < 1.0:
+                self.distance_value = random.uniform(1, 14)
                 self.distance_direction = 1
-
-        # Publish the distance
-        distance_msg = Int64()
-        distance_msg.data = self.distance_value
-        self.distance_publisher.publish(distance_msg)
-        self.get_logger().info(f'Publishing to /Fakescan: {distance_msg.data}')
-
-        # Update index for next classifier value
+        
+        # Set the distance in the combined message
+        combined_msg.distance = self.distance_value
+        
+        # Publish the combined message
+        self.combined_publisher.publish(combined_msg)
+        self.get_logger().info(f'Publishing Classifier: {combined_msg.classifier}, Distance: {combined_msg.distance}')
+        
+        # Update index for next value
         self.classifier_index = (self.classifier_index + 1) % len(self.classifier_sequence)
+
 
 
     def change_direction(self):
