@@ -27,7 +27,7 @@ class ClassDistanceProcessor(Node):
         self.classifier = None
 
     def injection_callback(self, msg):
-        # Injection is a string of the form {},{},{},{},{} where each {} is an element much like the class_detection string
+        # Injection is a string of the form {},{},{},{},{},{} where each {} is an element much like the class_detection string
         injection = msg.data.split(',')
 
         injection[0] = int(injection[0]) # classifier
