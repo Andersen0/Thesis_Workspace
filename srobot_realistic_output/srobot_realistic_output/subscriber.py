@@ -38,9 +38,6 @@ class ClassDistanceProcessor(Node):
         injection[5] = bool(injection[5]) # alert
         injection[6] = bool(injection[6]) # turnoffUVC
 
-        classifier = injection[0]
-        distance_to_target = injection[1]
-
         # Debugging lines
         print(f"Injecting failure: {injection}")
         # print(f"Classifier: {classifier}, Distance to Target: {distance_to_target}")
@@ -118,7 +115,7 @@ class ClassDistanceProcessor(Node):
         # Publish the conditions
         self.publish_condition(self.classifier_publisher, classifier)
         self.publish_condition(self.distance_publisher, distance_to_target)
-        self.publish_condition(self.state_publisher, state)
+        self.publish_condition(self.state_publisher, state)a
         self.publish_condition(self.slowdown_publisher, slowdown)
         self.publish_condition(self.halt_publisher, halt)
         self.publish_condition(self.alert_publisher, alert)
