@@ -226,6 +226,8 @@
 
   function injectHandler(handlerName) {
 
+    var injectionTime = Date.now(); // Get the current time in milliseconds
+
     logInject("Injecting " + handlerName);
     
     var injectiontalker = new ROSLIB.Topic({
@@ -240,7 +242,6 @@
     });
 
     injectiontalker.publish(injectionmsg);
-
   }
 </script>
 
