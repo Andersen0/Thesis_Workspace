@@ -13,7 +13,7 @@ source $ROS2_WS_PATH/install/setup.bash
 killall $COPILOT_NODE &
 
 # Wait a bit for shutdown to complete
-sleep 0.5
+# sleep 0.5
 
 # Restart the nodes
 ros2 run copilot copilot
