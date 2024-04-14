@@ -68,137 +68,137 @@ class TeleopNode(Node):
 
     def scan_callback(self, msg):
         dtt_value = msg.data
-        print('Received DTT data:', msg.data)
+        #print('Received DTT data:', msg.data)
         self.app.config['dtt'] = msg.data
     
     def classifier_callback(self, msg):
         classifier_value = msg.data
-        print('Received classifier data:', msg.data)
+        #print('Received classifier data:', msg.data)
         self.app.config['classifier'] = msg.data
 
     def alert_callback(self, msg):
         alert_value = msg.data
-        print('Received alert data:', msg.data)
+        #print('Received alert data:', msg.data)
         self.app.config['alert'] = msg.data
     
     def halt_callback(self, msg):
         halt_value = msg.data
-        print('Received halt data:', msg.data)
+        #print('Received halt data:', msg.data)
         self.app.config['halt'] = msg.data
     
     def slowdown_callback(self, msg):
         slowdown_value = msg.data
-        print('Received slowdown data:', msg.data)
+        #print('Received slowdown data:', msg.data)
         self.app.config['slowdown'] = msg.data
     
     def state_callback(self, msg):
         state_value = msg.data
-        print('Received state data:', msg.data)
+        #print('Received state data:', msg.data)
         self.app.config['state'] = msg.data
     
     def uvc_callback(self, msg):
         uvc_value = msg.data
-        print('Received uvc data:', msg.data)
+        #print('Received uvc data:', msg.data)
         self.app.config['uvc'] = msg.data
     
     def timer_callback(self, msg):
         timer_value = msg.data
-        print('Received timer data:', msg.data)
+        #print('Received timer data:', msg.data)
         self.app.config['timer'] = msg.data
 
     def handlerDtt_assumption_callback(self, msg):
-        print('Received handlerDtt_assumption signal')
+        #print('Received handlerDtt_assumption signal')
         current_time = datetime.now()
         format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")  # Formatting datetime to a string
         message = f"handlerDtt_assumption violation detected: {format_time}"
         self.app.config['handlerDtt_assumption'] = message
     
     def handlerclassifier_assumption_callback(self, msg):
-        print('Received handlerclassifier_assumption signal')
+        #print('Received handlerclassifier_assumption signal')
         current_time = datetime.now()
         format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
         message = f"handlerclassifier_assumption violation detected: {format_time}"
         self.app.config['handlerclassifier_assumption'] = message
 
     def handlerclassifier_empty_callback(self, msg):
-        print('Received handlerclassifier_empty signal')
+        #print('Received handlerclassifier_empty signal')
         current_time = datetime.now()
         format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
         message = f"handlerclassifier_empty violation detected: {format_time}"
         self.app.config['handlerclassifier_empty'] = message
 
     def handleroperationalstate_0_callback(self, msg):
-        print('Received handleroperationalstate_0 signal')
+        #print('Received handleroperationalstate_0 signal')
         current_time = datetime.now()
         format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
         message = f"handleroperationalstate_0 violation detected: {format_time}"
         self.app.config['handleroperationalstate_0'] = message
 
     def handleroperationalstate_1_callback(self, msg):
-        print('Received handleroperationalstate_1 signal')
+        #print('Received handleroperationalstate_1 signal')
         current_time = datetime.now()
         format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
         message = f"handleroperationalstate_1 violation detected: {format_time}"
         self.app.config['handleroperationalstate_1'] = message
 
     def handleroperationalstate_2_callback(self, msg):
-        print('Received handleroperationalstate_2 signal')
+        #print('Received handleroperationalstate_2 signal')
         current_time = datetime.now()
         format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
         message = f"handleroperationalstate_2 violation detected: {format_time}"
         self.app.config['handleroperationalstate_2'] = message
 
     def handleroperationalstate_3_callback(self, msg):
-        print('Received handleroperationalstate_3 signal')
+        #print('Received handleroperationalstate_3 signal')
         current_time = datetime.now()
         format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
         message = f"handleroperationalstate_3 violation detected: {format_time}"
         self.app.config['handleroperationalstate_3'] = message
 
     def handlerstate_req101_callback(self, msg):
-        print('Received handlerstate_req101 signal')
+        #print('Received handlerstate_req101 signal')
         current_time = datetime.now()
         format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
         message = f"handlerstate_req101 violation detected: {format_time}"
         self.app.config['handlerstate_req101'] = message
 
     def handlerstate_req102_callback(self, msg):
-        print('Received handlerstate_req102 signal')
+        #print('Received handlerstate_req102 signal')
         current_time = datetime.now()
         format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
         message = f"handlerstate_req102 violation detected: {format_time}"
         self.app.config['handlerstate_req102'] = message
 
     def handlerstate_req103_callback(self, msg):
-        print('Received handlerstate_req103 signal')
+        #print('Received handlerstate_req103 signal')
         current_time = datetime.now()
         format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
         message = f"handlerstate_req103 violation detected: {format_time}"
         self.app.config['handlerstate_req103'] = message
 
     def handlerstate_req104_callback(self, msg):
-        print('Received handlerstate_req104 signal')
+        #print('Received handlerstate_req104 signal')
         current_time = datetime.now()
         format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
         message = f"handlerstate_req104 violation detected: {format_time}"
         self.app.config['handlerstate_req104'] = message
 
     def handlerstate_req201_callback(self, msg):
-        print('Received handlerstate_req201 signal')
+        #print('Received handlerstate_req201 signal')
         current_time = datetime.now()
         format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
         message = f"handlerstate_req201 violation detected: {format_time}"
         self.app.config['handlerstate_req201'] = message
 
     def handlerstate_req202_callback(self, msg):
-        print('Received handlerstate_req202 signal')
+        #print('Received handlerstate_req202 signal')
         current_time = datetime.now()
         format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
         message = f"handlerstate_req202 violation detected: {format_time}"
         self.app.config['handlerstate_req202'] = message
 
     def handlerstate_req203_callback(self, msg):
-        print('Received handlerstate_req203 signal')
+        #print('Received handlerstate_req203 signal')
         current_time = datetime.now()
         format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
         message = f"handlerstate_req203 violation detected: {format_time}"
@@ -430,6 +430,6 @@ if __name__ == '__main__':
     #app.run(debug=True, port=8080)
     app.run(debug=True, port=8080, use_reloader=False)
     # Using Flask's CLI to run the server with `flask run --no-reload`
-    print("This script should be run with `flask run --no-reload`")
-    print("in terminal: export FLASK_APP=flasknoreload.py")
-    print("then execute: flask run --no-reload")
+    #print("This script should be run with `flask run --no-reload`")
+    #print("in terminal: export FLASK_APP=flasknoreload.py")
+    #print("then execute: flask run --no-reload")
