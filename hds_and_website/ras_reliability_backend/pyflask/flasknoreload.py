@@ -25,6 +25,10 @@ class TeleopNode(Node):
     def __init__(self, app):
         super().__init__('teleop_flask')
         qos_profile = QoSProfile(depth=10, durability=DurabilityPolicy.VOLATILE)
+        current_time = datetime.now()
+        self.image_dir = os.path.join(current_dir, f'images_{current_time.strftime("%Y%m%d_%H%M%S")}')
+        os.makedirs(self.image_dir, exist_ok=True)
+        self.last_save_time = time.time()
         self.app = app
         self.get_logger().info('Initializing My Node!')
         self.bridge = CvBridge()
@@ -207,7 +211,11 @@ class TeleopNode(Node):
         except CvBridgeError as e:
             print(e)
             return
-        
+        if time.time() - self.last_save_time >= 5:
+            image_path = os.path.join(self.image_dir, f'image_{datetime.now().strftime("%Y%m%d_%H%M%S")}.jpg')
+            cv2.imwrite(image_path, cv_image)
+            self.last_save_time = time.time()
+            
         _, jpeg = cv2.imencode('.jpg', cv_image)
         self.app.config['yolo_image'] = jpeg.tobytes()
 
