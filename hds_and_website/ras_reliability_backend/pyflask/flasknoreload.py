@@ -41,7 +41,7 @@ class TeleopNode(Node):
         self.uvc_subber = self.create_subscription(Bool, '/sRobotTurnoffUVC', self.uvc_callback, qos_profile)
         self.timer = self.create_subscription(String, '/timer', self.timer_callback, qos_profile)
         self.yolo_subber = self.create_subscription(Image, '/yolo_im', self.yolo_callback, qos_profile) 
-        self.class_subber = self.create_subscription(String, '/class_detection', self.class_splitter, qos_profile) 
+        #self.class_subber = self.create_subscription(String, '/class_detection', self.class_splitter, qos_profile) 
 
         self.get_logger().info('Initialized!')
         log = logging.getLogger('werkzeug')
