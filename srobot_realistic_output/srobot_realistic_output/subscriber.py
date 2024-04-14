@@ -30,7 +30,7 @@ class ClassDistanceProcessor(Node):
         # Injection is a string of the form {},{},{},{},{},{} where each {} is an element much like the class_detection string
         injection = msg.data.split(',')
 
-        injection[0] = int(injection[0]) # classifier
+        injection[0]= int(injection[0]) # classifier
         injection[1] = int(injection[1]) # distance
         injection[2] = int(injection[2]) # state
         # Converting string 'true'/'false' to Boolean True/False
@@ -40,8 +40,8 @@ class ClassDistanceProcessor(Node):
         injection[6] = injection[6].lower() == 'true'  # turnoffUVC
 
         # Debugging lines
-        print(f"Injecting failure: {injection}")
-        print(f"Classifier: {injection[0]}, Distance to Target: {injection[1]}, State: {injection[2]}, Slowdown: {injection[3]}, Halt: {injection[4]}, Alert: {injection[5]}, TurnoffUVC: {injection[6]}")
+        # print(f"Injecting failure: {injection}")
+        # print(f"Classifier: {injection[0]}, Distance to Target: {injection[1]}, State: {injection[2]}, Slowdown: {injection[3]}, Halt: {injection[4]}, Alert: {injection[5]}, TurnoffUVC: {injection[6]}")
 
         # Publish the conditions
         self.publish_condition(self.classifier_publisher, injection[0])
@@ -76,6 +76,10 @@ class ClassDistanceProcessor(Node):
                         temp[3] = int(float(temp[3]) / 1000) # Convert mm to meters and then to int
                         temp[4] = temp[4] # color remains a string, no conversion needed
 
+                        # Modify the classifier value
+                        if temp[0] == 0:
+                            temp[0] = 2
+
                         processed_classes.append(temp)
 
                     except (ValueError, IndexError):
@@ -89,12 +93,15 @@ class ClassDistanceProcessor(Node):
             classifier = processed_classes[0][0] 
             distance_to_target = processed_classes[0][3]
 
-            print(processed_classes)  # Debugging line
+            # print(processed_classes)  # Debugging line
 
             self.evaluate_and_publish_conditions(classifier, distance_to_target)
-            end = time.time()
+            # end = time.time()
 
-            print(f"Time taken to process: {end - start}")
+            # print(f"Time taken to process: {end - start}")      --------- TIME TAKEN TO PROCESS
+
+        else:
+            self.evaluate_and_publish_conditions(0, 0)
 
 
     def evaluate_and_publish_conditions(self, classifier, distance_to_target):
@@ -127,9 +134,9 @@ class ClassDistanceProcessor(Node):
         #self.last_published_distance = distance_to_target
 
         # Log the conditions along with the classifier and distance to target
-        self.get_logger().info(
-            f"Classifier: {classifier}, Distance to Target: {distance_to_target}, "
-            f"State: {state}, Slowdown: {slowdown}, Halt: {halt}, Alert: {alert}, TurnoffUVC: {turnoffUVC}")
+        # self.get_logger().info(
+        #    f"Classifier: {classifier}, Distance to Target: {distance_to_target}, "
+        #    f"State: {state}, Slowdown: {slowdown}, Halt: {halt}, Alert: {alert}, TurnoffUVC: {turnoffUVC}")
 
     def determine_conditions(self, classifier, distance_to_target):
 
