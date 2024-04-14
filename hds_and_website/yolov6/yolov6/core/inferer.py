@@ -101,10 +101,10 @@ class Inferer(Node):
         data = data.flatten()
         sorted_data = np.sort(data)
         num_elements = len(data)
-        print(num_elements)
+        #print(num_elements)
         num_to_remove = int(num_elements * 0.4)
         trimmed_data = sorted_data[:-num_to_remove]
-        print(trimmed_data[0:10])
+        #print(trimmed_data[0:10])
         return trimmed_data
 
     def infer(self, conf_thres=0.4,
