@@ -168,10 +168,21 @@ class Inferer(Node):
                     pred_depth_img[xyxy_list[1]:xyxy_list[3], xyxy_list[0]:xyxy_list[2]] = self.depth_img[xyxy_list[1]:xyxy_list[3], xyxy_list[0]:xyxy_list[2]]
                     depth_detection_section = self.depth_img[xyxy_list[1]:xyxy_list[3], xyxy_list[0]:xyxy_list[2]]
                     depth_detection_section = np.array(depth_detection_section, dtype=np.float32)
-                   #reduced_depth_detection_section = self.remove_outliers(depth_detection_section)
-                    depth = Float32() 
-                    depth.data = float(np.mean(depth_detection_section))
-                    self.depth_pub.publish(depth) 
+                    
+                    # Corrected lambda function
+                    middle = lambda x: x[tuple(slice(int(np.floor(d/4)), int(np.ceil(3*d/4))) for d in x.shape)]
+
+                    # Use the lambda function
+                    middle_section = middle(depth_detection_section)
+                    if middle_section.size > 0:
+                        depth_value = np.mean(middle_section)  # Calculate the mean depth in the middle section
+                    else:
+                        depth_value = 0  # Default value or handle as required
+
+                    depth = Float32()
+                    depth.data = float(depth_value)
+                    print(depth.data)
+                    self.depth_pub.publish(depth)
                     #self.get_logger.info("Detected class depth: {}".format(detected_class_depth))
                 if save_txt:  # Write to file
                     xywh = (self.box_convert(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
@@ -192,10 +203,10 @@ class Inferer(Node):
                     #Coloring the boxes based on the zone they are in
                     depth_int = int(depth.data)
                     zone_msg = String()
-                    if depth_int < 2000:
+                    if depth_int < 3000:
                         zone_msg.data = "red"
                         zone_color = (0, 0, 255)
-                    elif depth_int < 4000:
+                    elif depth_int < 7000:
                         zone_msg.data = "yellow"
                         zone_color = (0, 255, 255)
                     else:
