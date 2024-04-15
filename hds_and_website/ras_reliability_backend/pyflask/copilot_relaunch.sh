@@ -4,16 +4,31 @@
 COPILOT_NODE="copilot"
 ROS2_WS_PATH="$PWD"
 
-printf "ROS2_WS_PATH: $ROS2_WS_PATH\n"
+echo "ROS2_WS_PATH: $ROS2_WS_PATH"
 
 # Source your ROS2 workspace
 source $ROS2_WS_PATH/install/setup.bash
 
-# Stop the nodes
-killall $COPILOT_NODE &
+# Get start time in seconds since the epoch
 
-# Wait a bit for shutdown to complete
-sleep 0.5
+# Stop any running instances of the copilot node (optional, remove if not needed)
+killall $COPILOT_NODE
 
-# Restart the nodes
-ros2 run copilot copilot
+
+start_time=$(date +%s.%N)
+
+# Start the copilot node
+ros2 run copilot copilot &
+
+# Loop until the copilotrv node is detected
+while ! ros2 node list | grep -q 'copilotrv'; do
+  sleep 0.01
+done
+
+# Get end time after copilotrv appears
+end_time=$(date +%s.%N)
+
+# Calculate the total duration
+total_duration=$(echo "$end_time - $start_time" | bc)
+
+echo "Time until copilotrv is ready: $total_duration seconds"
