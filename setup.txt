@@ -1,0 +1,60 @@
+﻿In colcon_ws/src/ :
+Git clone https://github.com/Andersen0/Thesis_Workspace.git
+
+cd ~/colcon_ws
+
+colcon build
+
+--------CAMERA YOLO---------
+
+sudo apt install ros-humble-librealsense2*
+
+sudo apt install ros-humble-realsense2-*
+
+ros2 launch realsense2_camera rs_launch.py enable_rgbd:=true enable_sync:=true align_depth.enable:=true enable_color:=true enable_depth:=true 
+
+In new terminal:
+
+pip install torch
+
+pip install torchvision
+
+pip install tqdm
+
+ros2 run yolov6 inferer
+
+--------FLASK_ROS---------
+
+In new terminal:
+
+sudo apt install ros-humble-rosbridge-server
+source /opt/ros/humble/setup.bash
+ros2 launch rosbridge_server rosbridge_websocket_launch.xml
+
+In VSCode: 
+
+Install Python Language support
+
+pip install flask
+
+Navigate to hds_and_website package and ras_reliability_backend/pyflask/flasknoreload.py
+
+right click and Run Python → Run Python File in Terminal
+
+May get error:
+WARNING: The script flask is installed in '/home/username/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use –no-warn-script-location.
+
+Consider adding to PATH (export PATH='/home/username/.local/bin')
+
+--------COPILOT-----------
+
+ros2 run copilot copilot
+
+ros2 run srobot_realistic_output subscriber
+
+--------- FRET ----------
+
+
+
+------- DONE --------

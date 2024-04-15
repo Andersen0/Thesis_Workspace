@@ -127,14 +127,14 @@
   }
 
   // Refresh data every second
-  setInterval(() => fetchData('/dtt', 'dttValue'), 100);
-  setInterval(() => fetchData('/classifier', 'classifierValue'), 100);
-  setInterval(() => fetchData('/alert', 'alertStatus'), 100);
-  setInterval(() => fetchData('/halt', 'haltStatus'), 100);
-  setInterval(() => fetchData('/slowdown', 'slowdownStatus'), 100);
-  setInterval(() => fetchData('/state', 'currentState'), 100);
-  setInterval(() => fetchData('/uvc', 'uvcStatus'), 100);
-  setInterval(() => fetchData('/timer', 'timerValue'), 100);
+  setInterval(() => fetchData('/dtt', 'dttValue'), 1000);
+  setInterval(() => fetchData('/classifier', 'classifierValue'), 1000);
+  setInterval(() => fetchData('/alert', 'alertStatus'), 1000);
+  setInterval(() => fetchData('/halt', 'haltStatus'), 1000);
+  setInterval(() => fetchData('/slowdown', 'slowdownStatus'), 1000);
+  setInterval(() => fetchData('/state', 'currentState'), 1000);
+  setInterval(() => fetchData('/uvc', 'uvcStatus'), 1000);
+  setInterval(() => fetchData('/timer', 'timerValue'), 1000);
 </script>
 
 <div class="flex-container">
@@ -313,7 +313,7 @@
 <script>
   setInterval(function() {
     document.getElementById('videoElement').src = "/stream?" + new Date().getTime();
-  }, 1000);
+  }, 50);
 </script>
 </body>
 </html>
