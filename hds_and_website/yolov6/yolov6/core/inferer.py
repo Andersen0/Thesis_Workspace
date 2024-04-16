@@ -181,7 +181,7 @@ class Inferer(Node):
 
                     depth = Float32()
                     depth.data = float(depth_value)
-                    print(depth.data)
+                    # print(depth.data) ----------------------- DEBUGGING LINE
                     self.depth_pub.publish(depth)
                     #self.get_logger.info("Detected class depth: {}".format(detected_class_depth))
                 if save_txt:  # Write to file
