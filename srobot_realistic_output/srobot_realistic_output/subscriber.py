@@ -5,7 +5,8 @@ from rclpy.callback_groups import ReentrantCallbackGroup
 from rclpy.qos import QoSProfile, DurabilityPolicy
 import time
 import math
-from random import randint
+from random import uniform
+
 class ClassDistanceProcessor(Node):
     def __init__(self):
         super().__init__('class_distance_processor')
@@ -27,29 +28,47 @@ class ClassDistanceProcessor(Node):
         self.classifier = None
 
         self.speed_pubber = self.create_publisher(Float64, '/fakerobotspeed', 1)
-        self.speed_timer_period = 0.25  # seconds
+        self.speed_timer_period = 0.5  # seconds
         self.speed_timer = self.create_timer(self.speed_timer_period, self.speed_publishing_callback)
         # Speed wave pattern parameters
         self.min_speed = 4.0  # km/h
         self.max_speed = 7.0  # km/h
         self.speed_range = self.max_speed - self.min_speed
         self.speed_period = 30  # seconds for one cycle of the wave pattern
-        self.start_time = self.get_clock().now().seconds_nanoseconds()[0]
+        self.start_time = self.get_clock().now().to_msg().sec
+        self.ramp_duration = 10  # Duration in seconds for speed ramping from 0 to 5
 
 
     def speed_publishing_callback(self):
-        # Calculate elapsed time
-        elapsed_time = self.get_clock().now().seconds_nanoseconds()[0] - self.start_time
-        t_period = randint(self.speed_period, self.speed_period+1)
+        # Get the current ROS 2 time
+        current_time = self.get_clock().now().to_msg().sec
+        
+        # Calculate elapsed time since node started
+        elapsed_time = current_time - self.start_time
+        t_period = self.speed_period
 
-        # Calculate the current speed in the wave pattern
-        wave_value = math.sin(2 * math.pi * elapsed_time / t_period)
-        current_speed = self.min_speed + (self.speed_range / 2) * (1 + wave_value)
+        # Initialize speed ramping parameters
+        if elapsed_time < self.ramp_duration:
+            # Speed ramping from 0 to 4
+            current_speed = (elapsed_time / self.ramp_duration) * self.min_speed
+        else:
+            # Calculate the current speed in the wave pattern
+            elapsed_wave_time = elapsed_time - self.ramp_duration
+            wave_value = math.sin(2 * math.pi * elapsed_wave_time / t_period)
+            current_speed = self.min_speed + (self.speed_range / 2) * (1 + wave_value)
+
+        # Introduce random fluctuations
+        current_speed += uniform(-0.5, 0.5)  # Adjust the range of the fluctuations as needed
+
+        # Ensure the speed remains within the defined range
+        current_speed = max(0, min(current_speed, self.max_speed))
 
         # Create and publish the current speed message
         speed_msg = Float64()
         speed_msg.data = current_speed
         self.speed_pubber.publish(speed_msg)
+
+
 
 
 

@@ -14,6 +14,7 @@ from cv_bridge import CvBridge, CvBridgeError
 import cv2
 from rclpy.qos import QoSProfile, DurabilityPolicy
 
+
 current_dir = os.path.dirname(os.path.abspath(__file__))
 template_dir = os.path.join(current_dir, 'templates')
 static_dir = os.path.join(current_dir, 'static')
@@ -28,7 +29,7 @@ class TeleopNode(Node):
         current_time = datetime.now()
         self.image_dir = os.path.join(current_dir, f'images_{current_time.strftime("%Y%m%d_%H%M%S")}')
         os.makedirs(self.image_dir, exist_ok=True)
-        self.log_dir = os.path.join(current_dir, f'log_{current_time.strftime("%Y%m%d_%H%M%S")}')
+        self.log_dir = os.path.join(current_dir, f'log_dir')
         os.makedirs(self.log_dir, exist_ok=True)
         self.log_file = os.path.join(self.log_dir, f'speed_log_{current_time.strftime("%Y%m%d_%H%M%S")}.txt')
         self.last_save_time = time.time()
@@ -75,8 +76,12 @@ class TeleopNode(Node):
         speed_value = msg.data
         # Log speed data to a text file
         with open(self.log_file, 'a') as f:
-            f.write(f"{speed_value}\n")        
+            current_time = datetime.now()
+            # Format current time including milliseconds
+            time_string = current_time.strftime('%H%M%S%f')[:-3]  # Exclude microseconds for milliseconds
+            f.write(f"{speed_value}, {time_string}\n")
         self.app.config['speed'] = msg.data
+
 
     def scan_callback(self, msg):
         dtt_value = msg.data
