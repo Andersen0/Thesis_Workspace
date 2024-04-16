@@ -4,7 +4,8 @@ from std_msgs.msg import Int64, Bool, Float64, String
 from rclpy.callback_groups import ReentrantCallbackGroup
 from rclpy.qos import QoSProfile, DurabilityPolicy
 import time
-
+import math
+from random import randint
 class ClassDistanceProcessor(Node):
     def __init__(self):
         super().__init__('class_distance_processor')
@@ -22,9 +23,35 @@ class ClassDistanceProcessor(Node):
         self.turnoff_uvc_publisher = self.create_publisher(Bool, '/sRobotTurnoffUVC', qos_profile, callback_group=self.reentrant_callback_group)
         self.classifier_publisher = self.create_publisher(Int64, '/sRobotClassifier', qos_profile, callback_group=self.reentrant_callback_group)
         self.distance_publisher = self.create_publisher(Int64, '/scan', qos_profile, callback_group=self.reentrant_callback_group)
-
         self.distance_to_target = None
         self.classifier = None
+
+        self.speed_pubber = self.create_publisher(Float64, '/fakerobotspeed', 1)
+        self.speed_timer_period = 0.25  # seconds
+        self.speed_timer = self.create_timer(self.speed_timer_period, self.speed_publishing_callback)
+        # Speed wave pattern parameters
+        self.min_speed = 4.0  # km/h
+        self.max_speed = 7.0  # km/h
+        self.speed_range = self.max_speed - self.min_speed
+        self.speed_period = 30  # seconds for one cycle of the wave pattern
+        self.start_time = self.get_clock().now().seconds_nanoseconds()[0]
+
+
+    def speed_publishing_callback(self):
+        # Calculate elapsed time
+        elapsed_time = self.get_clock().now().seconds_nanoseconds()[0] - self.start_time
+        t_period = randint(self.speed_period, self.speed_period+1)
+
+        # Calculate the current speed in the wave pattern
+        wave_value = math.sin(2 * math.pi * elapsed_time / t_period)
+        current_speed = self.min_speed + (self.speed_range / 2) * (1 + wave_value)
+
+        # Create and publish the current speed message
+        speed_msg = Float64()
+        speed_msg.data = current_speed
+        self.speed_pubber.publish(speed_msg)
+
+
 
     def injection_callback(self, msg):
         # Injection is a string of the form {},{},{},{},{},{} where each {} is an element much like the class_detection string
@@ -128,6 +155,22 @@ class ClassDistanceProcessor(Node):
         self.publish_condition(self.halt_publisher, halt)
         self.publish_condition(self.alert_publisher, alert)
         self.publish_condition(self.turnoff_uvc_publisher, turnoffUVC)
+
+        if slowdown:
+            self.min_speed = 2.0
+            self.max_speed = 3.5
+            self.speed_period = 60
+            self.speed_range = self.max_speed - self.min_speed
+        elif halt:
+            self.min_speed = 0.0
+            self.max_speed = 0.0
+            self.speed_period = 60
+            self.speed_range = self.max_speed - self.min_speed
+        else:
+            self.min_speed = 4.0
+            self.max_speed = 7.0
+            self.speed_period = 30
+            self.speed_range = self.max_speed - self.min_speed
 
         # Update last published values
         #self.last_published_classifier = classifier
