@@ -211,7 +211,7 @@ class TeleopNode(Node):
         except CvBridgeError as e:
             print(e)
             return
-        if time.time() - self.last_save_time >= 5:
+        if time.time() - self.last_save_time >= 3:
             image_path = os.path.join(self.image_dir, f'image_{datetime.now().strftime("%Y%m%d_%H%M%S")}.jpg')
             cv2.imwrite(image_path, cv_image)
             self.last_save_time = time.time()
