@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Create a confusion matrix / cross table for TP, FP, TN, FN
-data = np.array([[200, 33], [0, 167]])  # Example data for confusion matrix
+data = np.array([[32, 17], [0, 15]])  # Example data for confusion matrix
 conf_matrix = pd.DataFrame(data, index=["Actual Positive", "Actual Negative"],
                            columns=["Predicted Positive", "Predicted Negative"])
 
