@@ -53,6 +53,7 @@ class TeleopNode(Node):
         log = logging.getLogger('werkzeug')
         log.setLevel(logging.WARNING)
         logging.getLogger().setLevel(logging.WARNING)
+        self.t_time = 0
 
         # create subscribers for the following topics /copilot/handlerDtt_assumption /copilot/handlerclassifier_assumption /copilot/handlerclassifier_empty /copilot/handleroperationalstate_0 /copilot/handleroperationalstate_1 /copilot/handleroperationalstate_2 /copilot/handleroperationalstate_3 /copilot/handlerstate_req101 /copilot/handlerstate_req102 /copilot/handlerstate_req103 /copilot/handlerstate_req104 /copilot/handlerstate_req201 /copilot/handlerstate_req202 /copilot/handlerstate_req203
 
@@ -76,10 +77,9 @@ class TeleopNode(Node):
         speed_value = msg.data
         # Log speed data to a text file
         with open(self.log_file, 'a') as f:
-            current_time = datetime.now()
             # Format current time including milliseconds
-            time_string = current_time.strftime('%H%M%S%f')[:-3]  # Exclude microseconds for milliseconds
-            f.write(f"{speed_value}, {time_string}\n")
+            f.write(f"{speed_value}, {self.t_time}\n")
+            self.t_time +=1
         self.app.config['speed'] = msg.data
 
 
