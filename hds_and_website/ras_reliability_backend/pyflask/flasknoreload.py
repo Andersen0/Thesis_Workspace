@@ -14,6 +14,7 @@ from cv_bridge import CvBridge, CvBridgeError
 import cv2
 from rclpy.qos import QoSProfile, DurabilityPolicy
 
+
 current_dir = os.path.dirname(os.path.abspath(__file__))
 template_dir = os.path.join(current_dir, 'templates')
 static_dir = os.path.join(current_dir, 'static')
@@ -28,6 +29,9 @@ class TeleopNode(Node):
         current_time = datetime.now()
         self.image_dir = os.path.join(current_dir, f'images_{current_time.strftime("%Y%m%d_%H%M%S")}')
         os.makedirs(self.image_dir, exist_ok=True)
+        self.log_dir = os.path.join(current_dir, f'log_dir')
+        os.makedirs(self.log_dir, exist_ok=True)
+        self.log_file = os.path.join(self.log_dir, f'speed_log_{current_time.strftime("%Y%m%d_%H%M%S")}.txt')
         self.last_save_time = time.time()
         self.app = app
         self.get_logger().info('Initializing My Node!')
@@ -42,6 +46,8 @@ class TeleopNode(Node):
         self.timer = self.create_subscription(String, '/timer', self.timer_callback, qos_profile)
         self.yolo_subber = self.create_subscription(Image, '/yolo_im', self.yolo_callback, qos_profile) 
         #self.class_subber = self.create_subscription(String, '/class_detection', self.class_splitter, qos_profile) 
+        self.speed_subber = self.create_subscription(Float64, '/fakerobotspeed', self.speedlogger_callback, qos_profile) 
+
 
         self.get_logger().info('Initialized!')
         log = logging.getLogger('werkzeug')
@@ -64,6 +70,17 @@ class TeleopNode(Node):
         self.handlerstate_req201_subber = self.create_subscription(Empty, '/copilot/handlerstate_req201', self.handlerstate_req201_callback, 1)
         self.handlerstate_req202_subber = self.create_subscription(Empty, '/copilot/handlerstate_req202', self.handlerstate_req202_callback, 1)
         self.handlerstate_req203_subber = self.create_subscription(Empty, '/copilot/handlerstate_req203', self.handlerstate_req203_callback, 1)
+
+
+    def speedlogger_callback(self, msg):
+        speed_value = msg.data
+        # Log speed data to a text file
+        with open(self.log_file, 'a') as f:
+            current_time = datetime.now()
+            # Format current time including milliseconds
+            time_string = current_time.strftime('%H%M%S%f')[:-3]  # Exclude microseconds for milliseconds
+            f.write(f"{speed_value}, {time_string}\n")
+        self.app.config['speed'] = msg.data
 
 
     def scan_callback(self, msg):
@@ -211,7 +228,7 @@ class TeleopNode(Node):
         except CvBridgeError as e:
             print(e)
             return
-        if time.time() - self.last_save_time >= 5:
+        if time.time() - self.last_save_time >= 3:
             image_path = os.path.join(self.image_dir, f'image_{datetime.now().strftime("%Y%m%d_%H%M%S")}.jpg')
             cv2.imwrite(image_path, cv_image)
             self.last_save_time = time.time()
