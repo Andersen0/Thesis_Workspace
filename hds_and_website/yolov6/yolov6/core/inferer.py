@@ -107,7 +107,7 @@ class Inferer(Node):
         #print(trimmed_data[0:10])
         return trimmed_data
 
-    def infer(self, conf_thres=0.6,
+    def infer(self, conf_thres=0.4,
         iou_thres=0.45,
         max_det=1000,
         save_txt=True,
