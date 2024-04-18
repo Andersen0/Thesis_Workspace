@@ -22,10 +22,9 @@
 
 using std::placeholders::_1;
 
-bool alert;
-std::int64_t OpState;
 std::int64_t classifier;
 std::int64_t distance_to_target;
+bool alert;
 bool halt;
 bool slowdown;
 bool turnoffUVC;
@@ -33,10 +32,6 @@ bool turnoffUVC;
 class CopilotRV : public rclcpp::Node {
   public:
     CopilotRV() : Node("copilotrv") {
-      alert_subscription_ = this->create_subscription<std_msgs::msg::Bool>(
-        "/sRobotAlert", 10,
-        std::bind(&CopilotRV::alert_callback, this, _1));
-
       classifier_subscription_ = this->create_subscription<std_msgs::msg::Int64>(
         "/sRobotClassifier", 10,
         std::bind(&CopilotRV::classifier_callback, this, _1));
@@ -44,6 +39,10 @@ class CopilotRV : public rclcpp::Node {
       distance_to_target_subscription_ = this->create_subscription<std_msgs::msg::Int64>(
         "/scan", 10,
         std::bind(&CopilotRV::distance_to_target_callback, this, _1));
+
+      alert_subscription_ = this->create_subscription<std_msgs::msg::Bool>(
+        "/sRobotAlert", 10,
+        std::bind(&CopilotRV::alert_callback, this, _1));
 
       halt_subscription_ = this->create_subscription<std_msgs::msg::Bool>(
         "/sRobotHalt", 10,
@@ -53,131 +52,127 @@ class CopilotRV : public rclcpp::Node {
         "/sRobotSlowdown", 10,
         std::bind(&CopilotRV::slowdown_callback, this, _1));
 
-      OpState_subscription_ = this->create_subscription<std_msgs::msg::Int64>(
-        "/sRobotState", 10,
-        std::bind(&CopilotRV::OpState_callback, this, _1));
-
       turnoffUVC_subscription_ = this->create_subscription<std_msgs::msg::Bool>(
         "/sRobotTurnoffUVC", 10,
         std::bind(&CopilotRV::turnoffUVC_callback, this, _1));
 
-      handleroperationalstate_0_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
-        "copilot/handleroperationalstate_0", 10);
+      handlerpropOperationalstate_0_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
+        "copilot/handlerpropOperationalstate_0", 10);
 
-      handleroperationalstate_1_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
-        "copilot/handleroperationalstate_1", 10);
+      handlerpropOperationalstate_1_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
+        "copilot/handlerpropOperationalstate_1", 10);
 
-      handleroperationalstate_2_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
-        "copilot/handleroperationalstate_2", 10);
+      handlerpropOperationalstate_2_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
+        "copilot/handlerpropOperationalstate_2", 10);
 
-      handleroperationalstate_3_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
-        "copilot/handleroperationalstate_3", 10);
+      handlerpropOperationalstate_3_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
+        "copilot/handlerpropOperationalstate_3", 10);
 
-      handlerdtt_assumption_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
-        "copilot/handlerdtt_assumption", 10);
+      handlerpropDtt_assumption_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
+        "copilot/handlerpropDtt_assumption", 10);
 
-      handlerstate_req103_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
-        "copilot/handlerstate_req103", 10);
+      handlerpropState_req103_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
+        "copilot/handlerpropState_req103", 10);
 
-      handlerclassifier_assumption_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
-        "copilot/handlerclassifier_assumption", 10);
+      handlerpropClassifier_assumption_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
+        "copilot/handlerpropClassifier_assumption", 10);
 
-      handlerstate_req203_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
-        "copilot/handlerstate_req203", 10);
+      handlerpropState_req203_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
+        "copilot/handlerpropState_req203", 10);
 
-      handlerstate_req101_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
-        "copilot/handlerstate_req101", 10);
+      handlerpropState_req101_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
+        "copilot/handlerpropState_req101", 10);
 
-      handlerstate_req201_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
-        "copilot/handlerstate_req201", 10);
+      handlerpropState_req201_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
+        "copilot/handlerpropState_req201", 10);
 
-      handlerstate_req102_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
-        "copilot/handlerstate_req102", 10);
+      handlerpropState_req102_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
+        "copilot/handlerpropState_req102", 10);
 
-      handlerstate_req202_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
-        "copilot/handlerstate_req202", 10);
+      handlerpropState_req202_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
+        "copilot/handlerpropState_req202", 10);
 
-      handlerstate_req000_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
-        "copilot/handlerstate_req000", 10);
+      handlerpropState_req000_publisher_ = this->create_publisher<std_msgs::msg::Empty>(
+        "copilot/handlerpropState_req000", 10);
 
     }
 
     // Report (publish) monitor violations.
-    void handleroperationalstate_0() {
+    void handlerpropOperationalstate_0() {
       auto output = std_msgs::msg::Empty();
-      handleroperationalstate_0_publisher_->publish(output);
+      handlerpropOperationalstate_0_publisher_->publish(output);
     }
 
     // Report (publish) monitor violations.
-    void handleroperationalstate_1() {
+    void handlerpropOperationalstate_1() {
       auto output = std_msgs::msg::Empty();
-      handleroperationalstate_1_publisher_->publish(output);
+      handlerpropOperationalstate_1_publisher_->publish(output);
     }
 
     // Report (publish) monitor violations.
-    void handleroperationalstate_2() {
+    void handlerpropOperationalstate_2() {
       auto output = std_msgs::msg::Empty();
-      handleroperationalstate_2_publisher_->publish(output);
+      handlerpropOperationalstate_2_publisher_->publish(output);
     }
 
     // Report (publish) monitor violations.
-    void handleroperationalstate_3() {
+    void handlerpropOperationalstate_3() {
       auto output = std_msgs::msg::Empty();
-      handleroperationalstate_3_publisher_->publish(output);
+      handlerpropOperationalstate_3_publisher_->publish(output);
     }
 
     // Report (publish) monitor violations.
-    void handlerdtt_assumption() {
+    void handlerpropDtt_assumption() {
       auto output = std_msgs::msg::Empty();
-      handlerdtt_assumption_publisher_->publish(output);
+      handlerpropDtt_assumption_publisher_->publish(output);
     }
 
     // Report (publish) monitor violations.
-    void handlerstate_req103() {
+    void handlerpropState_req103() {
       auto output = std_msgs::msg::Empty();
-      handlerstate_req103_publisher_->publish(output);
+      handlerpropState_req103_publisher_->publish(output);
     }
 
     // Report (publish) monitor violations.
-    void handlerclassifier_assumption() {
+    void handlerpropClassifier_assumption() {
       auto output = std_msgs::msg::Empty();
-      handlerclassifier_assumption_publisher_->publish(output);
+      handlerpropClassifier_assumption_publisher_->publish(output);
     }
 
     // Report (publish) monitor violations.
-    void handlerstate_req203() {
+    void handlerpropState_req203() {
       auto output = std_msgs::msg::Empty();
-      handlerstate_req203_publisher_->publish(output);
+      handlerpropState_req203_publisher_->publish(output);
     }
 
     // Report (publish) monitor violations.
-    void handlerstate_req101() {
+    void handlerpropState_req101() {
       auto output = std_msgs::msg::Empty();
-      handlerstate_req101_publisher_->publish(output);
+      handlerpropState_req101_publisher_->publish(output);
     }
 
     // Report (publish) monitor violations.
-    void handlerstate_req201() {
+    void handlerpropState_req201() {
       auto output = std_msgs::msg::Empty();
-      handlerstate_req201_publisher_->publish(output);
+      handlerpropState_req201_publisher_->publish(output);
     }
 
     // Report (publish) monitor violations.
-    void handlerstate_req102() {
+    void handlerpropState_req102() {
       auto output = std_msgs::msg::Empty();
-      handlerstate_req102_publisher_->publish(output);
+      handlerpropState_req102_publisher_->publish(output);
     }
 
     // Report (publish) monitor violations.
-    void handlerstate_req202() {
+    void handlerpropState_req202() {
       auto output = std_msgs::msg::Empty();
-      handlerstate_req202_publisher_->publish(output);
+      handlerpropState_req202_publisher_->publish(output);
     }
 
     // Report (publish) monitor violations.
-    void handlerstate_req000() {
+    void handlerpropState_req000() {
       auto output = std_msgs::msg::Empty();
-      handlerstate_req000_publisher_->publish(output);
+      handlerpropState_req000_publisher_->publish(output);
     }
 
     // Needed so we can report messages to the log.
@@ -187,28 +182,29 @@ class CopilotRV : public rclcpp::Node {
     }
 
   private:
-    void alert_callback(const std_msgs::msg::Bool::SharedPtr msg) const {
-      alert = msg->data;
-    }
-
     void classifier_callback(const std_msgs::msg::Int64::SharedPtr msg) const {
       classifier = msg->data;
+      step();
     }
 
     void distance_to_target_callback(const std_msgs::msg::Int64::SharedPtr msg) const {
       distance_to_target = msg->data;
+      step();
+    }
+
+    void alert_callback(const std_msgs::msg::Bool::SharedPtr msg) const {
+      alert = msg->data;
+      step();
     }
 
     void halt_callback(const std_msgs::msg::Bool::SharedPtr msg) const {
       halt = msg->data;
+      step();
     }
 
     void slowdown_callback(const std_msgs::msg::Bool::SharedPtr msg) const {
       slowdown = msg->data;
-    }
-
-    void OpState_callback(const std_msgs::msg::Int64::SharedPtr msg) const {
-      OpState = msg->data;
+      step();
     }
 
     void turnoffUVC_callback(const std_msgs::msg::Bool::SharedPtr msg) const {
@@ -216,124 +212,122 @@ class CopilotRV : public rclcpp::Node {
       step();
     }
 
-    rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr alert_subscription_;
-
     rclcpp::Subscription<std_msgs::msg::Int64>::SharedPtr classifier_subscription_;
 
     rclcpp::Subscription<std_msgs::msg::Int64>::SharedPtr distance_to_target_subscription_;
+
+    rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr alert_subscription_;
 
     rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr halt_subscription_;
 
     rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr slowdown_subscription_;
 
-    rclcpp::Subscription<std_msgs::msg::Int64>::SharedPtr OpState_subscription_;
-
     rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr turnoffUVC_subscription_;
 
-    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handleroperationalstate_0_publisher_;
+    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerpropOperationalstate_0_publisher_;
 
-    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handleroperationalstate_1_publisher_;
+    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerpropOperationalstate_1_publisher_;
 
-    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handleroperationalstate_2_publisher_;
+    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerpropOperationalstate_2_publisher_;
 
-    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handleroperationalstate_3_publisher_;
+    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerpropOperationalstate_3_publisher_;
 
-    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerdtt_assumption_publisher_;
+    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerpropDtt_assumption_publisher_;
 
-    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerstate_req103_publisher_;
+    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerpropState_req103_publisher_;
 
-    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerclassifier_assumption_publisher_;
+    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerpropClassifier_assumption_publisher_;
 
-    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerstate_req203_publisher_;
+    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerpropState_req203_publisher_;
 
-    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerstate_req101_publisher_;
+    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerpropState_req101_publisher_;
 
-    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerstate_req201_publisher_;
+    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerpropState_req201_publisher_;
 
-    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerstate_req102_publisher_;
+    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerpropState_req102_publisher_;
 
-    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerstate_req202_publisher_;
+    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerpropState_req202_publisher_;
 
-    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerstate_req000_publisher_;
+    rclcpp::Publisher<std_msgs::msg::Empty>::SharedPtr handlerpropState_req000_publisher_;
 
 };
 
 // Pass monitor violations to the actual class, which has ways to
 // communicate with other applications.
-void handleroperationalstate_0() {
-  CopilotRV::getInstance().handleroperationalstate_0();
+void handlerpropOperationalstate_0() {
+  CopilotRV::getInstance().handlerpropOperationalstate_0();
 }
 
 // Pass monitor violations to the actual class, which has ways to
 // communicate with other applications.
-void handleroperationalstate_1() {
-  CopilotRV::getInstance().handleroperationalstate_1();
+void handlerpropOperationalstate_1() {
+  CopilotRV::getInstance().handlerpropOperationalstate_1();
 }
 
 // Pass monitor violations to the actual class, which has ways to
 // communicate with other applications.
-void handleroperationalstate_2() {
-  CopilotRV::getInstance().handleroperationalstate_2();
+void handlerpropOperationalstate_2() {
+  CopilotRV::getInstance().handlerpropOperationalstate_2();
 }
 
 // Pass monitor violations to the actual class, which has ways to
 // communicate with other applications.
-void handleroperationalstate_3() {
-  CopilotRV::getInstance().handleroperationalstate_3();
+void handlerpropOperationalstate_3() {
+  CopilotRV::getInstance().handlerpropOperationalstate_3();
 }
 
 // Pass monitor violations to the actual class, which has ways to
 // communicate with other applications.
-void handlerdtt_assumption() {
-  CopilotRV::getInstance().handlerdtt_assumption();
+void handlerpropDtt_assumption() {
+  CopilotRV::getInstance().handlerpropDtt_assumption();
 }
 
 // Pass monitor violations to the actual class, which has ways to
 // communicate with other applications.
-void handlerstate_req103() {
-  CopilotRV::getInstance().handlerstate_req103();
+void handlerpropState_req103() {
+  CopilotRV::getInstance().handlerpropState_req103();
 }
 
 // Pass monitor violations to the actual class, which has ways to
 // communicate with other applications.
-void handlerclassifier_assumption() {
-  CopilotRV::getInstance().handlerclassifier_assumption();
+void handlerpropClassifier_assumption() {
+  CopilotRV::getInstance().handlerpropClassifier_assumption();
 }
 
 // Pass monitor violations to the actual class, which has ways to
 // communicate with other applications.
-void handlerstate_req203() {
-  CopilotRV::getInstance().handlerstate_req203();
+void handlerpropState_req203() {
+  CopilotRV::getInstance().handlerpropState_req203();
 }
 
 // Pass monitor violations to the actual class, which has ways to
 // communicate with other applications.
-void handlerstate_req101() {
-  CopilotRV::getInstance().handlerstate_req101();
+void handlerpropState_req101() {
+  CopilotRV::getInstance().handlerpropState_req101();
 }
 
 // Pass monitor violations to the actual class, which has ways to
 // communicate with other applications.
-void handlerstate_req201() {
-  CopilotRV::getInstance().handlerstate_req201();
+void handlerpropState_req201() {
+  CopilotRV::getInstance().handlerpropState_req201();
 }
 
 // Pass monitor violations to the actual class, which has ways to
 // communicate with other applications.
-void handlerstate_req102() {
-  CopilotRV::getInstance().handlerstate_req102();
+void handlerpropState_req102() {
+  CopilotRV::getInstance().handlerpropState_req102();
 }
 
 // Pass monitor violations to the actual class, which has ways to
 // communicate with other applications.
-void handlerstate_req202() {
-  CopilotRV::getInstance().handlerstate_req202();
+void handlerpropState_req202() {
+  CopilotRV::getInstance().handlerpropState_req202();
 }
 
 // Pass monitor violations to the actual class, which has ways to
 // communicate with other applications.
-void handlerstate_req000() {
-  CopilotRV::getInstance().handlerstate_req000();
+void handlerpropState_req000() {
+  CopilotRV::getInstance().handlerpropState_req000();
 }
 
 int main(int argc, char* argv[]) {

@@ -126,19 +126,19 @@ static bool s7_gen(void) {
 }
 
 static bool s8_gen(void) {
-  return ((!((classifier_cpy) == ((int64_t)(1)))) || ((!((distance_to_target_cpy) > ((int64_t)(3)))) || ((OpState_cpy) == ((int64_t)(1))))) && ((s8_get)((0)));
+  return ((!((classifier_cpy) == ((int64_t)(1)))) || ((!((distance_to_target_cpy) > ((int64_t)(7)))) || ((OpState_cpy) == ((int64_t)(1))))) && ((s8_get)((0)));
 }
 
 static bool s9_gen(void) {
-  return ((!((classifier_cpy) == ((int64_t)(2)))) || ((!((distance_to_target_cpy) > ((int64_t)(3)))) || ((OpState_cpy) == ((int64_t)(2))))) && ((s9_get)((0)));
+  return ((!((classifier_cpy) == ((int64_t)(2)))) || ((!((distance_to_target_cpy) > ((int64_t)(7)))) || ((OpState_cpy) == ((int64_t)(2))))) && ((s9_get)((0)));
 }
 
 static bool s10_gen(void) {
-  return ((!((classifier_cpy) == ((int64_t)(1)))) || ((!((!((distance_to_target_cpy) > ((int64_t)(3)))) && ((distance_to_target_cpy) > ((int64_t)(3))))) || ((OpState_cpy) == ((int64_t)(2))))) && ((s10_get)((0)));
+  return ((!((classifier_cpy) == ((int64_t)(1)))) || ((!((!((distance_to_target_cpy) > ((int64_t)(7)))) && ((distance_to_target_cpy) > ((int64_t)(3))))) || ((OpState_cpy) == ((int64_t)(2))))) && ((s10_get)((0)));
 }
 
 static bool s11_gen(void) {
-  return ((!((classifier_cpy) == ((int64_t)(2)))) || ((!((!((distance_to_target_cpy) > ((int64_t)(3)))) && ((distance_to_target_cpy) > ((int64_t)(3))))) || ((OpState_cpy) == ((int64_t)(3))))) && ((s11_get)((0)));
+  return ((!((classifier_cpy) == ((int64_t)(2)))) || ((!((!((distance_to_target_cpy) > ((int64_t)(7)))) && ((distance_to_target_cpy) > ((int64_t)(3))))) || ((OpState_cpy) == ((int64_t)(3))))) && ((s11_get)((0)));
 }
 
 static bool s12_gen(void) {
@@ -178,19 +178,19 @@ static bool handlerstate_req203_guard(void) {
 }
 
 static bool handlerstate_req101_guard(void) {
-  return !(((!((classifier_cpy) == ((int64_t)(1)))) || ((!((distance_to_target_cpy) > ((int64_t)(3)))) || ((OpState_cpy) == ((int64_t)(1))))) && ((s8_get)((0))));
+  return !(((!((classifier_cpy) == ((int64_t)(1)))) || ((!((distance_to_target_cpy) > ((int64_t)(7)))) || ((OpState_cpy) == ((int64_t)(1))))) && ((s8_get)((0))));
 }
 
 static bool handlerstate_req201_guard(void) {
-  return !(((!((classifier_cpy) == ((int64_t)(2)))) || ((!((distance_to_target_cpy) > ((int64_t)(3)))) || ((OpState_cpy) == ((int64_t)(2))))) && ((s9_get)((0))));
+  return !(((!((classifier_cpy) == ((int64_t)(2)))) || ((!((distance_to_target_cpy) > ((int64_t)(7)))) || ((OpState_cpy) == ((int64_t)(2))))) && ((s9_get)((0))));
 }
 
 static bool handlerstate_req102_guard(void) {
-  return !(((!((classifier_cpy) == ((int64_t)(1)))) || ((!((!((distance_to_target_cpy) > ((int64_t)(3)))) && ((distance_to_target_cpy) > ((int64_t)(3))))) || ((OpState_cpy) == ((int64_t)(2))))) && ((s10_get)((0))));
+  return !(((!((classifier_cpy) == ((int64_t)(1)))) || ((!((!((distance_to_target_cpy) > ((int64_t)(7)))) && ((distance_to_target_cpy) > ((int64_t)(3))))) || ((OpState_cpy) == ((int64_t)(2))))) && ((s10_get)((0))));
 }
 
 static bool handlerstate_req202_guard(void) {
-  return !(((!((classifier_cpy) == ((int64_t)(2)))) || ((!((!((distance_to_target_cpy) > ((int64_t)(3)))) && ((distance_to_target_cpy) > ((int64_t)(3))))) || ((OpState_cpy) == ((int64_t)(3))))) && ((s11_get)((0))));
+  return !(((!((classifier_cpy) == ((int64_t)(2)))) || ((!((!((distance_to_target_cpy) > ((int64_t)(7)))) && ((distance_to_target_cpy) > ((int64_t)(3))))) || ((OpState_cpy) == ((int64_t)(3))))) && ((s11_get)((0))));
 }
 
 static bool handlerstate_req000_guard(void) {
