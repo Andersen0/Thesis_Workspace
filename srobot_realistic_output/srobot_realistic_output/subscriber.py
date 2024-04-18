@@ -76,7 +76,7 @@ class ClassDistanceProcessor(Node):
                     amplitude = 1.5  # Amplitude of the wave
                     offset = 5.5  # Offset to center the wave within the range
 
-                    self.current_speed = amplitude * math.sin(time_factor * self.current_speed) + offset
+                    self.current_speed = amplitude * math.sin(time_factor * elapsed_time) + offset
 
         # Introduce random fluctuations
         self.current_speed += uniform(-0.11242144, 0.11241241)
