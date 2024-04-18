@@ -5,7 +5,7 @@ from rclpy.callback_groups import ReentrantCallbackGroup
 from rclpy.qos import QoSProfile, DurabilityPolicy
 import time
 import math
-from random import uniform
+from random import uniform, randint
 
 class ClassDistanceProcessor(Node):
     def __init__(self):
@@ -28,45 +28,74 @@ class ClassDistanceProcessor(Node):
         self.classifier = None
 
         self.speed_pubber = self.create_publisher(Float64, '/fakerobotspeed', 1)
-        self.speed_timer_period = 0.5  # seconds
+        self.speed_timer_period = 0.25  # seconds
         self.speed_timer = self.create_timer(self.speed_timer_period, self.speed_publishing_callback)
         # Speed wave pattern parameters
-        self.min_speed = 4.0  # km/h
-        self.max_speed = 7.0  # km/h
+        self.min_speed = 3.953  # km/h
+        self.max_speed = 7.146  # km/h
         self.speed_range = self.max_speed - self.min_speed
         self.speed_period = 30  # seconds for one cycle of the wave pattern
         self.start_time = self.get_clock().now().to_msg().sec
         self.ramp_duration = 10  # Duration in seconds for speed ramping from 0 to 5
-
+        self.current_speed = 0.0
 
     def speed_publishing_callback(self):
         # Get the current ROS 2 time
         current_time = self.get_clock().now().to_msg().sec
-        
+
         # Calculate elapsed time since node started
         elapsed_time = current_time - self.start_time
-        t_period = self.speed_period
 
         # Initialize speed ramping parameters
         if elapsed_time < self.ramp_duration:
             # Speed ramping from 0 to 4
-            current_speed = (elapsed_time / self.ramp_duration) * self.min_speed
+            self.current_speed = (elapsed_time / self.ramp_duration) * self.min_speed
         else:
-            # Calculate the current speed in the wave pattern
-            elapsed_wave_time = elapsed_time - self.ramp_duration
-            wave_value = math.sin(2 * math.pi * elapsed_wave_time / t_period)
-            current_speed = self.min_speed + (self.speed_range / 2) * (1 + wave_value)
+            if self.min_speed == 0.0:
+                self.current_speed = self.current_speed - uniform(0.1111, 0.3999)
+                
+            elif self.min_speed == 2.0:
+                if self.current_speed < 2.4:
+                    self.current_speed += uniform(0.1111, 0.3999)
+                elif self.current_speed > 3.6:
+                    self.current_speed -= uniform(0.1111, 0.3999)
+                else:
+                     # Implement wave pattern between 2.0 and 3.5 using sine function
+                    time_factor = 0.1  # Adjust this factor to control the frequency of the wave
+                    amplitude = 0.75  # Amplitude of the wave
+                    offset = 2.75  # Offset to center the wave within the range
+
+                    self.current_speed = amplitude * math.sin(time_factor * self.current_speed) + offset
+                
+            else:
+                if self.current_speed < 3.9:
+                    self.current_speed += uniform(0.1111, 0.3999)
+                else:
+                    # Implement wave pattern between 4.0 and 7.0 using sine function
+                    time_factor = 0.1  # Adjust this factor to control the frequency of the wave
+                    amplitude = 1.5  # Amplitude of the wave
+                    offset = 5.5  # Offset to center the wave within the range
+
+                    self.current_speed = amplitude * math.sin(time_factor * self.current_speed) + offset
 
         # Introduce random fluctuations
-        current_speed += uniform(-0.5, 0.5)  # Adjust the range of the fluctuations as needed
-
-        # Ensure the speed remains within the defined range
-        current_speed = max(0, min(current_speed, self.max_speed))
+        self.current_speed += uniform(-0.11242144, 0.11241241)
+        # Convert current_speed to float if it's not already a float
+        self.current_speed = float(self.current_speed)
+        # Ensure the speed remains at 0 or above
+        if self.current_speed < 0:
+            self.current_speed = float(0.0)
 
         # Create and publish the current speed message
         speed_msg = Float64()
-        speed_msg.data = current_speed
+        speed_msg.data = self.current_speed
         self.speed_pubber.publish(speed_msg)
+
+
+
+
+
+
 
 
 
@@ -177,12 +206,12 @@ class ClassDistanceProcessor(Node):
 
         if slowdown:
             self.min_speed = 2.0
-            self.max_speed = 3.5
+            self.max_speed = 7.0
             self.speed_period = 60
             self.speed_range = self.max_speed - self.min_speed
         elif halt:
             self.min_speed = 0.0
-            self.max_speed = 0.0
+            self.max_speed = 7.0
             self.speed_period = 60
             self.speed_range = self.max_speed - self.min_speed
         else:
