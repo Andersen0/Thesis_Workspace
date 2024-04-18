@@ -1,8 +1,0 @@
-package init file 'yolov6/core/__init__.py' not found (or not a regular file)
-package init file 'yolov6/utils/__init__.py' not found (or not a regular file)
-package init file 'yolov6/data/__init__.py' not found (or not a regular file)
-package init file 'yolov6/layers/__init__.py' not found (or not a regular file)
-package init file 'yolov6/models/__init__.py' not found (or not a regular file)
-package init file 'yolov6/models/heads/__init__.py' not found (or not a regular file)
-package init file 'yolov6/models/losses/__init__.py' not found (or not a regular file)
-package init file 'yolov6/solver/__init__.py' not found (or not a regular file)

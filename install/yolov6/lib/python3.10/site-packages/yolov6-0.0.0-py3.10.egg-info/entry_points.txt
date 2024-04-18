@@ -1,4 +1,0 @@
-[console_scripts]
-depth_cam = yolov6.core.depth_cam:main
-inferer = yolov6.core.inferer:main
-

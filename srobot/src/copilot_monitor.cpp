@@ -53,6 +53,10 @@ class CopilotRV : public rclcpp::Node {
         "/sRobotSlowdown", 10,
         std::bind(&CopilotRV::slowdown_callback, this, _1));
 
+      OpState_subscription_ = this->create_subscription<std_msgs::msg::Int64>(
+        "/sRobotState", 10,
+        std::bind(&CopilotRV::OpState_callback, this, _1));
+
       turnoffUVC_subscription_ = this->create_subscription<std_msgs::msg::Bool>(
         "/sRobotTurnoffUVC", 10,
         std::bind(&CopilotRV::turnoffUVC_callback, this, _1));
@@ -185,27 +189,26 @@ class CopilotRV : public rclcpp::Node {
   private:
     void alert_callback(const std_msgs::msg::Bool::SharedPtr msg) const {
       alert = msg->data;
-      step();
     }
 
     void classifier_callback(const std_msgs::msg::Int64::SharedPtr msg) const {
       classifier = msg->data;
-      step();
     }
 
     void distance_to_target_callback(const std_msgs::msg::Int64::SharedPtr msg) const {
       distance_to_target = msg->data;
-      step();
     }
 
     void halt_callback(const std_msgs::msg::Bool::SharedPtr msg) const {
       halt = msg->data;
-      step();
     }
 
     void slowdown_callback(const std_msgs::msg::Bool::SharedPtr msg) const {
       slowdown = msg->data;
-      step();
+    }
+
+    void OpState_callback(const std_msgs::msg::Int64::SharedPtr msg) const {
+      OpState = msg->data;
     }
 
     void turnoffUVC_callback(const std_msgs::msg::Bool::SharedPtr msg) const {
@@ -222,6 +225,8 @@ class CopilotRV : public rclcpp::Node {
     rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr halt_subscription_;
 
     rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr slowdown_subscription_;
+
+    rclcpp::Subscription<std_msgs::msg::Int64>::SharedPtr OpState_subscription_;
 
     rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr turnoffUVC_subscription_;
 
