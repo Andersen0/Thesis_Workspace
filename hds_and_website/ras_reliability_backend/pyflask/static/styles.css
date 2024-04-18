@@ -1,16 +1,16 @@
 body {
   display: flex;
-  background-color: #ffe0e6; /* Light pink */
+  background-color: #fcc5e3; /* Light pink */
 }
 
 .sidebar {
   text-align: center;
   flex: 0 0 200px; /* Width of sidebar */
   height: 100vh; /* Full height */
-  border-right: 1px solid #e9704c;
+  border-right: 1px solid #d5f8d4;
   padding: 20px;
   box-sizing: border-box;
-  border-top: 1px solid #ffe0e6;
+  border-top: 1px solid #d5f8d4;
   display: flex; /* New */
   flex-direction: column; /* New */
   
@@ -58,9 +58,9 @@ th, td {
   flex-direction: column; /* Stack buttons vertically */
   justify-content: space-around;
   margin-bottom: 20px;
-  border: 5px solid #ffd1dc;
+  border: 5px solid #fcc5e3;
   padding: 10px;
-  background-color: #ffdbe0;
+  background-color: #fcc5e3;
   /*Make the button group section a certain length*/
 }
 .buttonw-group {
@@ -68,9 +68,9 @@ th, td {
   flex-direction: column; /* Stack buttons vertically */
   justify-content: space-around;
   margin-bottom: 20px;
-  border: 5px solid #ffd1dc;
+  border: 5px solid #fcc5e3;
   padding: 10px;
-  background-color: #ffdbe0;
+  background-color: #fcc5e3;
   /*Make the button group section a certain length*/
   width: 550px;
 }
@@ -191,7 +191,7 @@ button {
 
 .violationgrid-container button {
   padding: 10px;
-  background-color: #007bff;
+  background-color: #464747;
   color: white;
   border: none;
   cursor: pointer;
