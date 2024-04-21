@@ -55,7 +55,7 @@ class ClassDistanceProcessor(Node):
                 self.current_speed = self.current_speed - uniform(0.1111, 0.3999)
                 
             elif self.min_speed == 2.0:
-                if self.current_speed < 2.4:
+                if self.current_speed < 1.9:
                     self.current_speed += uniform(0.1111, 0.3999)
                 elif self.current_speed > 3.6:
                     self.current_speed -= uniform(0.1111, 0.3999)
