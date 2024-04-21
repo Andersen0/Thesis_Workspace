@@ -105,7 +105,7 @@ class ClassDistanceProcessor(Node):
         # Injection is a string of the form {},{},{},{},{},{} where each {} is an element much like the class_detection string
         injection = msg.data.split(',')
 
-        injection[0]= int(injection[0]) # classifier
+        injection[0] = int(injection[0]) # classifier
         injection[1] = int(injection[1]) # distance
         injection[2] = int(injection[2]) # state
         # Converting string 'true'/'false' to Boolean True/False
@@ -115,8 +115,8 @@ class ClassDistanceProcessor(Node):
         injection[6] = injection[6].lower() == 'true'  # turnoffUVC
 
         # Debugging lines
-        # print(f"Injecting failure: {injection}")
-        # print(f"Classifier: {injection[0]}, Distance to Target: {injection[1]}, State: {injection[2]}, Slowdown: {injection[3]}, Halt: {injection[4]}, Alert: {injection[5]}, TurnoffUVC: {injection[6]}")
+        print(f"Injecting failure: {injection}")
+        print(f"Classifier: {injection[0]}, Distance to Target: {injection[1]}, State: {injection[2]}, Slowdown: {injection[3]}, Halt: {injection[4]}, Alert: {injection[5]}, TurnoffUVC: {injection[6]}")
 
         # Publish the conditions
         self.publish_condition(self.classifier_publisher, injection[0])
@@ -225,28 +225,29 @@ class ClassDistanceProcessor(Node):
         #self.last_published_distance = distance_to_target
 
         # Log the conditions along with the classifier and distance to target
-        # self.get_logger().info(
-        #    f"Classifier: {classifier}, Distance to Target: {distance_to_target}, "
-        #    f"State: {state}, Slowdown: {slowdown}, Halt: {halt}, Alert: {alert}, TurnoffUVC: {turnoffUVC}")
+        self.get_logger().info(
+            f"Classifier: {classifier}, Distance to Target: {distance_to_target}, "
+            f"State: {state}, Slowdown: {slowdown}, Halt: {halt}, Alert: {alert}, TurnoffUVC: {turnoffUVC}")
 
     def determine_conditions(self, classifier, distance_to_target):
 
         state, slowdown, halt, alert, turnoffUVC = 0, False, False, False, False
-        # Implement the logic for changing states based on the requirements
 
-        # Define state requirements:
+        # Define state requirements based on classifier and distance_to_target:
         if classifier == 0:
             state = 0
-        if classifier == 1:
+        elif classifier == 1:
             if distance_to_target > 7:
-                state = 1   
-            elif 7 >= distance_to_target > 3:
+                state = 1
+            elif 3 < distance_to_target <= 7:
                 state = 2
             else:
                 state = 3
         elif classifier == 2:
-            if distance_to_target > 7.0:
+            if distance_to_target > 7:
                 state = 2
+            elif 3 < distance_to_target <= 7:
+                state = 3
             else:
                 state = 3
 
@@ -254,11 +255,11 @@ class ClassDistanceProcessor(Node):
         if state == 0:
             slowdown, halt, alert, turnoffUVC = False, False, False, False
         elif state == 1:
-            slowdown, halt, alert, turnoffUVC = True, False, True, False
+            slowdown, halt, alert, turnoffUVC = False, False, True, False
         elif state == 2:
-            slowdown, halt, alert, turnoffUVC = False, True, True, False
+            slowdown, halt, alert, turnoffUVC = True, False, True, False
         elif state == 3:
-            slowdown, halt, alert, turnoffUVC = False, True, True, True
+            slowdown, halt, alert, turnoffUVC = False, True, False, True
 
         return state, slowdown, halt, alert, turnoffUVC
 

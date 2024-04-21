@@ -55,11 +55,11 @@ class TeleopNode(Node):
         logging.getLogger().setLevel(logging.WARNING)
         self.t_time = 0
 
-        # create subscribers for the following topics /copilot/handlerDtt_assumption /copilot/handlerclassifier_assumption /copilot/handlerclassifier_empty /copilot/handleroperationalstate_0 /copilot/handleroperationalstate_1 /copilot/handleroperationalstate_2 /copilot/handleroperationalstate_3 /copilot/handlerstate_req101 /copilot/handlerstate_req102 /copilot/handlerstate_req103 /copilot/handlerstate_req104 /copilot/handlerstate_req201 /copilot/handlerstate_req202 /copilot/handlerstate_req203
+        # create subscribers for the following topics /copilot/handlerdtt_assumption /copilot/handlerclassifier_assumption /copilot/handlerstate_req000 /copilot/handleroperationalstate_0 /copilot/handleroperationalstate_1 /copilot/handleroperationalstate_2 /copilot/handleroperationalstate_3 /copilot/handlerstate_req101 /copilot/handlerstate_req102 /copilot/handlerstate_req103 /copilot/handlerstate_req104 /copilot/handlerstate_req201 /copilot/handlerstate_req202 /copilot/handlerstate_req203
 
-        self.handlerDtt_assumption_subber = self.create_subscription(Empty, '/copilot/handlerdtt_assumption', self.handlerDtt_assumption_callback, 1)
+        self.handlerdtt_assumption_subber = self.create_subscription(Empty, '/copilot/handlerdtt_assumption', self.handlerdtt_assumption_callback, 1)
         self.handlerclassifier_assumption_subber = self.create_subscription(Empty, '/copilot/handlerclassifier_assumption', self.handlerclassifier_assumption_callback, 1)
-        self.handlerclassifier_empty_subber = self.create_subscription(Empty, '/copilot/handlerclassifier_empty', self.handlerclassifier_empty_callback, 1)
+        self.handlerstate_req000_subber = self.create_subscription(Empty, '/copilot/handlerstate_req000', self.handlerstate_req000_callback, 1)
         self.handleroperationalstate_0_subber = self.create_subscription(Empty, '/copilot/handleroperationalstate_0', self.handleroperationalstate_0_callback, 1)
         self.handleroperationalstate_1_subber = self.create_subscription(Empty, '/copilot/handleroperationalstate_1', self.handleroperationalstate_1_callback, 1)
         self.handleroperationalstate_2_subber = self.create_subscription(Empty, '/copilot/handleroperationalstate_2', self.handleroperationalstate_2_callback, 1)
@@ -123,12 +123,12 @@ class TeleopNode(Node):
         #print('Received timer data:', msg.data)
         self.app.config['timer'] = msg.data
 
-    def handlerDtt_assumption_callback(self, msg):
-        #print('Received handlerDtt_assumption signal')
+    def handlerdtt_assumption_callback(self, msg):
+        #print('Received handlerdtt_assumption signal')
         current_time = datetime.now()
         format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")  # Formatting datetime to a string
-        message = f"handlerDtt_assumption violation detected: {format_time}"
-        self.app.config['handlerDtt_assumption'] = message
+        message = f"handlerdtt_assumption violation detected: {format_time}"
+        self.app.config['handlerdtt_assumption'] = message
     
     def handlerclassifier_assumption_callback(self, msg):
         #print('Received handlerclassifier_assumption signal')
@@ -137,12 +137,12 @@ class TeleopNode(Node):
         message = f"handlerclassifier_assumption violation detected: {format_time}"
         self.app.config['handlerclassifier_assumption'] = message
 
-    def handlerclassifier_empty_callback(self, msg):
-        #print('Received handlerclassifier_empty signal')
+    def handlerstate_req000_callback(self, msg):
+        #print('Received handlerstate_req000 signal')
         current_time = datetime.now()
         format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
-        message = f"handlerclassifier_empty violation detected: {format_time}"
-        self.app.config['handlerclassifier_empty'] = message
+        message = f"handlerstate_req000 violation detected: {format_time}"
+        self.app.config['handlerstate_req000'] = message
 
     def handleroperationalstate_0_callback(self, msg):
         #print('Received handleroperationalstate_0 signal')
@@ -373,20 +373,20 @@ def run_script():
     except subprocess.CalledProcessError as e:
         return {"message": "Failed to execute script."}, 500
 
-@app.route('/handlerDtt_assumption')
-def handlerDtt_assumption():
-    handlerDtt_assumption_value = app.config.get('handlerDtt_assumption', "")
-    return jsonify({'handlerDtt_assumption' : handlerDtt_assumption_value})
+@app.route('/handlerdtt_assumption')
+def handlerdtt_assumption():
+    handlerdtt_assumption_value = app.config.get('handlerdtt_assumption', "")
+    return jsonify({'handlerdtt_assumption' : handlerdtt_assumption_value})
 
 @app.route('/handlerclassifier_assumption')
 def handlerclassifier_assumption():
     handlerclassifier_assumption_value = app.config.get('handlerclassifier_assumption', "")
     return jsonify({'handlerclassifier_assumption' : handlerclassifier_assumption_value})
 
-@app.route('/handlerclassifier_empty')
-def handlerclassifier_empty():
-    handlerclassifier_empty_value = app.config.get('handlerclassifier_empty', "")
-    return jsonify({'handlerclassifier_empty' : handlerclassifier_empty_value})
+@app.route('/handlerstate_req000')
+def handlerstate_req000():
+    handlerstate_req000_value = app.config.get('handlerstate_req000', "")
+    return jsonify({'handlerstate_req000' : handlerstate_req000_value})
 
 @app.route('/handleroperationalstate_0')
 def handleroperationalstate_0():

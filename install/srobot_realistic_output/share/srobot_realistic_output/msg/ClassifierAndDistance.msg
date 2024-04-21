@@ -1,2 +1,0 @@
-int64 classifier
-float64 distance
