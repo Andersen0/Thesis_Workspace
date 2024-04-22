@@ -99,13 +99,17 @@
               }
               return response.json();
           })
-          .then(data => alert(data.message))
+          .then(data => {
+              // Alert removed. You can handle the successful response here if needed.
+              console.log(data.message); // Optionally log the message to the console
+          })
           .catch((error) => {
               console.error('There has been a problem with your fetch operation:', error);
-              alert("Failed to execute script.");
+              alert("Failed to execute script."); // Alert for failure
           });
       }
-      </script>
+    </script>
+  
     
 
 
@@ -282,7 +286,7 @@
     }
     else if (handlerName == "state_req102") {
       var injectionmsg = new ROSLIB.Message({
-        data: "1,4,3,false,true,false,true"  // Doesn't work as expected
+        data: "1,4,3,false,true,false,true"  // 
       });
     }
     else if (handlerName == "state_req103") {
@@ -297,7 +301,7 @@
     }
     else if (handlerName == "state_req202") {
       var injectionmsg = new ROSLIB.Message({
-        data: "2,5,2,true,false,true,false"   // Doesn't work as expected
+        data: "2,5,2,true,false,true,false"   // 
       });
     }
     else if (handlerName == "state_req203") {
