@@ -1,4 +1,0 @@
-Invoking command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot -- -j8 -l8
-Invoked command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot -- -j8 -l8
-Invoking command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot
-Invoked command in '/home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/andersen/M30-RB_ws/src/Thesis_Workspace/build/copilot

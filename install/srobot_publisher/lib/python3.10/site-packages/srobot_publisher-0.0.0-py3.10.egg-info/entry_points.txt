@@ -1,3 +1,0 @@
-[console_scripts]
-publisher = srobot_publisher.publisher_node:main
-

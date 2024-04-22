@@ -1,7 +1,0 @@
-[console_scripts]
-cycle_dist = pyflask.cycle_dist:main
-robot = pyflask.robot:main
-server = pyflask.server:main
-subtester = pyflask.subtester:main
-talker = pyflask.publisher:main
-

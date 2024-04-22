@@ -181,13 +181,13 @@
           logMessage("Log cleared");
         }
                 
-        setInterval(() => fetchVData('/handlerDtt_assumption', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerdtt_assumption', 'errorguard'), 1000);
         setInterval(() => fetchVData('/handlerclassifier_assumption', 'errorguard'), 1000);
-        setInterval(() => fetchVData('/handlerclassifier_empty', 'errorguard'), 1000);
         setInterval(() => fetchVData('/handleroperationalstate_0', 'errorguard'), 1000);
         setInterval(() => fetchVData('/handleroperationalstate_1', 'errorguard'), 1000);
         setInterval(() => fetchVData('/handleroperationalstate_2', 'errorguard'), 1000);
         setInterval(() => fetchVData('/handleroperationalstate_3', 'errorguard'), 1000);
+        setInterval(() => fetchVData('/handlerstate_req000', 'errorguard'), 1000);
         setInterval(() => fetchVData('/handlerstate_req101', 'errorguard'), 1000);
         setInterval(() => fetchVData('/handlerstate_req102', 'errorguard'), 1000);
         setInterval(() => fetchVData('/handlerstate_req103', 'errorguard'), 1000);
@@ -197,28 +197,34 @@
       
       </script>
   </div>
+  <style>
+    button {
+        font-weight: bold; /* This CSS property makes the text bold */
+    }
+  </style>
   <div class="log-section">
       <div class="handlers-section">
-        <h2>Handler Injectors</h2>
-        <div class="violationgrid-container">
-          <button onclick="injectHandler('dtt_assumption')">Inject dtt_assumption</button>
-          <button onclick="injectHandler('classifier_assumption')">Inject classifier_assumption</button>
-          <button onclick="injectHandler('classifier_empty')">Inject classifier_empty</button>
-          <button onclick="injectHandler('operationalstate_0')">Inject operationalstate_0</button>
-          <button onclick="injectHandler('operationalstate_1')">Inject operationalstate_1</button>
-          <button onclick="injectHandler('operationalstate_2')">Inject operationalstate_2</button>
-          <button onclick="injectHandler('operationalstate_3')">Inject operationalstate_3</button>
-          <button onclick="injectHandler('state_req101')">Inject state_req101</button>
-          <button onclick="injectHandler('state_req102')">Inject state_req102</button>
-          <button onclick="injectHandler('state_req103')">Inject state_req103</button>
-          <button onclick="injectHandler('state_req201')">Inject state_req201</button>
-          <button onclick="injectHandler('state_req202')">Inject state_req202</button>
-          <button onclick="injectHandler('state_req203')">Inject state_req203</button>
-        </div>
+          <h2>Handler Injectors</h2>
+          <div class="violationgrid-container">
+              <button onclick="injectHandler('dtt_assumption')">Inject dtt_assumption</button>
+              <button onclick="injectHandler('classifier_assumption')">Inject classifier_assumption</button>
+              <button onclick="injectHandler('operationalstate_0')">Inject operationalstate_0</button>
+              <button onclick="injectHandler('operationalstate_1')">Inject operationalstate_1</button>
+              <button onclick="injectHandler('operationalstate_2')">Inject operationalstate_2</button>
+              <button onclick="injectHandler('operationalstate_3')">Inject operationalstate_3</button>
+              <button onclick="injectHandler('state_req000')">Inject state_req000</button>
+              <button onclick="injectHandler('state_req101')">Inject state_req101</button>
+              <button onclick="injectHandler('state_req102')">Inject state_req102</button>
+              <button onclick="injectHandler('state_req103')">Inject state_req103</button>
+              <button onclick="injectHandler('state_req201')">Inject state_req201</button>
+              <button onclick="injectHandler('state_req202')">Inject state_req202</button>
+              <button onclick="injectHandler('state_req203')">Inject state_req203</button>
+          </div>
       </div>
       <h2>Violation Log Messages</h2>
       <ul id="logMessages"></ul>
   </div>
+
 </div>
 <script>
 
@@ -237,7 +243,7 @@
     // class, distance, state, slowdown, halt, alert, uvc
     if (handlerName == "dtt_assumption") {
       var injectionmsg = new ROSLIB.Message({
-        data: "1,-1,3,false,true,true,true"
+        data: "1,-1,3,false,true,false,true"
       });
     } 
     else if (handlerName == "classifier_assumption") {
@@ -245,39 +251,39 @@
         data: "3,6,0,false,false,false,false"
       });
     }
-    else if (handlerName == "classifier_empty") {
-      var injectionmsg = new ROSLIB.Message({
-        data: "0,0,1,true,false,true,false"
-      });
-    }
     else if (handlerName == "operationalstate_0") {
       var injectionmsg = new ROSLIB.Message({
-        data: "0,0,0,false,false,false,true"
+        data: "0,0,0,false,false,false,true" // last (every) element is supposed to FALSE in OpState 0
       });
     }
     else if (handlerName == "operationalstate_1") {
       var injectionmsg = new ROSLIB.Message({
-        data: "1,8,1,false,false,true,false"
+        data: "1,8,1,false,false,true,true" // last element is supposed to False in OpState 1
       });
     }
     else if (handlerName == "operationalstate_2") {
       var injectionmsg = new ROSLIB.Message({
-        data: "1,5,2,false,true,true,true"
+        data: "1,5,2,true,false,true,true" // last element is supposed to FALSE in OpState 2
       });
     }
     else if (handlerName == "operationalstate_3") {
       var injectionmsg = new ROSLIB.Message({
-        data: "2,4,3,false,true,false,true"
+        data: "2,4,3,false,true,false,false"  // last element is supposed to TRUE in OpState 3
+      });
+    }
+    else if (handlerName == "state_req000") {
+      var injectionmsg = new ROSLIB.Message({
+        data: "0,0,1,false,false,true,false" // third element (OpState) should be 0 
       });
     }
     else if (handlerName == "state_req101") {
       var injectionmsg = new ROSLIB.Message({
-        data: "1,8,2,false,true,true,false"
+        data: "1,8,0,false,false,false,false"
       });
     }
     else if (handlerName == "state_req102") {
       var injectionmsg = new ROSLIB.Message({
-        data: "1,4,3,false,true,true,true"
+        data: "1,4,3,false,true,false,true"  // Doesn't work as expected
       });
     }
     else if (handlerName == "state_req103") {
@@ -287,12 +293,12 @@
     }
     else if (handlerName == "state_req201") {
       var injectionmsg = new ROSLIB.Message({
-        data: "2,10,3,false,true,true,true"
+        data: "2,10,3,false,true,false,true"
       });
     }
     else if (handlerName == "state_req202") {
       var injectionmsg = new ROSLIB.Message({
-        data: "2,5,2,false,true,true,false"
+        data: "2,5,2,true,false,true,false"   // Doesn't work as expected
       });
     }
     else if (handlerName == "state_req203") {
