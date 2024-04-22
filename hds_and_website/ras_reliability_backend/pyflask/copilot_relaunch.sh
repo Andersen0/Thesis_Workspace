@@ -9,11 +9,12 @@ echo "ROS2_WS_PATH: $ROS2_WS_PATH"
 # Source your ROS2 workspace
 source $ROS2_WS_PATH/install/setup.bash
 
-# Get start time in seconds since the epoch
+# Get time before killing nodes
 
-# Stop any running instances of the copilot node (optional, remove if not needed)
+before_kill_time=$(date +%s.%N)
+
+# Stop any running instances of the copilot node
 killall $COPILOT_NODE
-
 
 start_time=$(date +%s.%N)
 
