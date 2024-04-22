@@ -117,7 +117,7 @@ class Inferer(Node):
         hide_labels=False,
         hide_conf=False,
         save_img=False,
-        view_img=True,
+        view_img=False,
         draw_predictions=True):
         ''' Model Inference and results visualization '''
         vid_path, vid_writer, windows = None, None, []
@@ -220,6 +220,9 @@ class Inferer(Node):
                 pred_img[xyxy_list[1]:xyxy_list[3], xyxy_list[0]:xyxy_list[2]] = img_ori[xyxy_list[1]:xyxy_list[3], xyxy_list[0]:xyxy_list[2]]
             self.class_detection.publish(pub_msg)
             img_src = np.asarray(img_ori)
+
+            self.image_pubber.publish(self.bridge.cv2_to_imgmsg(img_src, "bgr8"))
+            cv2.waitKey(1)  # 1 millisecond
         
 
         else:
@@ -264,8 +267,7 @@ class Inferer(Node):
             else:
                 cv2.imshow(str(img_path), pred_img)
 #                    cv2.imshow("raw_image", img_src)
-            self.image_pubber.publish(self.bridge.cv2_to_imgmsg(img_src, "bgr8"))
-            cv2.waitKey(1)  # 1 millisecond
+            
 
         # Save results (image with detections)
         if save_img:

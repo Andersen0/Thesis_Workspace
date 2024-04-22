@@ -106,8 +106,8 @@ class ClassDistanceProcessor(Node):
         injection[6] = injection[6].lower() == 'true'  # turnoffUVC
 
         # Debugging lines
-        print(f"Injecting failure: {injection}")
-        print(f"Classifier: {injection[0]}, Distance to Target: {injection[1]}, State: {injection[2]}, Slowdown: {injection[3]}, Halt: {injection[4]}, Alert: {injection[5]}, TurnoffUVC: {injection[6]}")
+        # print(f"Injecting failure: {injection}")
+        # print(f"Classifier: {injection[0]}, Distance to Target: {injection[1]}, State: {injection[2]}, Slowdown: {injection[3]}, Halt: {injection[4]}, Alert: {injection[5]}, TurnoffUVC: {injection[6]}")
 
         # Publish the conditions
         self.publish_condition(self.classifier_publisher, injection[0])
