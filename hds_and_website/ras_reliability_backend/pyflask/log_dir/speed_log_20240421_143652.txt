@@ -1,8 +1,3 @@
-import matplotlib.pyplot as plt
-from datetime import datetime
-import numpy as np
-# Sample data
-data = """
 0.45017686476932917, 0
 0.389486976369283, 1
 0.7636884788255783, 2
@@ -938,28 +933,3 @@ data = """
 3.9500570702795406, 932
 3.9586693285630523, 933
 4.0623018005129525, 934
-"""
-# Parse the data
-x_values = []  # Time values
-y_values = []  # Speed values
-
-for line in data.strip().split('\n'):
-    speed, time = map(float, line.split(', '))  # Splitting each line by comma and space
-    x_values.append(time)  # Assign the second value as time
-    y_values.append(round(speed, 2))  # Assign the first value as speed, rounded to two decimal places
-
-# Plot the data
-plt.figure(figsize=(10, 6))
-plt.plot(x_values, y_values, marker='o', linestyle='-')
-plt.xlabel('Time')
-plt.ylabel('Speed (km/h)')
-plt.grid(True)
-
-# To display a limited number of x-axis labels, we select 10 evenly spaced indices
-x_ticks_index = np.linspace(0, len(x_values) - 1, 10, dtype=int)  # Compute indices for 10 labels
-x_ticks = [x_values[i] for i in x_ticks_index]  # Extract these indices from x_values
-x_labels = [str(x_values[i]) for i in x_ticks_index]  # Extract corresponding y_values for labels, converting to string
-
-plt.xticks(x_ticks, x_labels, rotation=45)  # Set custom ticks and labels on the x-axis
-
-plt.show()
