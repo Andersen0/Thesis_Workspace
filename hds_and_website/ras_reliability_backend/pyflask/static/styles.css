@@ -1,16 +1,15 @@
 body {
   display: flex;
-  background-color: #fcc5e3; /* Light pink */
+  background-color: #fbfbfb; /* Light pink */
 }
 
 .sidebar {
   text-align: center;
   flex: 0 0 200px; /* Width of sidebar */
   height: 100vh; /* Full height */
-  border-right: 1px solid #d5f8d4;
+  border-right: 2px solid #d0c4c4;
   padding: 20px;
   box-sizing: border-box;
-  border-top: 1px solid #d5f8d4;
   display: flex; /* New */
   flex-direction: column; /* New */
   
@@ -52,27 +51,34 @@ th, td {
   padding: 20px;
   box-sizing: border-box;
 }
-
 .button-group {
   display: flex;
   flex-direction: column; /* Stack buttons vertically */
   justify-content: space-around;
   margin-bottom: 20px;
-  border: 5px solid #fcc5e3;
+  border: 5px solid #d0c4c4;
   padding: 10px;
-  background-color: #fcc5e3;
-  /*Make the button group section a certain length*/
+  background-color: #f4e3e3;
+}
+.buttont-group {
+  display: flex;
+  flex-direction: row; /* Stack buttons vertically */
+  justify-content: space-around;
+  margin-bottom: 20px;
+  border: 5px solid #d0c4c4;
+  padding: 10px;
+  background-color: #f4e3e3;
+  width: 650px;
 }
 .buttonw-group {
   display: flex;
-  flex-direction: column; /* Stack buttons vertically */
+  flex-direction: row; /* Stack buttons vertically */
   justify-content: space-around;
   margin-bottom: 20px;
-  border: 5px solid #fcc5e3;
+  border: 5px solid #d0c4c4;
   padding: 10px;
-  background-color: #fcc5e3;
-  /*Make the button group section a certain length*/
-  width: 550px;
+  background-color: #f4e3e3;
+  width: 650px;
 }
 
 .sidebar .button-group button {
