@@ -92,15 +92,6 @@ class ClassDistanceProcessor(Node):
         self.speed_pubber.publish(speed_msg)
 
 
-
-
-
-
-
-
-
-
-
     def injection_callback(self, msg):
         # Injection is a string of the form {},{},{},{},{},{} where each {} is an element much like the class_detection string
         injection = msg.data.split(',')
@@ -126,6 +117,8 @@ class ClassDistanceProcessor(Node):
         self.publish_condition(self.halt_publisher, injection[4])
         self.publish_condition(self.alert_publisher, injection[5])
         self.publish_condition(self.turnoff_uvc_publisher, injection[6])
+
+        time.sleep(0.5)
 
     def listener_callback(self, msg):
         

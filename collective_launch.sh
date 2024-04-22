@@ -1,19 +1,13 @@
 #!/bin/bash
 
-# Launch rosnode_launch.sh in the background
-ros2 launch copilot rosnode_launch.py &
+# Run camera and inferer
 
-# Save the current directory
-CURRENT_DIR=$(pwd)
+ros2 launch realsense2_camera rs_launch.py enable_rgbd:=true enable_sync:=true align_depth.enable:=true enable_color:=true enable_depth:=true
 
-# Navigate to the directory containing the Flask application
-cd hds_and_website/ras_reliability_backend/pyflask/
+ros2 run yolov6 inferer
 
-# Export FLASK_APP with the path to flasknoreload.py
-export FLASK_APP=$(pwd)/flasknoreload.py
+# Run copilot
 
-# Run Flask application
-flask run --no-reload
+ros2 run copilot copilot
 
-# Optionally, navigate back to the original directory
-cd "$CURRENT_DIR"
+# Run subscriber
