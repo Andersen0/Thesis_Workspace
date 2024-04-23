@@ -31,12 +31,9 @@ class ClassDistanceProcessor(Node):
         self.speed_timer_period = 0.25  # seconds
         self.speed_timer = self.create_timer(self.speed_timer_period, self.speed_publishing_callback)
         # Speed wave pattern parameters
-        self.min_speed = 3.953  # km/h
-        self.max_speed = 7.146  # km/h
-        self.speed_range = self.max_speed - self.min_speed
-        self.speed_period = 30  # seconds for one cycle of the wave pattern
+        self.min_speed = 4.0  # km/h
         self.start_time = self.get_clock().now().to_msg().sec
-        self.ramp_duration = 10  # Duration in seconds for speed ramping from 0 to 5
+        self.ramp_duration = 15 
         self.current_speed = 0.0
 
     def speed_publishing_callback(self):
@@ -52,34 +49,27 @@ class ClassDistanceProcessor(Node):
             self.current_speed = (elapsed_time / self.ramp_duration) * self.min_speed
         else:
             if self.min_speed == 0.0:
-                self.current_speed = self.current_speed - uniform(0.1111, 0.3999)
+                self.current_speed = self.current_speed - uniform(0.1111, 0.2999)
                 
             elif self.min_speed == 2.0:
-                if self.current_speed < 1.9:
-                    self.current_speed += uniform(0.1111, 0.3999)
-                elif self.current_speed > 3.6:
-                    self.current_speed -= uniform(0.1111, 0.3999)
+                if self.current_speed < 2.4:
+                    self.current_speed += uniform(0.1111, 0.2999)
+                elif self.current_speed > 2.6:
+                    self.current_speed -= uniform(0.1111, 0.2999)
                 else:
-                     # Implement wave pattern between 2.0 and 3.5 using sine function
-                    time_factor = 0.1  # Adjust this factor to control the frequency of the wave
-                    amplitude = 0.75  # Amplitude of the wave
-                    offset = 2.75  # Offset to center the wave within the range
+                    self.current_speed += uniform(-0.1111, 0.1111)
 
-                    self.current_speed = amplitude * math.sin(time_factor * self.current_speed) + offset
                 
             else:
-                if self.current_speed < 3.9:
-                    self.current_speed += uniform(0.1111, 0.3999)
+                if self.current_speed < 4.85:
+                    self.current_speed += uniform(0.1111, 0.2999)
+                elif self.current_speed > 5.25:
+                    self.current_speed -= uniform(0.1111, 0.2999)
                 else:
-                    # Implement wave pattern between 4.0 and 7.0 using sine function
-                    time_factor = 0.1  # Adjust this factor to control the frequency of the wave
-                    amplitude = 1.5  # Amplitude of the wave
-                    offset = 5.5  # Offset to center the wave within the range
-
-                    self.current_speed = amplitude * math.sin(time_factor * elapsed_time) + offset
+                    self.current_speed += uniform(-0.2111, 0.2999)
 
         # Introduce random fluctuations
-        self.current_speed += uniform(-0.11242144, 0.11241241)
+        self.current_speed += uniform(-0.0511242144, 0.0511241241)
         # Convert current_speed to float if it's not already a float
         self.current_speed = float(self.current_speed)
         # Ensure the speed remains at 0 or above
@@ -198,20 +188,14 @@ class ClassDistanceProcessor(Node):
         self.publish_condition(self.turnoff_uvc_publisher, turnoffUVC)
 
         if slowdown:
+            print("Slowdown")
             self.min_speed = 2.0
-            self.max_speed = 7.0
-            self.speed_period = 60
-            self.speed_range = self.max_speed - self.min_speed
         elif halt:
+            print("Halt")
             self.min_speed = 0.0
-            self.max_speed = 7.0
-            self.speed_period = 60
-            self.speed_range = self.max_speed - self.min_speed
         else:
+            print("Normal")
             self.min_speed = 4.0
-            self.max_speed = 7.0
-            self.speed_period = 30
-            self.speed_range = self.max_speed - self.min_speed
 
         # Update last published values
         #self.last_published_classifier = classifier
