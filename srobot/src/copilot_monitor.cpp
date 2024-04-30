@@ -29,6 +29,7 @@ bool alert;
 bool halt;
 bool slowdown;
 bool turnoffUVC;
+std::int64_t step_count = 0;
 
 class CopilotRV : public rclcpp::Node {
   public:
@@ -214,7 +215,10 @@ class CopilotRV : public rclcpp::Node {
     void turnoffUVC_callback(const std_msgs::msg::Bool::SharedPtr msg) const {
       turnoffUVC = msg->data;
       step();
+      step_count++; // Ensure this line is executed.
+      // RCLCPP_INFO(this->get_logger(), "Step: %ld", step_count); // Use format specifier for long.
     }
+
 
     rclcpp::Subscription<std_msgs::msg::Int64>::SharedPtr classifier_subscription_;
 
