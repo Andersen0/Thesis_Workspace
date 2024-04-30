@@ -17,7 +17,7 @@ class FixedPublisher(Node):
         self.distance_publisher = self.create_publisher(Int64, '/scan', qos_profile)
 
         self.timer_frequency = 1428  # Hz (you can adjust this based on your required publishing frequency)
-        # 14 for 100hz, 72 for 500hz, 143 for 1000hz, 428 for 3000hz, 714 for 500Hz, 1428 for 1000Hz due to seven topics being published per increment
+        # 14 for 100hz, 72 for 500hz, 143 for 1000hz, 428 for 3000hz, 714 for 5000Hz, 1428 for 10000Hz due to seven topics being published per increment
         self.timer_period = 1/self.timer_frequency  # seconds
         self.timer = self.create_timer(self.timer_period, self.publish_messages)
         self.increment = 0
