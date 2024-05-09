@@ -214,3 +214,28 @@ button {
 .buttonw-group button:hover {
   background-color: #ff7f7f;
 }
+
+/* Blinking animation */
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Enlarge font */
+.enlarge {
+  font-size: 1.2em; /* Increase font size */
+}
+
+/* Slowdown Status blinking */
+.slowdown-blink {
+  animation: blink 1s infinite;
+  background-color: yellow;
+}
+
+/* halt Status blinking */
+.halt-blink {
+  animation: blink 1s infinite;
+  background-color: red;
+}
+
