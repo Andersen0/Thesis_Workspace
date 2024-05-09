@@ -72,8 +72,8 @@
     <p>Received Distance Value: <span id="dttValue">-</span></p>
     <p>Classifier Value: <span id="classifierValue">-</span></p>
     <p>Alert Status: <span id="alertStatus">-</span></p>
-    <p>Slowdown Status: <span id="slowdownStatus">-</span></p>
-    <p>Halt Status: <span id="haltStatus">-</span></p>
+    <p>Slowdown Status: <span id="slowdownStatus" class="status">-</span></p>
+    <p>Halt Status: <span id="haltStatus" class="status">-</span></p>
     <p>UVC Status: <span id="uvcStatus">-</span></p>
     <p>Time Active: <span id="timerValue">-</span></p>
     <p>Violation Message: <span id="errorguard">-</span></p>
@@ -120,24 +120,36 @@
 
 <script>
   
-  function fetchData(endpoint, elementId) {
+  function fetchData(endpoint, elementId, blinkClass) {
       fetch(endpoint)
           .then(response => response.json())
           .then(data => {
               document.getElementById(elementId).innerText = data[Object.keys(data)[0]];
+              let status = data[Object.keys(data)[0]];
+              updateStatus(elementId, status, blinkClass);
           })
           .catch(error => console.error('Error fetching data from ' + endpoint + ':', error));
   }
 
+  function updateStatus(elementId, status, blinkClass) {
+    var element = document.getElementById(elementId);
+    element.textContent = status;
+    if (status === "true" || status === true) {
+      element.classList.add("enlarge", blinkClass);
+    } else {
+      element.classList.remove("enlarge", blinkClass);
+    }
+  }
+
   // Refresh data every second
-  setInterval(() => fetchData('/dtt', 'dttValue'), 1000);
-  setInterval(() => fetchData('/classifier', 'classifierValue'), 1000);
-  setInterval(() => fetchData('/alert', 'alertStatus'), 1000);
-  setInterval(() => fetchData('/halt', 'haltStatus'), 1000);
-  setInterval(() => fetchData('/slowdown', 'slowdownStatus'), 1000);
-  setInterval(() => fetchData('/state', 'currentState'), 1000);
-  setInterval(() => fetchData('/uvc', 'uvcStatus'), 1000);
-  setInterval(() => fetchData('/timer', 'timerValue'), 1000);
+  setInterval(() => fetchData('/dtt', 'dttValue', ''), 1000);
+  setInterval(() => fetchData('/classifier', 'classifierValue', ''), 1000);
+  setInterval(() => fetchData('/alert', 'alertStatus', ''), 1000);
+  setInterval(() => fetchData('/halt', 'haltStatus', 'halt-blink'), 1000);
+  setInterval(() => fetchData('/slowdown', 'slowdownStatus', 'slowdown-blink'), 1000);
+  setInterval(() => fetchData('/state', 'currentState', ''), 1000);
+  setInterval(() => fetchData('/uvc', 'uvcStatus', ''), 1000);
+  setInterval(() => fetchData('/timer', 'timerValue', ''), 1000);
 </script>
 
 <div class="flex-container">
@@ -318,6 +330,7 @@
     injectiontalker.publish(injectionmsg);
   }
 </script>
+
 
 <script>
   setInterval(function() {

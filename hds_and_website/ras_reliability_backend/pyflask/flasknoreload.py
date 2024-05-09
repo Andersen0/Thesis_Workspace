@@ -445,7 +445,7 @@ def handlerstate_req203():
 
 if __name__ == '__main__':
     #app.run(debug=True, port=8080)
-    app.run(debug=True, port=8080, use_reloader=False)
+    app.run(host='0.0.0.0', debug=True, port=8080, use_reloader=False)
     # Using Flask's CLI to run the server with `flask run --no-reload`
     #print("This script should be run with `flask run --no-reload`")
     #print("in terminal: export FLASK_APP=flasknoreload.py")
