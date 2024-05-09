@@ -7,6 +7,7 @@
 #include <iostream>
 #include <iomanip> // For std::put_time
 #include <sstream> // For std::stringstream
+#include <ctime> // For std::localtime
 
 
 #include "monitor_types.h"
@@ -302,7 +303,7 @@ void step(void) {
   (s11_idx) = (((s11_idx) + ((size_t)(1))) % ((size_t)(1)));
   (s12_idx) = (((s12_idx) + ((size_t)(1))) % ((size_t)(1)));
 
-
+  /*
   // Capture the current timestamp using high-resolution clock
   auto now = std::chrono::system_clock::now();
   auto now_as_time_t = std::chrono::system_clock::to_time_t(now);
@@ -310,7 +311,12 @@ void step(void) {
 
   // Format the timestamp to include milliseconds and microseconds
   std::tm now_tm = *std::localtime(&now_as_time_t);
+  
+  // Print the formatted timestamp with quotes and a comma
+  std::cout << '"';
   std::cout << std::put_time(&now_tm, "%Y-%m-%d %H:%M:%S");
-  std::cout << '.' << std::setfill('0') << std::setw(6) << now_us.count() << std::endl;
+  std::cout << '.' << std::setfill('0') << std::setw(6) << now_us.count();
+  std::cout << "\",\n";
+  */
 
 } 

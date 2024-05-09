@@ -2,6 +2,7 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Bool, Int64
 from rclpy.qos import QoSPresetProfiles
+import datetime
 
 class FixedPublisher(Node):
     def __init__(self):
@@ -16,11 +17,11 @@ class FixedPublisher(Node):
         self.classifier_publisher = self.create_publisher(Int64, '/sRobotClassifier', qos_profile)
         self.distance_publisher = self.create_publisher(Int64, '/scan', qos_profile)
 
-        self.timer_frequency = 1428  # Hz (you can adjust this based on your required publishing frequency)
-        # 14 for 100hz, 72 for 500hz, 143 for 1000hz, 428 for 3000hz, 714 for 5000Hz, 1428 for 10000Hz due to seven topics being published per increment
+        self.timer_frequency = 714 # Hz (you can adjust this based on your required publishing frequency)
+        # 714 for 5000Hz, 1428 for 10000Hz, 1786 for 12500hz, 2143 for 15000hz, 2500 for 17500hz, 2857 for 20000hz due to seven topics being published per increment
         self.timer_period = 1/self.timer_frequency  # seconds
         self.timer = self.create_timer(self.timer_period, self.publish_messages)
-        self.increment = 0
+        # self.increment = 0
 
     def publish_messages(self):
         classifier_msg = Int64(data=0)
@@ -44,7 +45,16 @@ class FixedPublisher(Node):
         turnoff_uvc_msg = Bool(data=False)
         self.turnoff_uvc_publisher.publish(turnoff_uvc_msg)
 
-        self.increment += 1
+        """
+        # Get timepoint for finished publishing of all messages
+        now = self.get_clock().now()
+        now_time = now.to_msg()
+        dt = datetime.datetime.fromtimestamp(now_time.sec + now_time.nanosec / 1e9)
+        formatted_time = dt.strftime('"%Y-%m-%d %H:%M:%S.%f",')
+        print(formatted_time)
+        """
+
+        # self.increment += 1
 
         # Print the messages in one line for debugging
         # self.get_logger().info(f"Classifier={classifier_msg.data}, distance={distance_msg.data}, state={state_msg.data} ,published messages: slowdown={slowdown_msg.data}, halt={halt_msg.data}, alert={alert_msg.data}, turnoff_uvc={turnoff_uvc_msg.data}, increment={self.increment}")
