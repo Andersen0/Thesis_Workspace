@@ -26,6 +26,8 @@ setup(
         'console_scripts': [
             'publisher = srobot_realistic_output.publisher:main',
             'subscriber = srobot_realistic_output.subscriber:main',
+            'fixed_publisher = srobot_realistic_output.fixed_publisher:main',
+            'uv_light = srobot_realistic_output.UVLight:main'
         ],
     },
 )
