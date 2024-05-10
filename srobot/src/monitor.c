@@ -1,3 +1,6 @@
+
+#include <cstddef> // For size_t
+
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
@@ -304,13 +307,13 @@ void step(void) {
 
 
   // Capture the current timestamp using high-resolution clock
-  auto now = std::chrono::system_clock::now();
-  auto now_as_time_t = std::chrono::system_clock::to_time_t(now);
-  auto now_us = std::chrono::duration_cast<std::chrono::microseconds>(now.time_since_epoch()) % 1000000;
+  // auto now = std::chrono::system_clock::now();
+  // auto now_as_time_t = std::chrono::system_clock::to_time_t(now);
+  // auto now_us = std::chrono::duration_cast<std::chrono::microseconds>(now.time_since_epoch()) % 1000000;
 
   // Format the timestamp to include milliseconds and microseconds
-  std::tm now_tm = *std::localtime(&now_as_time_t);
-  std::cout << std::put_time(&now_tm, "%Y-%m-%d %H:%M:%S");
-  std::cout << '.' << std::setfill('0') << std::setw(6) << now_us.count() << std::endl;
+  // std::tm now_tm = *std::localtime(&now_as_time_t);
+  // std::cout << std::put_time(&now_tm, "%Y-%m-%d %H:%M:%S");
+  // std::cout << '.' << std::setfill('0') << std::setw(6) << now_us.count() << std::endl;
 
 } 

@@ -35,8 +35,8 @@ if log_files:
     # Plot the data
     plt.figure(figsize=(10, 6))
     plt.plot(x_values, y_values, marker='o', linestyle='-')
-    plt.xlabel('Time')
-    plt.ylabel('Speed (km/h)')
+    plt.xlabel('Time [s]')
+    plt.ylabel('Speed [km/h]')
     plt.grid(True)
 
     # To display a limited number of x-axis labels, we select 10 evenly spaced indices
