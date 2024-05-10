@@ -13,12 +13,15 @@ import subprocess
 from cv_bridge import CvBridge, CvBridgeError
 import cv2
 from rclpy.qos import QoSProfile, DurabilityPolicy
+import random
 
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 template_dir = os.path.join(current_dir, 'templates')
 static_dir = os.path.join(current_dir, 'static')
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir, static_url_path='/static')
+
+shutdown_script_path = './shutdown_script.sh'
 
 
 
@@ -171,6 +174,19 @@ class TeleopNode(Node):
         format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
         message = f"handleroperationalstate_3 violation detected: {format_time}"
         self.app.config['handleroperationalstate_3'] = message
+        # Check for a 1/100 chance to run the shutdown script
+        if random.randint(1, 100) == 1:  # There's a 1 in 100 chance that this condition is true
+            # Define the path to the script
+            script_path = './shutdown_script.sh'  # Adjust this path as necessary
+
+            # Run the shutdown script using subprocess
+            try:
+                subprocess.run(['bash', script_path], check=True)
+                print("Script executed successfully")
+            except subprocess.CalledProcessError:
+                print("Error occurred while executing the script")
+        else:
+            print("Script not run this time")  # Optional: for debugging/confirmation
 
     def handlerstate_req101_callback(self, msg):
         #print('Received handlerstate_req101 signal')
