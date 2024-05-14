@@ -126,182 +126,168 @@ class TeleopNode(Node):
     def handlerdtt_assumption_callback(self, msg):
         #print('Received handlerdtt_assumption signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")  # Formatting datetime to a string
-        message = f"handlerdtt_assumption violation detected: {format_time}"
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S.%f")
+        message = f"handlerdtt_assumption violation detected: {format_time[:-6]}"
         self.app.config['handlerdtt_assumption'] = message
         
-        now = datetime.now()
         log_filename = '/home/eliash/overhead.log'
-        formatted_time = now.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        formatted_time = format_time[:-3]
         with open(log_filename, 'a') as file:
             file.write(f"{formatted_time} - INFO - handlerdtt_assumption violation detected\n")
     
     def handlerclassifier_assumption_callback(self, msg):
         #print('Received handlerclassifier_assumption signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
-        message = f"handlerclassifier_assumption violation detected: {format_time}"
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S.%f")
+        message = f"handlerclassifier_assumption violation detected: {format_time[:-6]}"
         self.app.config['handlerclassifier_assumption'] = message
         
-        now = datetime.now()
         log_filename = '/home/eliash/overhead.log'
-        formatted_time = now.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        formatted_time = format_time[:-3]
         with open(log_filename, 'a') as file:
             file.write(f"{formatted_time} - INFO - handlerclassifier_assumption violation detected\n")
 
     def handlerstate_req000_callback(self, msg):
         #print('Received handlerstate_req000 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
-        message = f"handlerstate_req000 violation detected: {format_time}"
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S.%f")
+        message = f"handlerstate_req000 violation detected: {format_time[:-6]}"
         self.app.config['handlerstate_req000'] = message
         
-        now = datetime.now()
         log_filename = '/home/eliash/overhead.log'
-        formatted_time = now.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        formatted_time = format_time[:-3]
         with open(log_filename, 'a') as file:
             file.write(f"{formatted_time} - INFO - handlerstate_req000 violation detected\n")
 
     def handleroperationalstate_0_callback(self, msg):
         #print('Received handleroperationalstate_0 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
-        message = f"handleroperationalstate_0 violation detected: {format_time}"
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S.%f")
+        message = f"handleroperationalstate_0 violation detected: {format_time[:-6]}"
         self.app.config['handleroperationalstate_0'] = message
         
-        now = datetime.now()
         log_filename = '/home/eliash/overhead.log'
-        formatted_time = now.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        formatted_time = format_time[:-3]
         with open(log_filename, 'a') as file:
             file.write(f"{formatted_time} - INFO - handleroperationalstate_0 violation detected\n")
 
     def handleroperationalstate_1_callback(self, msg):
         #print('Received handleroperationalstate_1 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
-        message = f"handleroperationalstate_1 violation detected: {format_time}"
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S.%f")
+        message = f"handleroperationalstate_1 violation detected: {format_time[:-6]}"
         self.app.config['handleroperationalstate_1'] = message
         
-        now = datetime.now()
         log_filename = '/home/eliash/overhead.log'
-        formatted_time = now.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        formatted_time = format_time[:-3]
         with open(log_filename, 'a') as file:
             file.write(f"{formatted_time} - INFO - handleroperationalstate_1 violation detected\n")
 
     def handleroperationalstate_2_callback(self, msg):
         #print('Received handleroperationalstate_2 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
-        message = f"handleroperationalstate_2 violation detected: {format_time}"
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S.%f")
+        message = f"handleroperationalstate_2 violation detected: {format_time[:-6]}"
         self.app.config['handleroperationalstate_2'] = message
         
-        now = datetime.now()
         log_filename = '/home/eliash/overhead.log'
-        formatted_time = now.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        formatted_time = format_time[:-3]
         with open(log_filename, 'a') as file:
             file.write(f"{formatted_time} - INFO - handleroperationalstate_2 violation detected\n")
 
     def handleroperationalstate_3_callback(self, msg):
         #print('Received handleroperationalstate_3 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
-        message = f"handleroperationalstate_3 violation detected: {format_time}"
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S.%f")
+        message = f"handleroperationalstate_3 violation detected: {format_time[:-6]}"
         self.app.config['handleroperationalstate_3'] = message
         
-        now = datetime.now()
         log_filename = '/home/eliash/overhead.log'
-        formatted_time = now.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        formatted_time = format_time[:-3]
         with open(log_filename, 'a') as file:
             file.write(f"{formatted_time} - INFO - handleroperationalstate_3 violation detected\n")
 
     def handlerstate_req101_callback(self, msg):
         #print('Received handlerstate_req101 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
-        message = f"handlerstate_req101 violation detected: {format_time}"
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S.%f")
+        message = f"handlerstate_req101 violation detected: {format_time[:-6]}"
         self.app.config['handlerstate_req101'] = message
         
-        now = datetime.now()
         log_filename = '/home/eliash/overhead.log'
-        formatted_time = now.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        formatted_time = format_time[:-3]
         with open(log_filename, 'a') as file:
             file.write(f"{formatted_time} - INFO - handlerstate_req101 violation detected\n")
 
     def handlerstate_req102_callback(self, msg):
         #print('Received handlerstate_req102 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
-        message = f"handlerstate_req102 violation detected: {format_time}"
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S.%f")
+        message = f"handlerstate_req102 violation detected: {format_time[:-6]}"
         self.app.config['handlerstate_req102'] = message
         
-        now = datetime.now()
         log_filename = '/home/eliash/overhead.log'
-        formatted_time = now.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        formatted_time = format_time[:-3]
         with open(log_filename, 'a') as file:
             file.write(f"{formatted_time} - INFO - handlerstate_req102 violation detected\n")
 
     def handlerstate_req103_callback(self, msg):
         #print('Received handlerstate_req103 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
-        message = f"handlerstate_req103 violation detected: {format_time}"
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S.%f")
+        message = f"handlerstate_req103 violation detected: {format_time[:-6]}"
         self.app.config['handlerstate_req103'] = message
         
-        now = datetime.now()
         log_filename = '/home/eliash/overhead.log'
-        formatted_time = now.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        formatted_time = format_time[:-3]
         with open(log_filename, 'a') as file:
             file.write(f"{formatted_time} - INFO - handlerstate_req103 violation detected\n")
 
     def handlerstate_req104_callback(self, msg):
         #print('Received handlerstate_req104 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
-        message = f"handlerstate_req104 violation detected: {format_time}"
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S.%f")
+        message = f"handlerstate_req104 violation detected: {format_time[:-6]}"
         self.app.config['handlerstate_req104'] = message
         
-        now = datetime.now()
         log_filename = '/home/eliash/overhead.log'
-        formatted_time = now.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        formatted_time = format_time[:-3]
         with open(log_filename, 'a') as file:
             file.write(f"{formatted_time} - INFO - handlerstate_req104 violation detected\n")
 
     def handlerstate_req201_callback(self, msg):
         #print('Received handlerstate_req201 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
-        message = f"handlerstate_req201 violation detected: {format_time}"
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S.%f")
+        message = f"handlerstate_req201 violation detected: {format_time[:-6]}"
         self.app.config['handlerstate_req201'] = message
         
-        now = datetime.now()
         log_filename = '/home/eliash/overhead.log'
-        formatted_time = now.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        formatted_time = format_time[:-3]
         with open(log_filename, 'a') as file:
             file.write(f"{formatted_time} - INFO - handlerstate_req201 violation detected\n")
 
     def handlerstate_req202_callback(self, msg):
         #print('Received handlerstate_req202 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
-        message = f"handlerstate_req202 violation detected: {format_time}"
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S.%f")
+        message = f"handlerstate_req202 violation detected: {format_time[:-6]}"
         self.app.config['handlerstate_req202'] = message
         
-        now = datetime.now()
         log_filename = '/home/eliash/overhead.log'
-        formatted_time = now.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        formatted_time = format_time[:-3]
         with open(log_filename, 'a') as file:
             file.write(f"{formatted_time} - INFO - handlerstate_req202 violation detected\n")
 
     def handlerstate_req203_callback(self, msg):
         #print('Received handlerstate_req203 signal')
         current_time = datetime.now()
-        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S GMT")
-        message = f"handlerstate_req203 violation detected: {format_time}"
+        format_time = current_time.strftime("%a, %d %b %Y %H: %M: %S.%f")
+        message = f"handlerstate_req203 violation detected: {format_time[:-6]}"
         self.app.config['handlerstate_req203'] = message
         
-        now = datetime.now()
         log_filename = '/home/eliash/overhead.log'
-        formatted_time = now.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        formatted_time = format_time[:-3]
         with open(log_filename, 'a') as file:
             file.write(f"{formatted_time} - INFO - handlerstate_req203 violation detected\n")
 
