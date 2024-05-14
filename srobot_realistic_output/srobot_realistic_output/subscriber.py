@@ -6,7 +6,9 @@ from rclpy.qos import QoSProfile, DurabilityPolicy
 import time
 import math
 from random import uniform, randint
-
+import datetime
+import random 
+# Setup logging
 class ClassDistanceProcessor(Node):
     def __init__(self):
         super().__init__('class_distance_processor')
@@ -107,7 +109,11 @@ class ClassDistanceProcessor(Node):
         self.publish_condition(self.halt_publisher, injection[4])
         self.publish_condition(self.alert_publisher, injection[5])
         self.publish_condition(self.turnoff_uvc_publisher, injection[6])
-
+        now = datetime.datetime.now()
+        log_filename = '/home/eliash/overhead.log'
+        formatted_time = now.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        with open(log_filename, 'a') as file:
+            file.write(f"{formatted_time} - INFO - Message here\n")
         time.sleep(0.5)
 
     def listener_callback(self, msg):
@@ -236,7 +242,11 @@ class ClassDistanceProcessor(Node):
         elif state == 2:
             slowdown, halt, alert, turnoffUVC = True, False, True, False
         elif state == 3:
-            slowdown, halt, alert, turnoffUVC = False, True, False, True
+            # if random.random() < 0.000000000000001:
+            #     slowdown, halt, alert, turnoffUVC = False, True, False, False  # 1% chance
+            # else:
+            slowdown, halt, alert, turnoffUVC = False, True, False, True   # 99% chance
+
 
         return state, slowdown, halt, alert, turnoffUVC
 

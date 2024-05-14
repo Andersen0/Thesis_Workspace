@@ -3,8 +3,8 @@ import seaborn as sns
 import numpy as np
 
 # Constructing the confusion matrices
-conf_matrix = np.array([[36, 32],   # TP, FP
-                        [0, 4]])    # FN, TN
+conf_matrix = np.array([[206, 23],   # TP, FP
+                        [0, 183]])    # FN, TN
 
 conf_matrix_wh = np.array([[36, 15],   # TP, FP
                            [0, 17]])   # FN, TN
