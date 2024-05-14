@@ -1,6 +1,9 @@
 #include <functional>
 #include <memory>
-
+#include <fstream>  // For file operations, logging to file
+#include <chrono>
+#include <iomanip> // For std::put_time and std::setw
+#include <iostream>
 #include "rclcpp/rclcpp.hpp"
 
 #include "std_msgs/msg/empty.hpp"
@@ -66,8 +69,26 @@ class CopilotLogger : public rclcpp::Node {
 
   private:
     void handleroperationalstate_0_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) const {
-      RCLCPP_INFO(this->get_logger(), "Copilot monitor violation: handleroperationalstate_0");
+    static std::ofstream log_file("/home/eliash/overhead.log", std::ios::out | std::ios::app);
+    if (!log_file.is_open()) {
+      std::cerr << "Failed to open log file." << std::endl;
+      return;
     }
+
+    // Capture the current time using high-resolution clock
+    auto now = std::chrono::system_clock::now();
+    auto now_as_time_t = std::chrono::system_clock::to_time_t(now);
+    auto now_ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()) % 1000;
+
+    // Format the timestamp to include date and time up to seconds
+    std::tm now_tm = *std::localtime(&now_as_time_t);
+    log_file << std::put_time(&now_tm, "%Y-%m-%d %H:%M:%S");
+    log_file << '.' << std::setfill('0') << std::setw(3) << now_ms.count(); // Append milliseconds
+    log_file << " - Copilot monitor violation: handleroperationalstate_0" << std::endl;
+
+    // Log to ROS 2 logger as well
+    RCLCPP_INFO(this->get_logger(), "Copilot monitor violation: handleroperationalstate_0");
+  }
 
     void handleroperationalstate_1_callback(const std_msgs::msg::Empty::SharedPtr /*msg*/) const {
       RCLCPP_INFO(this->get_logger(), "Copilot monitor violation: handleroperationalstate_1");
