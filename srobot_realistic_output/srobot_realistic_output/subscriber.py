@@ -7,6 +7,7 @@ import time
 import math
 from random import uniform, randint
 import datetime
+import random 
 # Setup logging
 class ClassDistanceProcessor(Node):
     def __init__(self):
@@ -241,7 +242,11 @@ class ClassDistanceProcessor(Node):
         elif state == 2:
             slowdown, halt, alert, turnoffUVC = True, False, True, False
         elif state == 3:
-            slowdown, halt, alert, turnoffUVC = False, True, False, True
+            if random.random() < 0.01:
+                slowdown, halt, alert, turnoffUVC = False, True, False, False  # 1% chance
+            else:
+                slowdown, halt, alert, turnoffUVC = False, True, False, True   # 99% chance
+
 
         return state, slowdown, halt, alert, turnoffUVC
 
