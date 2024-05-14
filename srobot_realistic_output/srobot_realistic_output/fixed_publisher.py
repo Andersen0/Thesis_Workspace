@@ -36,7 +36,7 @@ class FixedPublisher(Node):
         slowdown_msg = Bool(data=False)
         self.slowdown_publisher.publish(slowdown_msg)
 
-        halt_msg = Bool(data=False)
+        halt_msg = Bool(data=True)
         self.halt_publisher.publish(halt_msg)
 
         alert_msg = Bool(data=False)
