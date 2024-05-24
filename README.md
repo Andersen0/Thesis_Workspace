@@ -83,5 +83,10 @@ pred_depth_img (depth image cropped with only predicitons, sections are used to 
 
 
 
-# For rosbridge server to run for use with injection device
+## For rosbridge server to run for use with injection device
 ros2 launch rosbridge_server rosbridge_websocket_launch.xml
+
+## To run the irmt_teleop package with plugins
+ros2 launch imrt_teleop turtlebot_teleop.launch.py 
+
+# Remember to add pathing to the .so plugins inside each plugins src/build in ~/.bashrc or export manually
