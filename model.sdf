@@ -43,27 +43,6 @@
       
     </link>
     
-    <!-- Adding the spotlight -->
-      <light name="user_spot_light" type="spot">
-	<pose frame="">0 0 1 0 0 0</pose> <!-- Higher position: z=1 -->
-	<diffuse>0.5 1.5 0.5 1</diffuse>
-	<specular>0.1 0.1 0.1 1</specular>
-	<direction>0 0 -1</direction>
-	<attenuation>
-	  <range>30</range> <!-- Increased range -->
-	  <constant>0.1</constant>
-	  <linear>0.01</linear>
-	  <quadratic>0.001</quadratic>
-	</attenuation>
-	<cast_shadows>0</cast_shadows>
-	<spot>
-	  <inner_angle>1.0</inner_angle> <!-- Larger inner angle -->
-	  <outer_angle>1.5</outer_angle> <!-- Larger outer angle -->
-	  <falloff>1</falloff>
-	</spot>
-      
-      </light>
-    
     <link name="imu_link">
       <sensor name="tb3_imu" type="imu">
         <always_on>true</always_on>
