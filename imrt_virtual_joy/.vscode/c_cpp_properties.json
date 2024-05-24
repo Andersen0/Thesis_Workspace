@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/nbmurobotics/colcon_tel211_ws/install/husky_base/include/**",
+        "/home/nbmurobotics/colcon_tel211_ws/install/husky_msgs/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/nbmurobotics/colcon_tel211_ws/src/husky/husky/husky_base/include/**",
+        "/home/nbmurobotics/colcon_tel211_ws/src/tel211/Assignment_02/task2_simulator_ros2/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

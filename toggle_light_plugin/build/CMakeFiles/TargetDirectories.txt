@@ -1,0 +1,10 @@
+/home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles/uninstall.dir
+/home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles/toggle_light_plugin_uninstall.dir
+/home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles/toggle_light_plugin.dir
+/home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles/test.dir
+/home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles/edit_cache.dir
+/home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles/rebuild_cache.dir
+/home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles/list_install_components.dir
+/home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles/install.dir
+/home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles/install/local.dir
+/home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles/install/strip.dir
