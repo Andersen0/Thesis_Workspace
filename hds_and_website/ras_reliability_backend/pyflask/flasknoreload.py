@@ -20,7 +20,19 @@ template_dir = os.path.join(current_dir, 'templates')
 static_dir = os.path.join(current_dir, 'static')
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir, static_url_path='/static')
 
+# Configure the main logger
+logging.basicConfig(level=logging.INFO)
 
+# Create a separate logger for state logging
+state_logger = logging.getLogger('state_logger')
+state_logger.setLevel(logging.INFO)
+state_handler = logging.FileHandler('state.log')
+state_formatter = logging.Formatter('%(asctime)s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+state_handler.setFormatter(state_formatter)
+state_logger.addHandler(state_handler)
+
+# Disable propagation to prevent logging to the root logger
+state_logger.propagate = False
 
 class TeleopNode(Node):
     def __init__(self, app):
@@ -421,6 +433,8 @@ def slowdown():
 @app.route('/state')
 def state():
     state_value = app.config.get('state', 0)
+    # Log state data to a log file with timestamp
+    state_logger.info(f"State value: {state_value}")
     return jsonify({'state' : state_value})
 
 @app.route('/uvc')
