@@ -16,7 +16,7 @@ log_files.sort(reverse=True)
 
 # Get the newest file
 if log_files:
-    newest_file = log_files[0]
+    newest_file = log_files[52]
     file_path = os.path.join(log_dir, newest_file)
 
     # Read data from the newest file
@@ -36,7 +36,12 @@ if log_files:
     plt.figure(figsize=(10, 6))
     plt.plot(x_values, y_values, marker='o', linestyle='-')
     plt.xlabel('Time [s]')
-    plt.ylabel('Speed [km/h]')
+
+    # Custom y-axis labels
+    y_ticks = [0, 2.5, 5]
+    y_labels = ['Halt', 'Slow down', 'Normal operation']
+    plt.yticks(y_ticks, y_labels)
+
     plt.grid(True)
 
     # To display a limited number of x-axis labels, we select 10 evenly spaced indices

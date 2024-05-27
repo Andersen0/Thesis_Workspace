@@ -114,7 +114,7 @@ class ClassDistanceProcessor(Node):
         formatted_time = now.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
         with open(log_filename, 'a') as file:
             file.write(f"{formatted_time} - INFO - Message here\n")
-        time.sleep(0.5)
+        time.sleep(1.5) # pause to keep camera info away while injecting
 
     def listener_callback(self, msg):
         
@@ -242,10 +242,10 @@ class ClassDistanceProcessor(Node):
         elif state == 2:
             slowdown, halt, alert, turnoffUVC = True, False, True, False
         elif state == 3:
-            # if random.random() < 0.000000000000001:
-            #     slowdown, halt, alert, turnoffUVC = False, True, False, False  # 1% chance
-            # else:
-            slowdown, halt, alert, turnoffUVC = False, True, False, True   # 99% chance
+            if random.random() < 0.01:
+                slowdown, halt, alert, turnoffUVC = False, True, False, False  # 1% chance
+            else:
+                slowdown, halt, alert, turnoffUVC = False, True, False, True   # 99% chance
 
 
         return state, slowdown, halt, alert, turnoffUVC
