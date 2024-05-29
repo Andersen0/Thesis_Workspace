@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nmbu/colcon_ws/src/toggle_light_plugin
+CMAKE_SOURCE_DIR = /home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nmbu/colcon_ws/src/toggle_light_plugin/build
+CMAKE_BINARY_DIR = /home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -83,14 +83,14 @@ clean: CMakeFiles/toggle_light_plugin.dir/clean
 CMakeFiles/uninstall.dir/all: CMakeFiles/toggle_light_plugin_uninstall.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/uninstall.dir/build.make CMakeFiles/uninstall.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/uninstall.dir/build.make CMakeFiles/uninstall.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles --progress-num= "Built target uninstall"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin/build/CMakeFiles --progress-num= "Built target uninstall"
 .PHONY : CMakeFiles/uninstall.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/uninstall.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin/build/CMakeFiles 0
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/uninstall.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin/build/CMakeFiles 0
 .PHONY : CMakeFiles/uninstall.dir/rule
 
 # Convenience name for target.
@@ -109,14 +109,14 @@ CMakeFiles/uninstall.dir/clean:
 CMakeFiles/toggle_light_plugin_uninstall.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toggle_light_plugin_uninstall.dir/build.make CMakeFiles/toggle_light_plugin_uninstall.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toggle_light_plugin_uninstall.dir/build.make CMakeFiles/toggle_light_plugin_uninstall.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles --progress-num= "Built target toggle_light_plugin_uninstall"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin/build/CMakeFiles --progress-num= "Built target toggle_light_plugin_uninstall"
 .PHONY : CMakeFiles/toggle_light_plugin_uninstall.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/toggle_light_plugin_uninstall.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin/build/CMakeFiles 0
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/toggle_light_plugin_uninstall.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin/build/CMakeFiles 0
 .PHONY : CMakeFiles/toggle_light_plugin_uninstall.dir/rule
 
 # Convenience name for target.
@@ -135,14 +135,14 @@ CMakeFiles/toggle_light_plugin_uninstall.dir/clean:
 CMakeFiles/toggle_light_plugin.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toggle_light_plugin.dir/build.make CMakeFiles/toggle_light_plugin.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toggle_light_plugin.dir/build.make CMakeFiles/toggle_light_plugin.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles --progress-num=1,2 "Built target toggle_light_plugin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin/build/CMakeFiles --progress-num=1,2 "Built target toggle_light_plugin"
 .PHONY : CMakeFiles/toggle_light_plugin.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/toggle_light_plugin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/toggle_light_plugin.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin/build/CMakeFiles 0
 .PHONY : CMakeFiles/toggle_light_plugin.dir/rule
 
 # Convenience name for target.

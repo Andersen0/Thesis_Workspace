@@ -31,7 +31,8 @@ ament_target_dependencies(toggle_light_plugin rclcpp std_msgs gazebo_ros)
 target_link_libraries(toggle_light_plugin ${GAZEBO_LIBRARIES})
 
 # Install target
-install(TARGETS toggle_light_plugin
-  LIBRARY DESTINATION lib)
+install(TARGETS
+  toggle_light_plugin
+  LIBRARY DESTINATION lib/${PROJECT_NAME})
 
 ament_package()

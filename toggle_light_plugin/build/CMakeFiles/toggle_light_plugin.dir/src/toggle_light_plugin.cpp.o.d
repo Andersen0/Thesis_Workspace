@@ -1,5 +1,5 @@
 CMakeFiles/toggle_light_plugin.dir/src/toggle_light_plugin.cpp.o: \
- /home/nmbu/colcon_ws/src/toggle_light_plugin/src/toggle_light_plugin.cpp \
+ /home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin/src/toggle_light_plugin.cpp \
  /usr/include/stdc-predef.h /usr/include/gazebo-11/gazebo/gazebo.hh \
  /usr/include/gazebo-11/gazebo/gazebo_core.hh \
  /usr/include/gazebo-11/gazebo/common/common.hh \

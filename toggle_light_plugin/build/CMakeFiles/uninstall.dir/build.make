@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nmbu/colcon_ws/src/toggle_light_plugin
+CMAKE_SOURCE_DIR = /home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nmbu/colcon_ws/src/toggle_light_plugin/build
+CMAKE_BINARY_DIR = /home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin/build
 
 # Utility rule file for uninstall.
 
@@ -78,6 +78,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/nmbu/colcon_ws/src/toggle_light_plugin/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/nmbu/colcon_ws/src/toggle_light_plugin /home/nmbu/colcon_ws/src/toggle_light_plugin /home/nmbu/colcon_ws/src/toggle_light_plugin/build /home/nmbu/colcon_ws/src/toggle_light_plugin/build /home/nmbu/colcon_ws/src/toggle_light_plugin/build/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin /home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin /home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin/build /home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin/build /home/nmbu/colcon_ws/src/Thesis_Workspace/toggle_light_plugin/build/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/uninstall.dir/depend
 

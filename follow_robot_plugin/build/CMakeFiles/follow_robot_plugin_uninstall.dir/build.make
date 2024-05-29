@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nmbu/colcon_ws/src/follow_robot_plugin
+CMAKE_SOURCE_DIR = /home/nmbu/colcon_ws/src/Thesis_Workspace/follow_robot_plugin
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nmbu/colcon_ws/src/follow_robot_plugin/build
+CMAKE_BINARY_DIR = /home/nmbu/colcon_ws/src/Thesis_Workspace/follow_robot_plugin/build
 
 # Utility rule file for follow_robot_plugin_uninstall.
 
@@ -67,7 +67,7 @@ include CMakeFiles/follow_robot_plugin_uninstall.dir/compiler_depend.make
 include CMakeFiles/follow_robot_plugin_uninstall.dir/progress.make
 
 CMakeFiles/follow_robot_plugin_uninstall:
-	/usr/bin/cmake -P /home/nmbu/colcon_ws/src/follow_robot_plugin/build/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
+	/usr/bin/cmake -P /home/nmbu/colcon_ws/src/Thesis_Workspace/follow_robot_plugin/build/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
 
 follow_robot_plugin_uninstall: CMakeFiles/follow_robot_plugin_uninstall
 follow_robot_plugin_uninstall: CMakeFiles/follow_robot_plugin_uninstall.dir/build.make
@@ -82,6 +82,6 @@ CMakeFiles/follow_robot_plugin_uninstall.dir/clean:
 .PHONY : CMakeFiles/follow_robot_plugin_uninstall.dir/clean
 
 CMakeFiles/follow_robot_plugin_uninstall.dir/depend:
-	cd /home/nmbu/colcon_ws/src/follow_robot_plugin/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/nmbu/colcon_ws/src/follow_robot_plugin /home/nmbu/colcon_ws/src/follow_robot_plugin /home/nmbu/colcon_ws/src/follow_robot_plugin/build /home/nmbu/colcon_ws/src/follow_robot_plugin/build /home/nmbu/colcon_ws/src/follow_robot_plugin/build/CMakeFiles/follow_robot_plugin_uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/nmbu/colcon_ws/src/Thesis_Workspace/follow_robot_plugin/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/nmbu/colcon_ws/src/Thesis_Workspace/follow_robot_plugin /home/nmbu/colcon_ws/src/Thesis_Workspace/follow_robot_plugin /home/nmbu/colcon_ws/src/Thesis_Workspace/follow_robot_plugin/build /home/nmbu/colcon_ws/src/Thesis_Workspace/follow_robot_plugin/build /home/nmbu/colcon_ws/src/Thesis_Workspace/follow_robot_plugin/build/CMakeFiles/follow_robot_plugin_uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/follow_robot_plugin_uninstall.dir/depend
 
