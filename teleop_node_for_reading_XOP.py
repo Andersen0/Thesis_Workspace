@@ -9,9 +9,8 @@ from std_srvs.srv import SetBool, SetBoolRequest
 from sensor_msgs.msg import JointState
 from std_msgs.msg import Int32MultiArray, Float32MultiArray
 from geometry_msgs.msg import PoseArray
-from nav_msgs.msg import Odometry
+from nav_msgs.msg import Odometry # ADDED BY T&E
 import csv
-
 
 class TeleopNode:
     def __init__(self):
@@ -59,25 +58,29 @@ class TeleopNode:
         rospy.Subscriber('arm2_angle', Float32MultiArray, self.arm_endef_angle2)
         rospy.Subscriber('joy_arms_wheels', Joy, self.joy_callback)
 
-        # Setup the CSV file
-        self.csv_file = open('/home/thorvald/temp_ws/src/oxar_is_bored/src/odometry_data.csv', 'w', newline='')
-        self.csv_writer = csv.writer(self.csv_file)
-        # Write CSV header
-        self.csv_writer.writerow(['Timestamp', 'Linear X'])
-        
-        # Setup odometry subscriber
-        self.odom_sub = rospy.Subscriber('/odom', Odometry, self.odom_callback)
-        self.current_odom = None
-
-        # Setup a timer to process odometry data every 0.5 seconds
-        self.odom_timer = rospy.Timer(rospy.Duration(0.5), self.process_odom)
-
 
         # Initialize the ROS node
         rospy.loginfo('Teleop_node started')
         rospy.loginfo('Press X to enable the arms')
         rospy.loginfo('Press Y to enable the end effectors')
         rospy.loginfo('Press L3 and R3 to enable safety stop')
+        
+        # Initialize CSV file for logging odometry velocity
+        self.csv_file = open('/home/thorvald/temp_ws/src/oxar_is_bored/src/odometry_data.csv', 'a')
+        self.csv_writer = csv.writer(self.csv_file)
+        self.csv_writer.writerow(['timestamp', 'linear_velocity_x'])  # Header row for CSV file
+
+        # Subscribe to the odometry topic
+        rospy.Subscriber('odometry/base_raw', Odometry, self.odom_callback)
+        
+   def odom_callback(self, msg):
+        # Extract linear velocity data from the odometry message
+        linear_velocity_x = msg.twist.twist.linear.x
+        
+        # Write timestamp and linear_velocity_x to CSV
+        self.csv_writer.writerow([ msg.header.stamp.to_sec(),  # Convert ROS Time to seconds
+        linear_velocity_x])
+        self.csv_file.flush()  # Ensure data is written to disk immediately
 
 
     def load_params(self):
@@ -154,8 +157,7 @@ class TeleopNode:
             angles = np.degrees(data.data)
             self.end_effector2_angles[1] = 180 - np.clip(angles[0], self.min_x_end_effector,
                                                          self.max_x_end_effector)
-            
-    
+
     def odom_callback(self, msg):
         self.current_odom = msg
 
@@ -170,7 +172,6 @@ class TeleopNode:
     def __del__(self):
         self.csv_file.close()
         rospy.loginfo("CSV file closed successfully.")
-
 
     # Calls safety stop service to stop arms
     def safety_stop(self):
@@ -453,3 +454,4 @@ if __name__ == '__main__':
 
     # Keep script running
     Teleop_Node.run()
+

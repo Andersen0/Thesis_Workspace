@@ -17,7 +17,7 @@ class FixedPublisher(Node):
         self.classifier_publisher = self.create_publisher(Int64, '/sRobotClassifier', qos_profile)
         self.distance_publisher = self.create_publisher(Int64, '/scan', qos_profile)
 
-        self.timer_frequency = 714 # Hz (you can adjust this based on your required publishing frequency)
+        self.timer_frequency = 5000 # Hz (you can adjust this based on your required publishing frequency)
         # 714 for 5000Hz, 1428 for 10000Hz, 1786 for 12500hz, 2143 for 15000hz, 2500 for 17500hz, 2857 for 20000hz due to seven topics being published per increment
         self.timer_period = 1/self.timer_frequency  # seconds
         self.timer = self.create_timer(self.timer_period, self.publish_messages)

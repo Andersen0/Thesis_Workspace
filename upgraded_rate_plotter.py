@@ -11,7 +11,7 @@ def read_average_rates(filename):
     return rates
 
 # Reverse the order of frequencies
-frequencies = [15000, 12500, 10000][::-1]
+frequencies = [35000, 20000, 17500, 15000, 12500, 10000, 5000][::-1]
 standalone_averages = []
 monitor_averages = []
 
@@ -39,7 +39,7 @@ for freq in frequencies:
     standalone_averages.append(standalone_avg)
     monitor_averages.append(monitor_avg)
 
-"""
+
 # Create layered bar plot
 plt.figure(figsize=(10, 6))
 bar_width = 0.35  # Adjust this value to change the thickness of bars
@@ -81,7 +81,8 @@ plt.xticks(indices, [str(f) + ' Hz' for f in frequencies])  # Set the x-axis lab
 plt.grid(axis='y', linestyle='--', linewidth=0.5)
 plt.tight_layout()
 
-"""
 
 # Display the plot
 plt.show()
+
+print(percent_decreases)
