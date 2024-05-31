@@ -22,14 +22,13 @@
 
 using std::placeholders::_1;
 
+std::int64_t OpState;
 std::int64_t classifier;
 std::int64_t distance_to_target;
-std::int64_t OpState;
 bool alert;
 bool halt;
 bool slowdown;
 bool turnoffUVC;
-std::int64_t step_count = 0;
 
 class CopilotRV : public rclcpp::Node {
   public:
@@ -53,10 +52,6 @@ class CopilotRV : public rclcpp::Node {
       slowdown_subscription_ = this->create_subscription<std_msgs::msg::Bool>(
         "/sRobotSlowdown", 10,
         std::bind(&CopilotRV::slowdown_callback, this, _1));
-
-      opstate_subscription_ = this->create_subscription<std_msgs::msg::Int64>(
-        "/sRobotState", 10,
-        std::bind(&CopilotRV::opstate_callback, this, _1));
 
       turnoffUVC_subscription_ = this->create_subscription<std_msgs::msg::Bool>(
         "/sRobotTurnoffUVC", 10,
@@ -190,35 +185,33 @@ class CopilotRV : public rclcpp::Node {
   private:
     void classifier_callback(const std_msgs::msg::Int64::SharedPtr msg) const {
       classifier = msg->data;
+      step();
     }
 
     void distance_to_target_callback(const std_msgs::msg::Int64::SharedPtr msg) const {
       distance_to_target = msg->data;
+      step();
     }
 
     void alert_callback(const std_msgs::msg::Bool::SharedPtr msg) const {
       alert = msg->data;
+      step();
     }
 
     void halt_callback(const std_msgs::msg::Bool::SharedPtr msg) const {
       halt = msg->data;
+      step();
     }
 
     void slowdown_callback(const std_msgs::msg::Bool::SharedPtr msg) const {
       slowdown = msg->data;
-    }
-
-    void opstate_callback(const std_msgs::msg::Int64::SharedPtr msg) const {
-      OpState = msg->data;
+      step();
     }
 
     void turnoffUVC_callback(const std_msgs::msg::Bool::SharedPtr msg) const {
       turnoffUVC = msg->data;
       step();
-      step_count++; // Ensure this line is executed.
-      // RCLCPP_INFO(this->get_logger(), "Step: %ld", step_count); // Use format specifier for long.
     }
-
 
     rclcpp::Subscription<std_msgs::msg::Int64>::SharedPtr classifier_subscription_;
 
@@ -229,8 +222,6 @@ class CopilotRV : public rclcpp::Node {
     rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr halt_subscription_;
 
     rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr slowdown_subscription_;
-
-    rclcpp::Subscription<std_msgs::msg::Int64>::SharedPtr opstate_subscription_;
 
     rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr turnoffUVC_subscription_;
 

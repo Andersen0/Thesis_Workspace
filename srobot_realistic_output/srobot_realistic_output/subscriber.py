@@ -109,11 +109,13 @@ class ClassDistanceProcessor(Node):
         self.publish_condition(self.halt_publisher, injection[4])
         self.publish_condition(self.alert_publisher, injection[5])
         self.publish_condition(self.turnoff_uvc_publisher, injection[6])
+        """
         now = datetime.datetime.now()
         log_filename = '/home/eliash/overhead.log'
         formatted_time = now.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
         with open(log_filename, 'a') as file:
             file.write(f"{formatted_time} - INFO - Message here\n")
+        """
         time.sleep(0.5)
 
     def listener_callback(self, msg):
