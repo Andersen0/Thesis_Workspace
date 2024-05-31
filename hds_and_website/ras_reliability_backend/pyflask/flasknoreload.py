@@ -304,17 +304,30 @@ class TeleopNode(Node):
             file.write(f"{formatted_time} - INFO - handlerstate_req203 violation detected\n")
 
         # This method is called when a new message is received in the /yolo_im channel
+    # def yolo_callback(self, msg):
+    #     try:
+    #         cv_image = self.bridge.imgmsg_to_cv2(msg, "bgr8")
+    #     except CvBridgeError as e:
+    #         print(e)
+    #         return
+    #     if time.time() - self.last_save_time >= 0.5:
+    #         image_path = os.path.join(self.image_dir, f'image_{datetime.now().strftime("%Y%m%d_%H%M%S")}.jpg')
+    #         cv2.imwrite(image_path, cv_image)
+    #         self.last_save_time = time.time()
+            
+    #     _, jpeg = cv2.imencode('.jpg', cv_image)
+    #     self.app.config['yolo_image'] = jpeg.tobytes()
+
     def yolo_callback(self, msg):
         try:
             cv_image = self.bridge.imgmsg_to_cv2(msg, "bgr8")
         except CvBridgeError as e:
             print(e)
             return
-        if time.time() - self.last_save_time >= 3:
-            image_path = os.path.join(self.image_dir, f'image_{datetime.now().strftime("%Y%m%d_%H%M%S")}.jpg')
-            cv2.imwrite(image_path, cv_image)
-            self.last_save_time = time.time()
-            
+        
+        image_path = os.path.join(self.image_dir, f'image_{datetime.now().strftime("%Y%m%d_%H%M%S")}.jpg')
+        cv2.imwrite(image_path, cv_image)
+        
         _, jpeg = cv2.imencode('.jpg', cv_image)
         self.app.config['yolo_image'] = jpeg.tobytes()
 

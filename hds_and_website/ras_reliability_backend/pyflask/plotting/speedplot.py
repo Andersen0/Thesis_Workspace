@@ -16,7 +16,7 @@ log_files.sort(reverse=True)
 
 # Get the newest file
 if log_files:
-    newest_file = log_files[52]
+    newest_file = log_files[0]
     file_path = os.path.join(log_dir, newest_file)
 
     # Read data from the newest file
