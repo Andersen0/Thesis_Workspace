@@ -15,7 +15,7 @@ def generate_launch_description():
         # Declare a launch argument for the world file
         DeclareLaunchArgument(
             'world',
-            default_value=os.path.join(get_package_share_directory("maze_launch"), 'worlds', 'big_hello.world'),
+            default_value=os.path.join(get_package_share_directory("maze_launch"), 'worlds', 'generated.world'),
 
             description='Specify the Gazebo world file to load',
         ),

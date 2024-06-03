@@ -3,6 +3,9 @@
 #include <algorithm>
 #include <string>
 
+int retry_count = 0;
+const int retry_limit = 10;
+
 class FollowRobot : public gazebo::ModelPlugin
 {
 public:
@@ -33,19 +36,41 @@ public:
 
     void OnUpdate()
     {
+        if (!this->light) {
+            auto lights = this->model->GetWorld()->Lights();
+            for (const auto& light : lights) {
+                if (light->GetName() == "user_spot_light") {
+                    this->light = light;
+                    break;
+                }
+            }
+
+            if (!this->light) {
+                if (retry_count < retry_limit) {
+                    retry_count++;
+                    gzdbg << "Retry " << retry_count << "/" << retry_limit << ": Light 'user_spot_light' not found." << std::endl;
+                } else {
+                    gzerr << "Failed to find light 'user_spot_light' after " << retry_limit << " retries." << std::endl;
+                }
+                return;
+            } else {
+                gzdbg << "Light 'user_spot_light' found." << std::endl;
+            }
+        }
+
         if (this->light) {
             // Get the current robot pose
             auto robotPose = this->model->WorldPose();
 
             // Debug output
-            gzdbg << "Current Robot Pose: " << robotPose << std::endl;
+            // gzdbg << "Current Robot Pose: " << robotPose << std::endl;
 
             // Update the light's position
             robotPose.Pos().Z() += 1.0;  // Adjust height as necessary
             this->light->SetWorldPose(robotPose);
 
             // More debug output
-            gzdbg << "Updated Light Pose: " << robotPose << std::endl;
+            // gzdbg << "Updated Light Pose: " << robotPose << std::endl;
         } else {
             gzerr << "Light reference not available." << std::endl;
         }

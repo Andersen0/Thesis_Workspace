@@ -34,11 +34,11 @@ class Teleop(Node):
             self.twist.linear.x = 0.0 * msg.axes[0]
             self.twist.angular.z = -0.0 * msg.axes[3]
         elif self.slowdown_value:
-            self.twist.linear.x = 0.35 * msg.axes[0]
-            self.twist.angular.z = -0.45 * msg.axes[3]
+            self.twist.linear.x = 0.35/2 * msg.axes[0]
+            self.twist.angular.z = -0.45/2 * msg.axes[3]
         else:
-            self.twist.linear.x = 0.7 * msg.axes[0]
-            self.twist.angular.z = -0.9 * msg.axes[3]
+            self.twist.linear.x = (0.7/2) * msg.axes[0]
+            self.twist.angular.z = (-0.9/2) * msg.axes[3]
 
         if msg.buttons[0]:
             if not self.last_button:
