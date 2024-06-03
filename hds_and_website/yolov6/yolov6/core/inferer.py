@@ -229,6 +229,8 @@ class Inferer(Node):
             pub_msg = String()
             pub_msg.data = str("none;")
             self.class_detection.publish(pub_msg)
+            self.image_pubber.publish(self.bridge.cv2_to_imgmsg(img_src, "bgr8"))
+
         # FPS counter
         fps_calculator.update(1.0 / (t2 - t1))
         avg_fps = fps_calculator.accumulate()
@@ -278,10 +280,10 @@ class Inferer(Node):
                     vid_path = save_path
                     if isinstance(vid_writer, cv2.VideoWriter):
                         vid_writer.release()  # release previous video writer
-                    if vid_cap:  # video
-                        fps = vid_cap.get(cv2.CAP_PROP_FPS)
-                        w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-                        h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+                    # if vid_cap:  # video
+                    #     fps = vid_cap.get(cv2.CAP_PROP_FPS)
+                    #     w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+                    #     h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
                     else:  # stream
                         fps, w, h = 30, img_ori.shape[1], img_ori.shape[0]
                     save_path = str(Path(save_path).with_suffix('.mp4'))  # force *.mp4 suffix on results videos
