@@ -18,7 +18,7 @@ def create_video_from_images(image_dir, output_video):
         '-c:v', 'libx264',
         '-pix_fmt', 'yuv420p',
         output_video
-    ]
+        ]
     
     # Run the ffmpeg command
     subprocess.run(ffmpeg_cmd, check=True)
