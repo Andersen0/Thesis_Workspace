@@ -1,3 +1,7 @@
+
+### This REAME is currently not updated and contains false information regarding the contained code.
+
+
 # hds_and_website
 
 To build the packages run:
