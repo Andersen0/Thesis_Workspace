@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>toggle_greenzone_plugin</name>
+  <version>0.0.0</version>
+  <description>A Gazebo plugin to toggle a yellow light using ROS 2</description>
+  <maintainer email="tage.a00@gmail.com">Tage Andersen</maintainer>
+  <license>Apache 2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>std_msgs</depend>
+  <depend>gazebo_dev</depend>
+  <depend>gazebo_ros</depend>
+  <depend>gazebo</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

@@ -27,7 +27,8 @@ setup(
             'publisher = srobot_realistic_output.publisher:main',
             'subscriber = srobot_realistic_output.subscriber:main',
             'fixed_publisher = srobot_realistic_output.fixed_publisher:main',
-            'uv_light = srobot_realistic_output.UVLight:main'
+            'uv_light = srobot_realistic_output.UVLight:main',
+            'float_subscriber = srobot_realistic_output.float_subscriber:main',
         ],
     },
 )

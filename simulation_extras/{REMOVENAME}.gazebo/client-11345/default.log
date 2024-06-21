@@ -1,0 +1,16 @@
+Gazebo multi-robot simulator, version 11.10.2
+Copyright (C) 2012 Open Source Robotics Foundation.
+Released under the Apache 2 License.
+http://gazebosim.org
+
+
+(1718362683 17508250) [Msg] Waiting for master.
+(1718362683 17788097) Failed to create connection to remote host[localhost:11345]
+(1718362684 20599417) [Msg] Connected to gazebo master @ http://127.0.0.1:11345
+(1718362684 20640675) [Msg] Publicized address: 192.168.11.171
+(1718362684 20944547) Loaded .ini file from: "/home/nmbu/.gazebo/gui.ini"
+(1718362687 643141238) No spacenav daemon found. Spacenav functionality is disabled
+(1718362688 93845052) [Msg] Loading heightmap: virtual_maize_field_heightmap
+(1718362688 93993311) [Msg] Loading heightmap cache data: /home/nmbu/.gazebo/paging/virtual_maize_field_heightmap/gazebo_terrain_00000000.dat
+(1718362688 747243668) [Msg] Heightmap loaded. Process took: 0.653393 seconds
+(1718362896 163421392) [Wrn] [Event.cc:61] Warning: Deleting a connection right after creation. Make sure to save the ConnectionPtr from a Connect call

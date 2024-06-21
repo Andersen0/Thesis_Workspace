@@ -1,0 +1,4 @@
+source;share/toggle_greenzone_plugin/local_setup.bash
+source;share/toggle_greenzone_plugin/local_setup.dsv
+source;share/toggle_greenzone_plugin/local_setup.sh
+source;share/toggle_greenzone_plugin/local_setup.zsh

@@ -1,0 +1,4 @@
+source;share/follow_robot_plugin/local_setup.bash
+source;share/follow_robot_plugin/local_setup.dsv
+source;share/follow_robot_plugin/local_setup.sh
+source;share/follow_robot_plugin/local_setup.zsh

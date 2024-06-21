@@ -13,6 +13,10 @@ find_package(ament_cmake REQUIRED)
 find_package(gazebo_ros_pkgs REQUIRED)
 find_package(gazebo_dev REQUIRED)
 find_package(gazebo_ros REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
+# find_package(ignition-math6 REQUIRED)
+
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -26,7 +30,7 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-include_directories(include ${gazebo_dev_INCLUDE_DIRS} ${gazebo_ros_INCLUDE_DIRS})
+include_directories(include ${gazebo_dev_INCLUDE_DIRS} ${gazebo_ros_INCLUDE_DIRS} ${rclcpp_INCLUDE_DIRS} ${std_msgs_INCLUDE_DIRS})
 
 add_library(follow_robot_plugin SHARED
   src/follow_robot_plugin.cpp
@@ -35,6 +39,8 @@ add_library(follow_robot_plugin SHARED
 ament_target_dependencies(follow_robot_plugin
   gazebo_dev
   gazebo_ros
+  rclcpp
+  std_msgs
 )
 
 install(TARGETS

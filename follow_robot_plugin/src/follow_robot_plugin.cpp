@@ -2,84 +2,121 @@
 #include <gazebo/physics/physics.hh>
 #include <algorithm>
 #include <string>
+#include <rclcpp/rclcpp.hpp>
+#include <std_msgs/msg/float64.hpp>
+#include <cmath>
 
-int retry_count = 0;
-const int retry_limit = 10;
-
-class FollowRobot : public gazebo::ModelPlugin
-{
+class FollowRobot : public gazebo::ModelPlugin {
 public:
-    void Load(gazebo::physics::ModelPtr _parent, sdf::ElementPtr /*_sdf*/) override
-    {
-        this->model = _parent;  // Assign the model
+    FollowRobot() : scanValue_(0.0) {}
 
-        // Get the world and all lights in it
-        auto world = this->model->GetWorld();
-        std::vector<gazebo::physics::LightPtr> lights = world->Lights();
-
-        // Find the specific light by name
-        auto it = std::find_if(lights.begin(), lights.end(), [](const gazebo::physics::LightPtr& light) {
-            return light->GetName() == "user_spot_light";
-        });
-
-        if (it != lights.end()) {
-            this->light = *it;
-        } else {
-            gzerr << "Light named 'user_spot_light' not found!" << std::endl;
-            return;
+    ~FollowRobot() {
+        if (ros_node_) {
+            rclcpp::shutdown();
         }
-
-        // Connect OnUpdate to the simulation update event
-        this->updateConnection = gazebo::event::Events::ConnectWorldUpdateBegin(
-            std::bind(&FollowRobot::OnUpdate, this));
     }
 
-    void OnUpdate()
-    {
-        if (!this->light) {
-            auto lights = this->model->GetWorld()->Lights();
-            for (const auto& light : lights) {
-                if (light->GetName() == "user_spot_light") {
-                    this->light = light;
-                    break;
-                }
-            }
+    void Load(gazebo::physics::ModelPtr _parent, sdf::ElementPtr /*_sdf*/) override {
+        model = _parent; // Assign the robot model
+        auto world = model->GetWorld();
 
-            if (!this->light) {
-                if (retry_count < retry_limit) {
-                    retry_count++;
-                    gzdbg << "Retry " << retry_count << "/" << retry_limit << ": Light 'user_spot_light' not found." << std::endl;
-                } else {
-                    gzerr << "Failed to find light 'user_spot_light' after " << retry_limit << " retries." << std::endl;
-                }
-                return;
-            } else {
-                gzdbg << "Light 'user_spot_light' found." << std::endl;
-            }
-        }
+        // Initialize ROS node
+        ros_node_ = std::make_shared<rclcpp::Node>("follow_robot_plugin");
 
-        if (this->light) {
-            // Get the current robot pose
-            auto robotPose = this->model->WorldPose();
+        // Retrieve other models by name
+        spotLight = world->LightByName("user_spot_light");
+        greenZoneModel = world->ModelByName("green_zone_model");
+        yellowZoneModel = world->ModelByName("yellow_zone_model");
+        redZoneModel = world->ModelByName("red_zone_model");
+        blackCylinderModel = world->ModelByName("black_cylinder_model");
 
-            // Debug output
-            // gzdbg << "Current Robot Pose: " << robotPose << std::endl;
+        // Setup ROS communications
+        sub_ = ros_node_->create_subscription<std_msgs::msg::Float64>(
+            "/distance_float", 10, [this](std_msgs::msg::Float64::SharedPtr msg) {
+                OnScanMsg(msg);
+            });
 
-            // Update the light's position
-            robotPose.Pos().Z() += 1.0;  // Adjust height as necessary
-            this->light->SetWorldPose(robotPose);
-
-            // More debug output
-            // gzdbg << "Updated Light Pose: " << robotPose << std::endl;
-        } else {
-            gzerr << "Light reference not available." << std::endl;
-        }
+        updateConnection = gazebo::event::Events::ConnectWorldUpdateBegin(
+            [this](const gazebo::common::UpdateInfo & /*info*/) {
+                OnUpdate();
+            });
     }
 
 private:
+    void OnUpdate() {
+        if (!model) return;
+
+        auto robotPose = model->WorldPose();
+
+        // Update the positions of the models to follow the robot
+        UpdateModelPose(robotPose, greenZoneModel);
+        UpdateModelPose(robotPose, yellowZoneModel);
+        UpdateModelPose(robotPose, redZoneModel);
+
+        // Update the black cylinder's position based on the /distance_float value
+        UpdateCylinderPose(robotPose);
+
+        // Update the Spot Light's position to follow the robot's entire pose (x, y, z, roll, pitch, yaw)
+        UpdateLightPose(robotPose);
+
+        rclcpp::spin_some(ros_node_);
+    }
+
+    void UpdateModelPose(const ignition::math::Pose3d& robotPose, const gazebo::physics::ModelPtr& model) {
+        if (!model) return;
+        auto currentModelPose = model->WorldPose();
+        ignition::math::Pose3d newPose(
+            robotPose.Pos().X(), robotPose.Pos().Y(), currentModelPose.Pos().Z(),
+            currentModelPose.Rot().Roll(), currentModelPose.Rot().Pitch(), currentModelPose.Rot().Yaw());
+        model->SetWorldPose(newPose);
+    }
+
+    void UpdateCylinderPose(const ignition::math::Pose3d& robotPose) {
+        if (!blackCylinderModel) return;
+        auto currentCylinderPose = blackCylinderModel->WorldPose();
+        double xPositionOffset;
+
+        // Check if the scan value is 0.0 and set the x position far away
+        if (scanValue_ == 0.0) {
+            xPositionOffset = 1000.0; // You can adjust this value to be "far away" as needed
+        } else {
+            // Add 0.2 to the scan value to adjust the cylinder's position
+            xPositionOffset = static_cast<double>(scanValue_) + 0.2;
+        }
+
+        ignition::math::Pose3d newPose(
+            robotPose.Pos().X() + xPositionOffset, // Adjust X position based on xPositionOffset
+            robotPose.Pos().Y(), 
+            currentCylinderPose.Pos().Z(),
+            currentCylinderPose.Rot().Roll(), 
+            currentCylinderPose.Rot().Pitch(), 
+            currentCylinderPose.Rot().Yaw());
+        blackCylinderModel->SetWorldPose(newPose);
+    }
+
+    void UpdateLightPose(const ignition::math::Pose3d& robotPose) {
+        if (!spotLight) return;
+        auto currentLightPose = spotLight->WorldPose();
+        ignition::math::Pose3d newPose(
+            robotPose.Pos().X(), robotPose.Pos().Y(), robotPose.Pos().Z() + 1.125, // Adjust Z position
+            currentLightPose.Rot().Roll(), currentLightPose.Rot().Pitch(), currentLightPose.Rot().Yaw());
+        spotLight->SetWorldPose(newPose);
+    }
+
+    void OnScanMsg(const std_msgs::msg::Float64::SharedPtr msg) {
+        scanValue_ = msg->data; // Update the scan value used to adjust the cylinder's position
+    }
+
     gazebo::physics::ModelPtr model;
-    gazebo::physics::LightPtr light;
+    gazebo::physics::ModelPtr greenZoneModel;
+    gazebo::physics::ModelPtr yellowZoneModel;
+    gazebo::physics::ModelPtr redZoneModel;
+    gazebo::physics::ModelPtr blackCylinderModel;
+    gazebo::physics::LightPtr spotLight;
     gazebo::event::ConnectionPtr updateConnection;
+    std::shared_ptr<rclcpp::Node> ros_node_;
+    rclcpp::Subscription<std_msgs::msg::Float64>::SharedPtr sub_;
+    double scanValue_;
 };
 
 GZ_REGISTER_MODEL_PLUGIN(FollowRobot)

@@ -13,5 +13,6 @@
     ],
     "files.associations": {
         "chrono": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "/home/nmbu/colcon_ws/src/Thesis_Workspace/follow_robot_plugin"
 }

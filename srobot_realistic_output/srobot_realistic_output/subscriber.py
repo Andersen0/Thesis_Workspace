@@ -110,10 +110,11 @@ class ClassDistanceProcessor(Node):
         self.publish_condition(self.alert_publisher, injection[5])
         self.publish_condition(self.turnoff_uvc_publisher, injection[6])
         now = datetime.datetime.now()
+        """
         log_filename = '/home/eliash/overhead.log'
         formatted_time = now.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
         with open(log_filename, 'a') as file:
-            file.write(f"{formatted_time} - INFO - Message here\n")
+            file.write(f"{formatted_time} - INFO - Message here\n")"""
         time.sleep(1.5) # pause to keep camera info away while injecting
 
     def listener_callback(self, msg):
@@ -255,6 +256,7 @@ class ClassDistanceProcessor(Node):
             msg = Bool()
         elif publisher in [self.state_publisher, self.classifier_publisher, self.distance_publisher]:
             msg = Int64()
+
         msg.data = value
         publisher.publish(msg)
 

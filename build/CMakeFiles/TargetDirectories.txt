@@ -1,0 +1,10 @@
+/home/nmbu/colcon_ws/src/Thesis_Workspace/build/CMakeFiles/uninstall.dir
+/home/nmbu/colcon_ws/src/Thesis_Workspace/build/CMakeFiles/follow_robot_plugin_uninstall.dir
+/home/nmbu/colcon_ws/src/Thesis_Workspace/build/CMakeFiles/follow_robot_plugin.dir
+/home/nmbu/colcon_ws/src/Thesis_Workspace/build/CMakeFiles/test.dir
+/home/nmbu/colcon_ws/src/Thesis_Workspace/build/CMakeFiles/edit_cache.dir
+/home/nmbu/colcon_ws/src/Thesis_Workspace/build/CMakeFiles/rebuild_cache.dir
+/home/nmbu/colcon_ws/src/Thesis_Workspace/build/CMakeFiles/list_install_components.dir
+/home/nmbu/colcon_ws/src/Thesis_Workspace/build/CMakeFiles/install.dir
+/home/nmbu/colcon_ws/src/Thesis_Workspace/build/CMakeFiles/install/local.dir
+/home/nmbu/colcon_ws/src/Thesis_Workspace/build/CMakeFiles/install/strip.dir
