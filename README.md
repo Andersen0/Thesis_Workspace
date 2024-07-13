@@ -5,7 +5,7 @@
 
 ### YouTube Embed
 
-<iframe width="560" height="315" src="https://youtu.be/gVkXQGgXUrk" frameborder="0" allowfullscreen></iframe>
+[![Watch the video](https://img.youtube.com/vi/gVkXQGgXUrk/0.jpg)](https://youtu.be/gVkXQGgXUrk)
 
 ### Direct Link
 
