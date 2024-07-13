@@ -1,6 +1,18 @@
 
 ### This REAME is currently not updated and contains false information regarding the contained code.
 
+## Video Demo
+
+You can watch the video demo of the project below:
+
+[Watch the video](https://raw.githubusercontent.com/your-username/your-repo/main/videos/your-video.mp4)
+
+Or you can view it directly below:
+
+<video width="600" controls>
+  <source src="https://raw.githubusercontent.com/your-username/your-repo/main/videos/your-video.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 # hds_and_website
 
