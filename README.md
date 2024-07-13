@@ -3,16 +3,13 @@
 
 ## Video Demo
 
-You can watch the video demo of the project below:
+### YouTube Embed
 
-[Watch the video](https://github.com/Andersen0/Thesis_Workspace/blob/main/videos/Violation_Mitigation_Demonstration.mp4)
+<iframe width="560" height="315" src="https://youtu.be/gVkXQGgXUrk" frameborder="0" allowfullscreen></iframe>
 
-Or you can view it directly below:
+### Direct Link
 
-<video width="600" controls>
-  <source src="https://github.com/Andersen0/Thesis_Workspace/blob/main/videos/Violation_Mitigation_Demonstration.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+[Watch the video](https://youtu.be/gVkXQGgXUrk)
 
 # hds_and_website
 
