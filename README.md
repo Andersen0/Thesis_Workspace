@@ -5,12 +5,12 @@
 
 You can watch the video demo of the project below:
 
-[Watch the video](https://raw.githubusercontent.com/your-username/your-repo/main/videos/your-video.mp4)
+[Watch the video](https://github.com/Andersen0/Thesis_Workspace/blob/main/videos/Violation_Mitigation_Demonstration%20-%20Made%20with%20Clipchamp.mp4)
 
 Or you can view it directly below:
 
 <video width="600" controls>
-  <source src="[https://raw.githubusercontent.com/your-username/your-repo/main/videos/your-video.mp4](https://github.com/Andersen0/Thesis_Workspace/blob/main/videos/Violation_Mitigation_Demonstration%20-%20Made%20with%20Clipchamp.mp4)" type="video/mp4">
+  <source src="https://github.com/Andersen0/Thesis_Workspace/blob/main/videos/Violation_Mitigation_Demonstration%20-%20Made%20with%20Clipchamp.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
