@@ -1,3 +1,7 @@
+
+### This REAME is currently not updated and contains false information regarding the contained code.
+
+
 # hds_and_website
 
 To build the packages run:
@@ -88,5 +92,9 @@ ros2 launch rosbridge_server rosbridge_websocket_launch.xml
 
 ## To run the irmt_teleop package with plugins
 ros2 launch imrt_teleop turtlebot_teleop.launch.py 
+
+## Rosbag file with video of adult and worker walking down corridor.
+https://drive.google.com/drive/folders/1jtmLMNx-0xZPhMIur5fxFwlo8PuJ-N6X?usp=sharing
+
 
 # Remember to add pathing to the .so plugins inside each plugins src/build in ~/.bashrc or export manually
