@@ -3,6 +3,8 @@
 This is the collected repository consisting of all parts of a framework for runtime verification of ROS2 systems,
 including instructions as well as personal findings and goals.
 
+<a href="/NMBU_Master_Thesis.pdf" class="image fit"><img src="images/marr_pic.jpg" alt=""></a>
+
 ## The task:
 
 Put together a framework for autonomous generation of monitors from natural language with an end-goal of easy runtime verification of ROS2 systems.
@@ -187,4 +189,5 @@ ros2 launch imrt_teleop turtlebot_teleop.launch.py
 
 ### Remember to add pathing to the .so plugins inside each plugins src/build in ~/.bashrc or export manually
 
+<img src="workflow.jpg" style="transform: rotate(90deg);" />
 
