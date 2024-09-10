@@ -3,12 +3,26 @@
 This is the collected repository consisting of all parts of a framework for runtime verification of ROS2 systems,
 including instructions as well as personal findings and goals.
 
+The primary goal of this project is to automatically develop a robust RV platform for ROS 2 applications
+from Natural Language (NL) requirements, equipped with a user interface. This platform aims to facilitate
+user interaction with the ROS system through simple commands and will be applicable to both CPS
+and simulation environments. The monitor should demonstrate reliable, high-performance results during
+execution. Additionally, the RV monitors should be capable of being automatically generated from nearnatural
+language requirements, which can be converted into formally verified temporal logic for precise
+verification.
+
 <a href="NMBU_Master_Thesis.pdf" class="image fit"><img src="pdfbutton.png" alt=""></a>
 
-## The task:
+## System Requirements
 
-Put together a framework for autonomous generation of monitors from natural language with an end-goal of easy runtime verification of ROS2 systems.
-The task builds upon previous work done by PhD candidate Mustafa Adam and the developers at NASA behind FRET and OGMA.
+The system is designed to meet the following requirements, in no particularly order (see thesis for detailed explanation):
+1. ROS 2 Compatibility
+2. Low Latency and High Performance
+3. Bidirectional Communication
+4. Linux Compatibility
+5. Hard Real-Time Capabilities
+6. Formal Verification
+7. Violation Detection and Reporting
 
 ### Software developed by NASA, utilized in the framework:
 [FRET github](https://github.com/NASA-SW-VnV/fret/tree/master)
