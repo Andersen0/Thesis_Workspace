@@ -41,6 +41,19 @@ The system is designed to meet the following requirements, in no particularly or
 
 ## Workflow
 
+The inspiration for advancing RV in ROS 2 applications came from the paper ”Automated Translation
+of Natural Language Requirements to Runtime Monitors” by Dr. Ivan Perez and his team at NASA. The
+paper outlines the steps for creating C monitors for ROS 2 from FRET input in the following seven steps:
+
+1. Fret automatically translates requirements into pure Past-time Metric Linear Temporal Logic
+(ptLTL) formulas.
+2. Information about the variables referenced in the requirements must be provided by the user.
+3. The formulas and provided variable data are then combined to generate the Component Specification.
+4. Based on this specification, OGMA creates a complete Copilot monitor specification.
+5. Copilot then generates the C Monitor. 
+6. This monitor, along with other C code, is given to a C compiler.
+7. The final object code is generated.
+
 ### ROBOTOOL (optional)
 
 ### FRET
