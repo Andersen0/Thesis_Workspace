@@ -119,3 +119,5 @@ https://drive.google.com/drive/folders/1jtmLMNx-0xZPhMIur5fxFwlo8PuJ-N6X?usp=sha
 
 
 # Remember to add pathing to the .so plugins inside each plugins src/build in ~/.bashrc or export manually
+
+<img src="workflow.jpg" style="transform: rotate(90deg);" />
