@@ -43,10 +43,15 @@ The task builds upon previous work done by PhD candidate Mustafa Adam and the de
 
 ### ROS2
 
-### Testing
+1. Integrate C++ monitors with ROS2, focusing on correct topic paths and information gathering
+2. Create violation handeling from the hanbdler topics listed in the C code, if wanted. 
+3. Test system and add further functions if wanted. Bidirectional communication and mitigation actions being examples of further development. 
 
+<img src="workflow.jpg" style="transform: rotate(90deg);" />
 
-# hds_and_website
+# Master's in Applied Robotics use-case
+
+## hds_and_website
 
 To build the packages run:
 ```
@@ -58,7 +63,7 @@ colcon build --packages-select pyflask
 ```
 To use this project you will need a few packages.
 
-## For the Realsense depth-camera packages:
+### For the Realsense depth-camera packages:
 
 You can follow the installation section here : https://github.com/IntelRealSense/realsense-ros#installation
 
@@ -72,21 +77,21 @@ sudo apt install ros-<ROS_DISTRO>-realsense2-*
 ```
 
 For the YOLO package you will need a few packages like CV2 and pytorch, but I leave the installation up to you
-You will probably get nice error messages for missing packages
+You will probably get nice error messages for missing packages. These should be added when called upon.
 
-## Before running the yolo prediction you have to launch the camera node. Run:
+### Before running the yolo prediction you have to launch the camera node. Run:
 ```
 ros2 launch realsense2_camera rs_launch.py enable_rgbd:=true enable_sync:=true align_depth.enable:=true enable_color:=true enable_depth:=true 
 ```
 
 Among other things this makes sure the resolution and FOV of the RBG image and depth image is the same. This is required by the current yolo solution
 
-## To run the Yolo-prediction by itself:
+### To run the Yolo-prediction by itself:
 ```
 ros2 run yolov6 inferer
 ```
 
-## If you get an error message that says:
+### If you get an error message that says:
 **ImportError: /lib/x86_64-linux-gnu/libstdc++.so.6: cannot allocate memory in static TLS block**
 
 You can run:
@@ -94,9 +99,11 @@ You can run:
 export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6:/usr/lib/x86_64-linux-gnu/libgcc_s.so.1:$LD_PRELOAD
 ```
 
-# ras_reliability_backend
+## ras_reliability_backend
 
-## packages
+Robotics and Automation Society (ras) focused development on runtime verification monitors for use with ROS2 systems. 
+
+### Installation packages
 
 If this is your first time using this package remember to do the following:
 ```
@@ -143,4 +150,4 @@ https://drive.google.com/drive/folders/1jtmLMNx-0xZPhMIur5fxFwlo8PuJ-N6X?usp=sha
 
 # Remember to add pathing to the .so plugins inside each plugins src/build in ~/.bashrc or export manually
 
-<img src="workflow.jpg" style="transform: rotate(90deg);" />
+
