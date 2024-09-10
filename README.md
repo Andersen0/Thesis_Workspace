@@ -36,14 +36,6 @@ The task builds upon previous work done by PhD candidate Mustafa Adam and the de
 ### Testing
 
 
-
-<img src="workflow.jpg" style="transform: rotate(90deg);" />
-
-
-
-
-
-
 # M30-RB Runtime Verification Framework
 
 This is the collected repository consisting of all parts of a framework for runtime verification of ROS2 systems,
