@@ -51,6 +51,44 @@ The task builds upon previous work done by PhD candidate Mustafa Adam and the de
 
 # Master's in Applied Robotics use-case
 
+The increased use of autonomous robotic systems has necessitated advancements in safety measures due
+to the potential hazards these systems can pose. This increased focus on automation and robotic systems
+raises questions on how safety and compliance will be maintained in a steadily advancing automated society.
+With increasing complexity, it has become evident that rigorous offline testing cannot eliminate all
+dangers associated with infinite state systems, as safety is limited by the defined test-cases and coverage.
+To maintain safety and reliability during runtime, multiple tools often need to be set in place. One such
+tool is called Runtime Verification (RV). Runtime verification, a term that has been growing in popularity,
+refers to lightweight formal methods for observing, analyzing, and sometimes intercepting the processes
+of system software or Cyber-Physical Systems (CPS). One of the most common software libraries for
+CPS robotics is the Robot Operating System (ROS). While ROS has a few runtime verification software
+tools available, the recent release of ROS 2 has created a gap regarding compatible tools and their usage.
+Especially with the shift in infrastructure from a centralized- to distributed discovery. In the case of a
+flawed or failing safety controller, runtime verification plays a pivotal role in detecting what went wrong,
+when and where it occurred, and how to administer possible mitigating actions. The primary objective of
+this thesis is to create a pipeline for the automatic generation of RV monitors for ROS 2 from natural language
+requirements into formally verified temporal logic equations. To achieve this, the pipeline employs
+NASA’s Copilot, OGMA, and FRET tools to convert natural language safety requirements into formally
+verified temporal logic monitors.
+
+This study also addresses the gap in RV tools for ROS 2, providing a comprehensive overview of
+existing tools, implementation strategies, and the benefits of RV in CPS. The framework’s performance
+is evaluated through simulation and field testing using the Thorvald-005 agricultural-robot and D435
+RealSense camera, focusing on system overhead, event-to-stream-based communication, and violation
+reporting efficiency.
+
+Key findings demonstrate that the RV framework effectively improves safety and reliability, with the
+monitor maintaining acceptable system performance even under high message rates. The research also
+highlights the importance of acknowledging hardware limitations and enhancing predictive capabilities to
+further increase system robustness. The findings prove that the automatic generation of formally verified
+RV monitors for ROS 2 is possible with current software and is quick to implement or change, making it
+feasible to test multiple specification models on the same system without changing the source code.
+
+Future work involves refining the generative RV framework, improving hardware integration, and
+extending compatibility to other ROS distributions. The results have contributed to the ongoing development
+of the NASA RV tools, promoting safer deployment of autonomous systems in agriculture and other
+domains. This thesis itself is a contribution to the methodology and knowledge ascertained to properly
+understand and use Linear Temporal Logic (LTL) monitors.
+
 ## hds_and_website
 
 To build the packages run:
@@ -101,7 +139,7 @@ export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6:/usr/lib/x86_64-linux
 
 ## ras_reliability_backend
 
-Robotics and Automation Society (ras) focused development on runtime verification monitors for use with ROS2 systems. 
+Robotics and Automation Society (ras) focused development on runtime verification monitors for use with ROS2 systems. Setup for front-end webpage for monitoring and violation reporting.
 
 ### Installation packages
 
@@ -111,15 +149,14 @@ sudo apt install ros-<ROS_DISTRO>-rosbridge-server
 source /opt/ros/<ROS_DISTRO>/setup.bash
 ```
 
+## Launching package
 
-# Launching package
-
-## To run the website together with the yolo prediction:
+### To run the website together with the yolo prediction:
 ```
 ros2 launch pyflask my_launch_file.launch
 ```
 
-## If you want to change the yolo model:
+### If you want to change the yolo model:
 
 The path to the .pt file and the .yaml file that contains the corresponding labels can be changed at the bottom of yolov6/yolov6/core/inferer.py
 
@@ -137,17 +174,17 @@ pred_img (rgb image cropped with only predicitons)
 pred_depth_img (depth image cropped with only predicitons, sections are used to calculate distance)
 
 
-
-## For rosbridge server to run for use with injection device
+### For rosbridge server to run for use with injection device
+```
 ros2 launch rosbridge_server rosbridge_websocket_launch.xml
-
-## To run the irmt_teleop package with plugins
+```
+### To run the irmt_teleop package with plugins
+```
 ros2 launch imrt_teleop turtlebot_teleop.launch.py 
+```
+### Rosbag file with video of adult and worker walking down corridor.
+[Video Link](https://drive.google.com/drive/folders/1jtmLMNx-0xZPhMIur5fxFwlo8PuJ-N6X?usp=sharing)
 
-## Rosbag file with video of adult and worker walking down corridor.
-https://drive.google.com/drive/folders/1jtmLMNx-0xZPhMIur5fxFwlo8PuJ-N6X?usp=sharing
-
-
-# Remember to add pathing to the .so plugins inside each plugins src/build in ~/.bashrc or export manually
+### Remember to add pathing to the .so plugins inside each plugins src/build in ~/.bashrc or export manually
 
 
