@@ -3,7 +3,7 @@
 This is the collected repository consisting of all parts of a framework for runtime verification of ROS2 systems,
 including instructions as well as personal findings and goals.
 
-<a href="/NMBU_Master_Thesis.pdf" class="image fit"><img src="images/marr_pic.jpg" alt=""></a>
+<a href="NMBU_Master_Thesis.pdf" class="image fit"><img src="images/marr_pic.jpg" alt=""></a>
 
 ## The task:
 
@@ -49,7 +49,7 @@ The task builds upon previous work done by PhD candidate Mustafa Adam and the de
 2. Create violation handeling from the hanbdler topics listed in the C code, if wanted. 
 3. Test system and add further functions if wanted. Bidirectional communication and mitigation actions being examples of further development. 
 
-<img src="workflow.jpg" style="transform: rotate(90deg);" />
+<img src="monitorarchitecture.png" style="transform: rotate(90deg);" />
 
 # Master's in Applied Robotics use-case
 
